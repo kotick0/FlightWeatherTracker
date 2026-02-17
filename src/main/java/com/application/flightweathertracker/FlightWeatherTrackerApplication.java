@@ -9,7 +9,11 @@ import tools.jackson.databind.ObjectMapper;
 public class FlightWeatherTrackerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FlightWeatherTrackerApplication.class, args);
-    }
 
+        SpringApplication.run(FlightWeatherTrackerApplication.class, args);
+
+        ObjectMapper mapper = new ObjectMapper();
+        WeatherApiClient weatherApiClient = new WeatherApiClient(mapper);
+        weatherApiClient.fetchMetar();
+    }
 }

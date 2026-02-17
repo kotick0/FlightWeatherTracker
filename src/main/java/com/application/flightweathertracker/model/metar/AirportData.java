@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Wind {
-    private String unit, direction;
-    private Integer directionDegrees, speed;
+public class AirportData {
+    private Metars metars;
+    private Airport airport;
 }
