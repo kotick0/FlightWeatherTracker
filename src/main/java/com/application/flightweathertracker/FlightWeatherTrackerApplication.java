@@ -1,7 +1,9 @@
 package com.application.flightweathertracker;
 
+import com.application.flightweathertracker.api.WeatherApiClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import tools.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
 public class FlightWeatherTrackerApplication {
