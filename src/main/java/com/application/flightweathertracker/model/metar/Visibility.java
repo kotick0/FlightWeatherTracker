@@ -1,6 +1,7 @@
 package com.application.flightweathertracker.model.metar;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data

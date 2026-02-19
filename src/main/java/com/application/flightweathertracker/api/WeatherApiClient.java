@@ -29,6 +29,9 @@ public class WeatherApiClient {
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             Map<String, AirportData> data = objectMapper.readValue(response.body(), new TypeReference<Map<String, AirportData>>() {});
+            for (Map.Entry<String, AirportData> entry : data.entrySet()) {
+                System.out.println(entry.getValue().getMetars() + "\n");
+            }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
