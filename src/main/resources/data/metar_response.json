@@ -1,0 +1,2233 @@
+{
+  "EPLB": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:34:00Z",
+              "sunset": "2026-02-20T15:53:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "NSC"
+              }
+            ],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPLB",
+            "temperature": -6,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "6000m",
+              "value": 6000
+            },
+            "dewPoint": -7,
+            "message": "METAR EPLB 200900Z 04003KT 360V080 6000 NSC M06/M07 Q1024=",
+            "airport": "Lublin Airport (EPLB)",
+            "isAmended": false,
+            "altimeter": 1024,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 80,
+              "directionDegrees": 40,
+              "speed": 3,
+              "minVariation": 360,
+              "direction": "North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 633,
+      "country": "Poland",
+      "iata": "LUZ",
+      "city": "Lublin",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.240278,
+      "destination": "E",
+      "name": "Lublin Airport",
+      "icao": "EPLB",
+      "sun": {
+        "sunrise": "2026-02-20T05:34:00Z",
+        "sunset": "2026-02-20T15:53:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 22.713611
+    }
+  },
+  "EPTM": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:45:00Z",
+              "sunset": "2026-02-20T16:03:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "NSC"
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPTM",
+            "temperature": -6,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "8000m",
+              "value": 8000
+            },
+            "dewPoint": -7,
+            "message": "METAR EPTM 200900Z 02002KT 8000 NSC M06/M07 Q1025=",
+            "airport": "Tomaszow Mazowiecki Military Air Base (EPTM)",
+            "isAmended": false,
+            "altimeter": 1025,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 20,
+              "speed": 2,
+              "direction": "North North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 571,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Tomaszów Mazowiecki",
+      "timezone": "\\N",
+      "latitude": 51.584400177,
+      "destination": "\\N",
+      "name": "Tomaszów Mazowiecki Military Air Base",
+      "icao": "EPTM",
+      "sun": {
+        "sunrise": "2026-02-20T05:45:00Z",
+        "sunset": "2026-02-20T16:03:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 20.0977993011
+    }
+  },
+  "EPDA": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:06:00Z",
+              "sunset": "2026-02-20T16:12:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPDA",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -9,
+            "message": "METAR EPDA 200900Z 19006KT 090V210 CAVOK M04/M09 Q1027=",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 210,
+              "directionDegrees": 190,
+              "speed": 6,
+              "minVariation": 90,
+              "direction": "South"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 10,
+      "country": "Poland",
+      "iata": "",
+      "city": "Darłowo",
+      "timezone": "Europe/Warsaw",
+      "latitude": 54.40472,
+      "destination": "E",
+      "name": "Darłowo Naval Air Base",
+      "icao": "EPDA",
+      "sun": {
+        "sunrise": "2026-02-20T06:06:00Z",
+        "sunset": "2026-02-20T16:12:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 16.35306
+    }
+  },
+  "EPPO": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:00:00Z",
+              "sunset": "2026-02-20T16:15:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPPO",
+            "temperature": -2,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -8,
+            "message": "METAR EPPO 200900Z 09009KT CAVOK M02/M08 Q1026=",
+            "airport": "Poznań-Ławica Airport (EPPO)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 90,
+              "speed": 9,
+              "direction": "East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 308,
+      "country": "Poland",
+      "iata": "POZ",
+      "city": "Poznań",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.421001434299995,
+      "destination": "E",
+      "name": "Poznań-Ławica Airport",
+      "icao": "EPPO",
+      "sun": {
+        "sunrise": "2026-02-20T06:00:00Z",
+        "sunset": "2026-02-20T16:15:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 16.8262996674
+    }
+  },
+  "EPLK": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:48:00Z",
+              "sunset": "2026-02-20T16:07:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPLK",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -6,
+            "message": "METAR EPLK 200900Z 06005KT 010V100 CAVOK M03/M06 Q1024=",
+            "airport": "Lask Military Air Base (EPLK)",
+            "isAmended": false,
+            "altimeter": 1024,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 100,
+              "directionDegrees": 60,
+              "speed": 5,
+              "minVariation": 10,
+              "direction": "East North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 633,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Łask",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.551700592,
+      "destination": "E",
+      "name": "Łask Military Air Base",
+      "icao": "EPLK",
+      "sun": {
+        "sunrise": "2026-02-20T05:48:00Z",
+        "sunset": "2026-02-20T16:07:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 19.179100036599998
+    }
+  },
+  "EPLL": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:48:00Z",
+              "sunset": "2026-02-20T16:06:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPLL",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -8,
+            "message": "METAR EPLL 200900Z 05009KT CAVOK M03/M08 Q1024=",
+            "airport": "Łódź Władysław Reymont Airport (EPLL)",
+            "isAmended": false,
+            "altimeter": 1024,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 50,
+              "speed": 9,
+              "direction": "North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 604,
+      "country": "Poland",
+      "iata": "LCJ",
+      "city": "Łódź",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.721900939899996,
+      "destination": "E",
+      "name": "Łódź Władysław Reymont Airport",
+      "icao": "EPLL",
+      "sun": {
+        "sunrise": "2026-02-20T05:48:00Z",
+        "sunset": "2026-02-20T16:06:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 19.3980998993
+    }
+  },
+  "EPDE": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:38:00Z",
+              "sunset": "2026-02-20T15:56:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "NSC"
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPDE",
+            "temperature": -7,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "4000m",
+              "value": 4000
+            },
+            "dewPoint": -10,
+            "message": "METAR EPDE 200900Z VRB02KT 4000 BR NSC M07/M10 Q1026=",
+            "airport": "Deblin Military Air Base (EPDE)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [
+              {
+                "phenomenons": [
+                  "MIST"
+                ],
+                "valid": true
+              }
+            ],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 392,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Dęblin",
+      "timezone": "\\N",
+      "latitude": 51.551399231,
+      "destination": "\\N",
+      "name": "Dęblin Military Air Base",
+      "icao": "EPDE",
+      "sun": {
+        "sunrise": "2026-02-20T05:38:00Z",
+        "sunset": "2026-02-20T15:56:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 21.8936004639
+    }
+  },
+  "EPPR": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:56:00Z",
+              "sunset": "2026-02-20T16:03:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "BKN",
+                "height": 3500
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPPR",
+            "temperature": -2,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPPR 200900Z 24004KT 9999 BKN035 M02/M07 Q1027=",
+            "airport": "Pruszcz Gdanski Air Base (EPPR)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 240,
+              "speed": 4,
+              "direction": "West South West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 21,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Pruszcz Gdański",
+      "timezone": "Europe/Warsaw",
+      "latitude": 54.248001,
+      "destination": "E",
+      "name": "Pruszcz Gdański Air Base",
+      "icao": "EPPR",
+      "sun": {
+        "sunrise": "2026-02-20T05:56:00Z",
+        "sunset": "2026-02-20T16:03:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 18.6716
+    }
+  },
+  "EPPW": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:55:00Z",
+              "sunset": "2026-02-20T16:10:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPPW",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPPW 200900Z 07008KT CAVOK M03/M07 Q1026=",
+            "airport": "Powidz Military Air Base (EPPW)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 70,
+              "speed": 8,
+              "direction": "East North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 371,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Powidz",
+      "timezone": "\\N",
+      "latitude": 52.379398,
+      "destination": "\\N",
+      "name": "Powidz Military Air Base",
+      "icao": "EPPW",
+      "sun": {
+        "sunrise": "2026-02-20T05:55:00Z",
+        "sunset": "2026-02-20T16:10:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 17.853901
+    }
+  },
+  "EPRZ": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:34:00Z",
+              "sunset": "2026-02-20T15:58:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "NSC"
+              }
+            ],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPRZ",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "8000m",
+              "value": 8000
+            },
+            "dewPoint": -9,
+            "message": "METAR EPRZ 200900Z VRB01KT 8000 NSC M05/M09 Q1024=",
+            "airport": "Rzeszów-Jasionka Airport (EPRZ)",
+            "isAmended": false,
+            "altimeter": 1024,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 1,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 675,
+      "country": "Poland",
+      "iata": "RZE",
+      "city": "Rzeszów",
+      "timezone": "Europe/Warsaw",
+      "latitude": 50.1100006104,
+      "destination": "E",
+      "name": "Rzeszów-Jasionka Airport",
+      "icao": "EPRZ",
+      "sun": {
+        "sunrise": "2026-02-20T05:34:00Z",
+        "sunset": "2026-02-20T15:58:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 22.0189990997
+    }
+  },
+  "EPWA": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:43:00Z",
+              "sunset": "2026-02-20T15:58:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPWA",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPWA 200900Z 25003KT CAVOK M04/M07 Q1026 NOSIG=",
+            "airport": "Warsaw Chopin Airport (EPWA)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "isNOSIG": true,
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 250,
+              "speed": 3,
+              "direction": "West South West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 362,
+      "country": "Poland",
+      "iata": "WAW",
+      "city": "Warsaw",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.1656990051,
+      "destination": "E",
+      "name": "Warsaw Chopin Airport",
+      "icao": "EPWA",
+      "sun": {
+        "sunrise": "2026-02-20T05:43:00Z",
+        "sunset": "2026-02-20T15:58:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 20.967100143399996
+    }
+  },
+  "EPLY": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:49:00Z",
+              "sunset": "2026-02-20T16:06:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "NSC"
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPLY",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "5000m",
+              "value": 5000
+            },
+            "dewPoint": -8,
+            "message": "METAR EPLY 200900Z VRB02KT 5000 BR NSC M05/M08 Q1026=",
+            "airport": "Leczyca Military Air Base (EPLY)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [
+              {
+                "phenomenons": [
+                  "MIST"
+                ],
+                "valid": true
+              }
+            ],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 377,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Leczyca",
+      "timezone": "\\N",
+      "latitude": 52.004699707,
+      "destination": "\\N",
+      "name": "Leczyca Military Air Base",
+      "icao": "EPLY",
+      "sun": {
+        "sunrise": "2026-02-20T05:49:00Z",
+        "sunset": "2026-02-20T16:06:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 19.1455993652
+    }
+  },
+  "EPSC": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:10:00Z",
+              "sunset": "2026-02-20T16:20:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPSC",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPSC 200900Z 13008KT CAVOK M03/M07 Q1026=",
+            "airport": "Szczecin-Goleniów \"Solidarność\" Airport (EPSC)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 130,
+              "speed": 8,
+              "direction": "South East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 154,
+      "country": "Poland",
+      "iata": "SZZ",
+      "city": "Szczecin",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.584701538100006,
+      "destination": "E",
+      "name": "Szczecin-Goleniów \"Solidarność\" Airport",
+      "icao": "EPSC",
+      "sun": {
+        "sunrise": "2026-02-20T06:10:00Z",
+        "sunset": "2026-02-20T16:20:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 14.902199745199999
+    }
+  },
+  "EPMB": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:54:00Z",
+              "sunset": "2026-02-20T16:02:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "FEW",
+                "height": 3300
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPMB",
+            "temperature": -6,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -9,
+            "message": "METAR EPMB 200900Z 24005KT 9999 FEW033 M06/M09 Q1027=",
+            "airport": "Malbork Military Air Base (EPMB)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 240,
+              "speed": 5,
+              "direction": "West South West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 16,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Malbork",
+      "timezone": "Europe/Warsaw",
+      "latitude": 54.0269012451,
+      "destination": "E",
+      "name": "Malbork Military Air Base",
+      "icao": "EPMB",
+      "sun": {
+        "sunrise": "2026-02-20T05:54:00Z",
+        "sunset": "2026-02-20T16:02:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 19.134199142499998
+    }
+  },
+  "EPBY": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:56:00Z",
+              "sunset": "2026-02-20T16:09:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPBY",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -9,
+            "message": "METAR EPBY 200900Z VRB02KT CAVOK M04/M09 Q1027=",
+            "airport": "Bydgoszcz Ignacy Jan Paderewski Airport (EPBY)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 235,
+      "country": "Poland",
+      "iata": "BZG",
+      "city": "Bydgoszcz",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.096801757799994,
+      "destination": "E",
+      "name": "Bydgoszcz Ignacy Jan Paderewski Airport",
+      "icao": "EPBY",
+      "sun": {
+        "sunrise": "2026-02-20T05:56:00Z",
+        "sunset": "2026-02-20T16:09:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 17.9776992798
+    }
+  },
+  "EPWR": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:57:00Z",
+              "sunset": "2026-02-20T16:17:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPWR",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPWR 200900Z 13008KT CAVOK M04/M07 Q1025=",
+            "airport": "Copernicus Wrocław Airport (EPWR)",
+            "isAmended": false,
+            "altimeter": 1025,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 130,
+              "speed": 8,
+              "direction": "South East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 404,
+      "country": "Poland",
+      "iata": "WRO",
+      "city": "Wrocław",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.1026992798,
+      "destination": "E",
+      "name": "Copernicus Wrocław Airport",
+      "icao": "EPWR",
+      "sun": {
+        "sunrise": "2026-02-20T05:57:00Z",
+        "sunset": "2026-02-20T16:17:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 16.885799408
+    }
+  },
+  "EPSN": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578360229,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [
+              "AUTO"
+            ],
+            "sun": {
+              "sunrise": "2026-02-20T06:06:00Z",
+              "sunset": "2026-02-20T16:16:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.RRA",
+            "messageType": "RRA",
+            "station": "EPSN",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -6,
+            "message": "METAR EPSN 200900Z AUTO 13003KT 090V160 9999 NCD M03/M06 Q1026=",
+            "airport": "Swidwin Military Air Base (EPSN)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": true,
+            "header": "SAPL97 SOPR 200900 RRA",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 160,
+              "directionDegrees": 130,
+              "speed": 3,
+              "minVariation": 90,
+              "direction": "South East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 385,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Świdwin",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.790599823,
+      "destination": "E",
+      "name": "Świdwin Military Air Base",
+      "icao": "EPSN",
+      "sun": {
+        "sunrise": "2026-02-20T06:06:00Z",
+        "sunset": "2026-02-20T16:16:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 15.826299667399999
+    }
+  },
+  "EPMI": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:05:00Z",
+              "sunset": "2026-02-20T16:16:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPMI",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -8,
+            "message": "METAR EPMI 200900Z 13005KT CAVOK M04/M08 Q1026=",
+            "airport": "Miroslawiec Military Air Base (EPMI)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 130,
+              "speed": 5,
+              "direction": "South East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 459,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Mirosławiec",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.395099639899996,
+      "destination": "E",
+      "name": "MirosŁawiec Military Air Base",
+      "icao": "EPMI",
+      "sun": {
+        "sunrise": "2026-02-20T06:05:00Z",
+        "sunset": "2026-02-20T16:16:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 16.0827999115
+    }
+  },
+  "EPOK": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:57:00Z",
+              "sunset": "2026-02-20T16:03:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "BKN",
+                "height": 3000
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPOK",
+            "temperature": -2,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPOK 200900Z 27006KT 9999 BKN030 M02/M07 Q1027=",
+            "airport": "Oksywie Military Air Base (EPOK)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 270,
+              "speed": 6,
+              "direction": "West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 144,
+      "country": "Poland",
+      "iata": "QYD",
+      "city": "Gdynia",
+      "timezone": "Europe/Warsaw",
+      "latitude": 54.57970047,
+      "destination": "E",
+      "name": "Oksywie Military Air Base",
+      "icao": "EPOK",
+      "sun": {
+        "sunrise": "2026-02-20T05:57:00Z",
+        "sunset": "2026-02-20T16:03:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 18.51720047
+    }
+  },
+  "EPGD": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:57:00Z",
+              "sunset": "2026-02-20T16:04:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "OVC",
+                "height": 2800
+              }
+            ],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPGD",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -8,
+            "message": "METAR EPGD 200900Z 26005KT 240V300 9999 OVC028 M04/M08 Q1026=",
+            "airport": "Gdańsk Lech Wałęsa Airport (EPGD)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 300,
+              "directionDegrees": 260,
+              "speed": 5,
+              "minVariation": 240,
+              "direction": "West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 489,
+      "country": "Poland",
+      "iata": "GDN",
+      "city": "Gdańsk",
+      "timezone": "Europe/Warsaw",
+      "latitude": 54.377601623535156,
+      "destination": "E",
+      "name": "Gdańsk Lech Wałęsa Airport",
+      "icao": "EPGD",
+      "sun": {
+        "sunrise": "2026-02-20T05:57:00Z",
+        "sunset": "2026-02-20T16:04:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 18.46619987487793
+    }
+  },
+  "EPML": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [
+              "AUTO"
+            ],
+            "sun": {
+              "sunrise": "2026-02-20T05:37:00Z",
+              "sunset": "2026-02-20T16:00:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPML",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "5000m",
+              "value": 5000
+            },
+            "dewPoint": -8,
+            "message": "METAR EPML 200900Z AUTO VRB02KT 5000 BR NCD M05/M08 Q1025=",
+            "airport": "Mielec Airport (EPML)",
+            "isAmended": false,
+            "altimeter": 1025,
+            "isNCD": true,
+            "header": "",
+            "weatherCondition": [
+              {
+                "phenomenons": [
+                  "MIST"
+                ],
+                "valid": true
+              }
+            ],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 548,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Mielec",
+      "timezone": "Europe/Warsaw",
+      "latitude": 50.32229995727539,
+      "destination": "E",
+      "name": "Mielec Airport",
+      "icao": "EPML",
+      "sun": {
+        "sunrise": "2026-02-20T05:37:00Z",
+        "sunset": "2026-02-20T16:00:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 21.462099075317383
+    }
+  },
+  "EPKK": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:43:00Z",
+              "sunset": "2026-02-20T16:07:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPKK",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -10,
+            "message": "METAR EPKK 200900Z 07011KT CAVOK M05/M10 Q1024=",
+            "airport": "Kraków John Paul II International Airport (EPKK)",
+            "isAmended": false,
+            "altimeter": 1024,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 70,
+              "speed": 11,
+              "direction": "East North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 791,
+      "country": "Poland",
+      "iata": "KRK",
+      "city": "Kraków",
+      "timezone": "Europe/Warsaw",
+      "latitude": 50.077702,
+      "destination": "E",
+      "name": "Kraków John Paul II International Airport",
+      "icao": "EPKK",
+      "sun": {
+        "sunrise": "2026-02-20T05:43:00Z",
+        "sunset": "2026-02-20T16:07:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 19.7848
+    }
+  },
+  "EPMM": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:40:00Z",
+              "sunset": "2026-02-20T15:56:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPMM",
+            "temperature": -2,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPMM 200900Z 05004KT 010V080 CAVOK M02/M07 Q1025=",
+            "airport": "Minsk Mazowiecki Military Air Base (EPMM)",
+            "isAmended": false,
+            "altimeter": 1025,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 80,
+              "directionDegrees": 50,
+              "speed": 4,
+              "minVariation": 10,
+              "direction": "North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 604,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Mińsk Mazowiecki",
+      "timezone": "\\N",
+      "latitude": 52.1954994202,
+      "destination": "\\N",
+      "name": "Mińsk Mazowiecki Military Air Base",
+      "icao": "EPMM",
+      "sun": {
+        "sunrise": "2026-02-20T05:40:00Z",
+        "sunset": "2026-02-20T15:56:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 21.6558990479
+    }
+  },
+  "EPMO": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:44:00Z",
+              "sunset": "2026-02-20T15:59:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPMO",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -4,
+            "message": "METAR EPMO 200900Z 31001KT CAVOK M04/M04 Q1026=",
+            "airport": "Modlin Airport (EPMO)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 310,
+              "speed": 1,
+              "direction": "North West"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 341,
+      "country": "Poland",
+      "iata": "WMI",
+      "city": "Warsaw",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.451099,
+      "destination": "E",
+      "name": "Modlin Airport",
+      "icao": "EPMO",
+      "sun": {
+        "sunrise": "2026-02-20T05:44:00Z",
+        "sunset": "2026-02-20T15:59:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 20.6518
+    }
+  },
+  "EPCE": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:00:00Z",
+              "sunset": "2026-02-20T16:07:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "BKN",
+                "height": 2500
+              }
+            ],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPCE",
+            "temperature": -8,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -10,
+            "message": "METAR EPCE 200900Z 00000KT 9999 BKN025 M08/M10 Q1027=",
+            "airport": "Cewice Air Base (EPCE)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 0,
+              "speed": 0,
+              "direction": "North"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 495,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Lębork",
+      "timezone": "\\N",
+      "latitude": 54.416,
+      "destination": "\\N",
+      "name": "Cewice Air Base",
+      "icao": "EPCE",
+      "sun": {
+        "sunrise": "2026-02-20T06:00:00Z",
+        "sunset": "2026-02-20T16:07:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 17.7633
+    }
+  },
+  "EPSY": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:45:00Z",
+              "sunset": "2026-02-20T15:56:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "BKN",
+                "height": 2700
+              }
+            ],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPSY",
+            "temperature": -4,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -6,
+            "message": "METAR EPSY 200900Z VRB02KT 9999 BKN027 M04/M06 Q1026=",
+            "airport": "Olsztyn-Mazury Airport (EPSY)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 463,
+      "country": "Poland",
+      "iata": "SZY",
+      "city": "Szczytno-Szymany",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.481899,
+      "destination": "E",
+      "name": "Olsztyn-Mazury Airport",
+      "icao": "EPSY",
+      "sun": {
+        "sunrise": "2026-02-20T05:45:00Z",
+        "sunset": "2026-02-20T15:56:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 20.9377
+    }
+  },
+  "EPKS": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:59:00Z",
+              "sunset": "2026-02-20T16:14:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPKS",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPKS 200900Z 09009KT CAVOK M03/M07 Q1026=",
+            "airport": "Krzesiny Military Air Base (EPKS)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 90,
+              "speed": 9,
+              "direction": "East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 265,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Poznań",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.3316993713,
+      "destination": "E",
+      "name": "Krzesiny Military Air Base",
+      "icao": "EPKS",
+      "sun": {
+        "sunrise": "2026-02-20T05:59:00Z",
+        "sunset": "2026-02-20T16:14:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 16.9664001465
+    }
+  },
+  "EPKT": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:47:00Z",
+              "sunset": "2026-02-20T16:09:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPKT",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -8,
+            "message": "METAR EPKT 200900Z 08009KT CAVOK M05/M08 Q1023=",
+            "airport": "Katowice International Airport (EPKT)",
+            "isAmended": false,
+            "altimeter": 1023,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 80,
+              "speed": 9,
+              "direction": "East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 995,
+      "country": "Poland",
+      "iata": "KTW",
+      "city": "Katowice",
+      "timezone": "Europe/Warsaw",
+      "latitude": 50.4743,
+      "destination": "E",
+      "name": "Katowice International Airport",
+      "icao": "EPKT",
+      "sun": {
+        "sunrise": "2026-02-20T05:47:00Z",
+        "sunset": "2026-02-20T16:09:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 19.08
+    }
+  },
+  "EPIR": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:54:00Z",
+              "sunset": "2026-02-20T16:08:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPIR",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPIR 200900Z 36004KT CAVOK M05/M07 Q1027=",
+            "airport": "Inowroclaw Military Air Base (EPIR)",
+            "isAmended": false,
+            "altimeter": 1027,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 360,
+              "speed": 4,
+              "direction": "North"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 259,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Inowrocław",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.8293991089,
+      "destination": "E",
+      "name": "Inowrocław Military Air Base",
+      "icao": "EPIR",
+      "sun": {
+        "sunrise": "2026-02-20T05:54:00Z",
+        "sunset": "2026-02-20T16:08:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 18.3306007385
+    }
+  },
+  "EPZG": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:03:00Z",
+              "sunset": "2026-02-20T16:19:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPZG",
+            "temperature": -3,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -7,
+            "message": "METAR EPZG 200900Z 09003KT 040V140 CAVOK M03/M07 Q1026=",
+            "airport": "Zielona Góra-Babimost Airport (EPZG)",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "maxVariation": 140,
+              "directionDegrees": 90,
+              "speed": 3,
+              "minVariation": 40,
+              "direction": "East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 194,
+      "country": "Poland",
+      "iata": "IEG",
+      "city": "Zielona Góra",
+      "timezone": "Europe/Warsaw",
+      "latitude": 52.138500213600004,
+      "destination": "E",
+      "name": "Zielona Góra-Babimost Airport",
+      "icao": "EPZG",
+      "sun": {
+        "sunrise": "2026-02-20T06:03:00Z",
+        "sunset": "2026-02-20T16:19:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 15.7986001968
+    }
+  },
+  "EPRA": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578060209,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T05:40:00Z",
+              "sunset": "2026-02-20T15:59:00Z"
+            },
+            "isCAVOK": false,
+            "cloud": [
+              {
+                "quantity": "SCT",
+                "height": 400
+              }
+            ],
+            "file": "SAPL50.SOWR.200900.",
+            "messageType": "",
+            "station": "EPRA",
+            "temperature": -5,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "m",
+              "mainVisibiity": "8000m",
+              "value": 8000
+            },
+            "dewPoint": -7,
+            "message": "METAR EPRA 200900Z 02005KT 8000 SCT004 M05/M07 Q1025=",
+            "airport": "Radom Airport (EPRA)",
+            "isAmended": false,
+            "altimeter": 1025,
+            "isNCD": false,
+            "header": "",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 20,
+              "speed": 5,
+              "direction": "North North East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 610,
+      "country": "Poland",
+      "iata": "RDO",
+      "city": "RADOM",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.3891983032,
+      "destination": "E",
+      "name": "Radom Airport",
+      "icao": "EPRA",
+      "sun": {
+        "sunrise": "2026-02-20T05:40:00Z",
+        "sunset": "2026-02-20T15:59:00Z"
+      },
+      "isMILITARY": false,
+      "longitude": 21.213300705
+    }
+  },
+  "EPNA": {
+    "metars": {
+      "sa": {
+        "pl": [
+          {
+            "date": "2026-02-20T09:00:00.000Z",
+            "modifiedTime": 1771578240227,
+            "isCanceled": false,
+            "windShear": {},
+            "flags": [],
+            "sun": {
+              "sunrise": "2026-02-20T06:03:00Z",
+              "sunset": "2026-02-20T16:14:00Z"
+            },
+            "isCAVOK": true,
+            "cloud": [],
+            "file": "SAPL97.SOPR.200900.",
+            "messageType": "",
+            "station": "EPNA",
+            "temperature": -7,
+            "isCorrected": false,
+            "runways": [],
+            "day": 20,
+            "trends": [],
+            "timestamp": 1771578000,
+            "visibility": {
+              "unit": "km",
+              "mainVisibiity": ">10km",
+              "value": 10
+            },
+            "dewPoint": -10,
+            "message": "METAR EPNA 200900Z 12004KT CAVOK M07/M10 Q1026=",
+            "isAmended": false,
+            "altimeter": 1026,
+            "isNCD": false,
+            "header": "SAPL97 SOPR 200900",
+            "weatherCondition": [],
+            "time": "09:00",
+            "wind": {
+              "unit": "KT",
+              "directionDegrees": 120,
+              "speed": 4,
+              "direction": "East South East"
+            }
+          }
+        ]
+      }
+    },
+    "airport": {
+      "altitude": 362,
+      "country": "Poland",
+      "iata": "none",
+      "city": "Nadarzyce",
+      "timezone": "Europe/Warsaw",
+      "latitude": 53.454885,
+      "destination": "E",
+      "name": "Nadarzyce Air Base",
+      "icao": "EPNA",
+      "sun": {
+        "sunrise": "2026-02-20T06:03:00Z",
+        "sunset": "2026-02-20T16:14:00Z"
+      },
+      "isMILITARY": true,
+      "longitude": 16.48946
+    }
+  }
+}

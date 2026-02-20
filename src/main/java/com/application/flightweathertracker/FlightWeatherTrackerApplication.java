@@ -1,6 +1,6 @@
 package com.application.flightweathertracker;
 
-import com.application.flightweathertracker.api.WeatherApiClient;
+import com.application.flightweathertracker.api.FetchData;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tools.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ public class FlightWeatherTrackerApplication {
         SpringApplication.run(FlightWeatherTrackerApplication.class, args);
 
         ObjectMapper mapper = new ObjectMapper();
-        WeatherApiClient weatherApiClient = new WeatherApiClient(mapper);
-        weatherApiClient.fetchMetar();
+        FetchData fetchData = new FetchData(mapper);
+        fetchData.fetchMetar();
     }
 }
