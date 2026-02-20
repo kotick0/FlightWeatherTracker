@@ -24,41 +24,21 @@ public class FetchData {
     String imgwSigmet;
 
     public String fetchMetar() {
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(imgwMetar))
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response == null || !String.valueOf(response.statusCode()).startsWith("2")) {
-                throw new RuntimeException("Error fetching data from API");
-            }
-            return response.body();
-        } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
-        }
-        throw new IllegalStateException();
+        return fetchData(imgwMetar);
     }
 
     public String fetchTaf() {
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(imgwTaf))
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response == null || !String.valueOf(response.statusCode()).startsWith("2")) {
-                throw new RuntimeException("Error fetching data from API");
-            }
-            return response.body();
-        } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
-        }
-        throw new IllegalStateException();
+        return fetchData(imgwTaf);
     }
 
     public String fetchSigmet() {
+        return fetchData(imgwSigmet);
+    }
+
+    private String fetchData(String uri) {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(imgwSigmet))
+                    .uri(URI.create(uri))
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response == null || !String.valueOf(response.statusCode()).startsWith("2")) {

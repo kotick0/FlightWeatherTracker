@@ -25,16 +25,4 @@ public class Deserializer {
         });
         return metars;
     }
-
-
-//    public Map<String, ImgwMetar> deserializeMetars(String json) {
-//    public List<Metar> deserializeMetars(String json) {
-
-    public record Metar(
-            String station,
-            String message
-//        rest of fields
-    ) {
-
-    }
 }
