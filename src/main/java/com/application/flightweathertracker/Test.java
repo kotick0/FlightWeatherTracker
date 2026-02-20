@@ -2,7 +2,7 @@ package com.application.flightweathertracker;
 
 import com.application.flightweathertracker.api.Deserializer;
 import com.application.flightweathertracker.api.FetchData;
-import com.application.flightweathertracker.model.metar.Metar;
+import com.application.flightweathertracker.imgw.model.metar.ImgwMetar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import tools.jackson.databind.ObjectMapper;
@@ -21,7 +21,7 @@ public class Test implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Map<String, Metar> metars = deserializer.deserializeMetars(fetchData.fetchMetar());
+        Map<String, ImgwMetar> metars = deserializer.deserializeMetars(fetchData.fetchMetar());
         System.out.println(metars);
     }
 }

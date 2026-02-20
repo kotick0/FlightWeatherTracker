@@ -1,7 +1,7 @@
 package com.application.flightweathertracker;
 
 
-import com.application.flightweathertracker.model.metar.Metar;
+import com.application.flightweathertracker.imgw.model.metar.ImgwMetar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
@@ -33,17 +33,17 @@ class CustomDeserializerTest {
 
     @Test
     void shouldDeserializeMetars() throws IOException {
-        Map<String, Metar> airports = new HashMap<>();
+        Map<String, ImgwMetar> airports = new HashMap<>();
         JsonNode root = objectMapper.readValue(json, JsonNode.class);
 
         root.properties().forEach(entry -> {
             String icao = entry.getKey(); // e.g. "EPLB"
             JsonNode pl = entry.getValue().path("metars").path("sa").path("pl");
-            pl.forEach(metar -> airports.putIfAbsent(icao, objectMapper.treeToValue(metar, Metar.class)));
+            pl.forEach(metar -> airports.putIfAbsent(icao, objectMapper.treeToValue(metar, ImgwMetar.class)));
         });
 
         for(String key : airports.keySet()) {
-            Metar metar = airports.get(key);
+            ImgwMetar metar = airports.get(key);
             System.out.println(key + ": " + metar);
         }
     }
