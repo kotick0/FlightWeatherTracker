@@ -13,12 +13,14 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 
 @JsonTest
 class CustomDeserializerTest {
     @Value("classpath:data/metar_response.json")
     Resource metarResponseResource;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -31,12 +33,18 @@ class CustomDeserializerTest {
 
     @Test
     void shouldDeserializeMetars() throws IOException {
+        Map<String, Metar> airports = new HashMap<>();
         JsonNode root = objectMapper.readValue(json, JsonNode.class);
+
         root.properties().forEach(entry -> {
             String icao = entry.getKey(); // e.g. "EPLB"
             JsonNode pl = entry.getValue().path("metars").path("sa").path("pl");
-            Map<String, Metar> airports = objectMapper.convertValue(pl, Map.class);
-            pl.forEach(metar -> airports.putIfAbsent(icao, )); //System.out.println(metar.toPrettyString())
+            pl.forEach(metar -> airports.putIfAbsent(icao, objectMapper.treeToValue(metar, Metar.class)));
         });
+
+        for(String key : airports.keySet()) {
+            Metar metar = airports.get(key);
+            System.out.println(key + ": " + metar);
+        }
     }
 }
