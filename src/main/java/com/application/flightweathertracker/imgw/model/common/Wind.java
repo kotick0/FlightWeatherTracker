@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.imgw.model.metar;
+package com.application.flightweathertracker.imgw.model.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

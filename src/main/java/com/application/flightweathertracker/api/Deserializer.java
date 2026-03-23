@@ -25,4 +25,5 @@ public class Deserializer {
         });
         return metars;
     }
+
 }

@@ -37,7 +37,7 @@ class CustomDeserializerTest {
         JsonNode root = objectMapper.readValue(json, JsonNode.class);
 
         root.properties().forEach(entry -> {
-            String icao = entry.getKey(); // e.g. "EPLB"
+            String icao = entry.getKey();
             JsonNode pl = entry.getValue().path("metars").path("sa").path("pl");
             pl.forEach(metar -> airports.putIfAbsent(icao, objectMapper.treeToValue(metar, ImgwMetar.class)));
         });
