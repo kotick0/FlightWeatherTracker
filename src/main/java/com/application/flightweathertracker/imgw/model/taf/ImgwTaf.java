@@ -16,16 +16,17 @@ public record ImgwTaf(String station,
                       LocalDateTime date,
                       LocalTime time,
                       String message,
-                      boolean isCAVOK,
-                      boolean isCanceled,
-                      boolean isCorrected,
+                      Boolean isCAVOK,
+                      Boolean isCancelled,
+                      Boolean isCorrected,
                       Wind wind,
                       Visibility visibility,
                       List<Cloud> clouds,
                       List<WeatherCondition> weatherConditions,
                       Validity validity,
-                      Tempos tempos,
-                      Probs probs
+                      List<Tempos> tempos,
+                      List<Probs> probs,
+                      List<Becmg> BECMGs
                       // TODO: Dodać "turbulence" i "icings" kiedy się pojawią
 
 ) {

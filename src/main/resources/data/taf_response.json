@@ -2,7 +2,81 @@
   "EPLB": {
     "tafs": {
       "fc": {
-        "pl": []
+        "pl": [
+          {
+            "date": "2026-03-23T08:30:00.000Z",
+            "modifiedTime": 1774254600747,
+            "flags": [],
+            "isAmendment": false,
+            "clouds": [],
+            "tempos": [
+              {
+                "cavok": false,
+                "turbulences": [],
+                "probability": 30,
+                "icings": [],
+                "validity": {
+                  "endHour": 16,
+                  "startDay": 23,
+                  "startHour": 10,
+                  "endDay": 23
+                },
+                "clouds": [
+                  {
+                    "quantity": "SCT",
+                    "type": "TCU",
+                    "height": 5000
+                  }
+                ],
+                "type": "TEMPO",
+                "weatherConditions": [],
+                "wind": {
+                  "unit": "KT",
+                  "directionDegrees": 320,
+                  "speed": 10,
+                  "direction": "North West"
+                }
+              }
+            ],
+            "FMs": [],
+            "sun": {
+              "sunrise": "2026-03-23T04:54:00Z",
+              "sunset": "2026-03-23T17:15:00Z"
+            },
+            "isCAVOK": true,
+            "file": "FCPL50.SOWR.230800.",
+            "station": "EPZG",
+            "isCorrected": false,
+            "day": 23,
+            "timestamp": 1774254600,
+            "probs": [],
+            "isCancelled": false,
+            "visibility": {
+              "unit": "km",
+              "mainVisibility": ">10km",
+              "value": 10
+            },
+            "inters": [],
+            "message": "TAF EPZG 230830Z 2309/2318 VRB02KT CAVOK\n    PROB30 TEMPO 2310/2316 32010KT SCT050TCU =\n",
+            "turbulence": [],
+            "airport": "Zielona Góra-Babimost Airport (EPZG)",
+            "weatherConditions": [],
+            "BECMGs": [],
+            "icings": [],
+            "time": "08:30",
+            "validity": {
+              "endHour": 18,
+              "startDay": 23,
+              "startHour": 9,
+              "endDay": 23
+            },
+            "wind": {
+              "unit": "KT",
+              "speed": 2,
+              "direction": "Variable"
+            }
+          }
+        ]
       },
       "ft": {
         "pl": [

@@ -1,12 +1,14 @@
 package com.application.flightweathertracker.api;
 
 import com.application.flightweathertracker.imgw.model.metar.ImgwMetar;
+import com.application.flightweathertracker.imgw.model.taf.ImgwTaf;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -24,6 +26,21 @@ public class Deserializer {
             pl.forEach(metar -> metars.putIfAbsent(icao, objectMapper.treeToValue(metar, ImgwMetar.class)));
         });
         return metars;
+    }
+
+    public Map<String, List<ImgwTaf>> deserializeTafs(String json) {
+        Map<String, List<ImgwTaf>> tafs = new HashMap<>();
+        JsonNode root = objectMapper.readValue(json, JsonNode.class);
+
+        root.properties().forEach(entry -> {
+            String icao = entry.getKey();
+            JsonNode fcPl  = entry.getValue().path("tafs").path("fc").path("pl");
+            JsonNode ftPl  = entry.getValue().path("tafs").path("ft").path("pl");
+
+            fcPl.forEach(taf -> tafs.putIfAbsent(icao, List.of(objectMapper.treeToValue(taf, ImgwTaf.class))));
+            ftPl.forEach(taf -> tafs.putIfAbsent(icao, List.of(objectMapper.treeToValue(taf, ImgwTaf.class))));
+        });
+        return tafs;
     }
 
 }

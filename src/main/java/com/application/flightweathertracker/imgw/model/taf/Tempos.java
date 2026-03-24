@@ -4,13 +4,15 @@ import com.application.flightweathertracker.imgw.model.common.Cloud;
 import com.application.flightweathertracker.imgw.model.common.WeatherCondition;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record Tempos(boolean cavok,
-                     //TODO: Dodać "turbulences" i "icings" kiedy się pojawi
-                     int probability,
+public record Tempos(Boolean cavok,
+                     Integer probability,
                      Validity validity,
-                     Cloud clouds,
                      String type,
-                     WeatherCondition weatherConditions
+                     List<Cloud> clouds,
+                     List<WeatherCondition> weatherConditions
+                     //TODO: Dodać "turbulences" i "icings" kiedy się pojawi
 ) {
 }
