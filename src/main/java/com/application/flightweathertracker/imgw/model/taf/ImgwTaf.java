@@ -5,7 +5,6 @@ import com.application.flightweathertracker.imgw.model.common.Visibility;
 import com.application.flightweathertracker.imgw.model.common.WeatherCondition;
 import com.application.flightweathertracker.imgw.model.common.Wind;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

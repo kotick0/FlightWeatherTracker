@@ -2,6 +2,7 @@ package com.application.flightweathertracker;
 
 
 import com.application.flightweathertracker.imgw.model.metar.ImgwMetar;
+import com.application.flightweathertracker.imgw.model.sigmet.ImgwSigmet;
 import com.application.flightweathertracker.imgw.model.taf.ImgwTaf;
 import com.application.flightweathertracker.imgw.model.taf.TafData;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,13 +11,18 @@ import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
+import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @JsonTest
 class CustomDeserializerTest {
@@ -26,16 +32,21 @@ class CustomDeserializerTest {
     @Value("classpath:data/taf_response.json")
     Resource tafResponseResource;
 
+    @Value("classpath:data/sigmet_response.json")
+    Resource sigmetResponseResource;
+
     @Autowired
     private ObjectMapper objectMapper;
 
     private String metarJson;
     private String tafJson;
+    private String sigmetJson;
 
     @BeforeEach
     void setup() throws IOException {
         metarJson = new String(metarResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
         tafJson = new String(tafResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        sigmetJson = new String(sigmetResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
     }
 
     @Test
@@ -49,7 +60,7 @@ class CustomDeserializerTest {
             pl.forEach(metar -> airports.putIfAbsent(icao, objectMapper.treeToValue(metar, ImgwMetar.class)));
         });
 
-        for(String key : airports.keySet()) {
+        for (String key : airports.keySet()) {
             ImgwMetar metar = airports.get(key);
             System.out.println(key + ": " + metar);
         }
@@ -62,22 +73,25 @@ class CustomDeserializerTest {
 
         root.properties().forEach(entry -> {
             String icao = entry.getKey();
-            JsonNode fcPl  = entry.getValue().path("tafs").path("fc").path("pl");
-            JsonNode ftPl  = entry.getValue().path("tafs").path("ft").path("pl");
+            JsonNode fcPl = entry.getValue().path("tafs").path("fc").path("pl");
+            JsonNode ftPl = entry.getValue().path("tafs").path("ft").path("pl");
 
-//            fcPl.forEach(taf -> tafs.put(icao, new TafData(objectMapper.treeToValue(taf, ImgwTaf.class), null)));
-//            ftPl.forEach(taf -> tafs.put(icao, new TafData(null, objectMapper.treeToValue(taf, ImgwTaf.class))));
-
-            fcPl.forEach(taf -> tafs.get(icao).setFc(objectMapper.treeToValue(taf, ImgwTaf.class)));
-            ftPl.forEach(taf -> tafs.get(icao).setFt(objectMapper.treeToValue(taf, ImgwTaf.class)));
+            fcPl.forEach(taf -> tafs.computeIfAbsent(icao, k -> new TafData()).setFc(objectMapper.treeToValue(taf, ImgwTaf.class)));
+            ftPl.forEach(taf -> tafs.computeIfAbsent(icao, k -> new TafData()).setFt(objectMapper.treeToValue(taf, ImgwTaf.class)));
 
         });
-
-        for(String key : tafs.keySet()) {
+        for (String key : tafs.keySet()) {
             TafData taf = tafs.get(key);
-//            ImgwTaf fcTaf = tafs.get(key).fc();
-//            ImgwTaf ftTaf = tafs.get(key).ft();
-            System.out.println(key + ": " + taf + "\n");
+            System.out.println(key + ": " + taf);
+        }
+    }
+
+    @Test
+    void shouldDeserializeSigmets() throws IOException {
+        List<ImgwSigmet> list = objectMapper.readValue(sigmetJson, new TypeReference<>() {});
+        Map<String, ImgwSigmet> sigmets = list.stream().collect(Collectors.toMap(ImgwSigmet::id, sigmet -> sigmet));
+        for(String key : sigmets.keySet()) {
+            System.out.println(key + ": " + sigmets.get(key));
         }
     }
 }

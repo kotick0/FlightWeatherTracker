@@ -10,4 +10,11 @@ public class TafData {
     @Getter
     @Setter
     private ImgwTaf ft;
+
+    public TafData() {
+    }
+
+    public String toString() {
+        return "\nfc: " + getFc() + "\n" + "ft: " + getFt() + "\n";
+    }
 }
