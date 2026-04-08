@@ -1,19 +1,32 @@
 package com.application.flightweathertracker.api;
 
+import com.application.flightweathertracker.config.AirportsConfig;
+import com.application.flightweathertracker.model.config.airports.Airport;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class FetchData {
+    private final ObjectMapper objectMapper;
+    private final AirportsConfig appConfig;
+
     @Value("${api.imgw.metar}")
     String imgwMetar;
 
@@ -23,19 +36,39 @@ public class FetchData {
     @Value("${api.imgw.sigmet}")
     String imgwSigmet;
 
-    public String fetchMetar() {
-        return fetchData(imgwMetar);
+    public String fetchAllMetar() {
+        return fetchAllData(imgwMetar);
     }
 
-    public String fetchTaf() {
-        return fetchData(imgwTaf);
+    public String fetchAllTaf() {
+        return fetchAllData(imgwTaf);
     }
 
-    public String fetchSigmet() {
-        return fetchData(imgwSigmet);
+    public String fetchAllSigmet() {
+        return fetchAllData(imgwSigmet);
+    } //TODO Error handling dla pustych Sigmetów!!
+
+    public String fetchConfigAirportsMetar(String airportsConfigPath) {
+        try {
+            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPath));
+            return fetchAirportsFromConfig(imgwMetar, airportsConfigJson);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
-    private String fetchData(String uri) {
+    public String fetchConfigAirportsTaf(String airportsConfigPath) {
+        try {
+            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPath));
+            return fetchAirportsFromConfig(imgwTaf, airportsConfigJson);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private String fetchAllData(String uri) {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(uri))
@@ -49,6 +82,22 @@ public class FetchData {
             log.error(e.getMessage());
         }
         throw new IllegalStateException();
+    }
+
+    private String fetchAirportsFromConfig(String uri, String airportsConfigJson) {
+        String responseBody = fetchAllData(uri);
+        JsonNode root = objectMapper.readTree(responseBody);
+
+        ObjectNode airportsFromConfig = objectMapper.createObjectNode();
+        HashMap<String, Airport> airports = appConfig.readAirportsConfig(airportsConfigJson);
+
+        for (String key : airports.keySet()) {
+            if (responseBody.contains(key)) {
+                JsonNode airportNode = root.get(key);
+                airportsFromConfig.set(key, airportNode);
+            }
+        }
+        return airportsFromConfig.toString();
     }
 }
 
