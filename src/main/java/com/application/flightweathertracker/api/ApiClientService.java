@@ -15,24 +15,24 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class FetchDataService {
-    private final FetchData fetchData;
+public class ApiClientService {
+    private final ImgwApiClient imgwApiClient;
 
     @Value("${airports.config.path}")
     String airportsConfigPath;
 
-    @Value("${api.responses.path}")
-    String apiResponsesPath;
+    @Value("${api.responses.dir}")
+    String apiResponsesDir;
 
-    @Scheduled(fixedRate = 60000) //TODO: 3600000
-    public void fetchAndSaveData() {
-        String metarResponse = fetchData.fetchConfigAirportsMetar(airportsConfigPath);
-        String tafResponse = fetchData.fetchConfigAirportsTaf(airportsConfigPath);
-        String sigmetResponse = fetchData.fetchAllSigmet();
+    @Scheduled(fixedRate = 2700000)
+    public void fetchAndSaveImgwData() {
+        String metarResponse = imgwApiClient.fetchConfigAirportsMetar(airportsConfigPath);
+        String tafResponse = imgwApiClient.fetchConfigAirportsTaf(airportsConfigPath);
+        String sigmetResponse = imgwApiClient.fetchAllSigmet();
 
-        Path metarPath = Paths.get(apiResponsesPath + "metar_response.json");
-        Path tafPath = Paths.get(apiResponsesPath + "taf_response.json");
-        Path sigmetPath = Paths.get(apiResponsesPath + "sigmet_response.json");
+        Path metarPath = Paths.get(apiResponsesDir + "metar_response.json");
+        Path tafPath = Paths.get(apiResponsesDir + "taf_response.json");
+        Path sigmetPath = Paths.get(apiResponsesDir + "sigmet_response.json");
 
         try {
             Files.writeString(metarPath, metarResponse);

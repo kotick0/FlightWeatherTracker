@@ -20,18 +20,18 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class Alert {
-    @Value("${api.responses.path}")
-    String apiResponsesPath;
+    @Value("${api.responses.dir}")
+    String apiResponsesDir;
 
     private final Deserializer deserializer;
 
-    private final SigmetOperations sigmetOperations;
+    private final Operations operations;
 
     @Scheduled(fixedRate = 60000) //TODO: Zmienić na coś sensownego
     public boolean alertSystem() {
-        Path metarPath = Paths.get(apiResponsesPath + "metar_response.json");
-        Path tafPath = Paths.get(apiResponsesPath + "taf_response.json");
-        Path sigmetPath = Paths.get(apiResponsesPath + "sigmet_response.json");
+        Path metarPath = Paths.get(apiResponsesDir + "metar_response.json");
+        Path tafPath = Paths.get(apiResponsesDir + "taf_response.json");
+        Path sigmetPath = Paths.get(apiResponsesDir + "sigmet_response.json");
 
         try {
             String metarResponse = Files.readString(metarPath);

@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SigmetOperations {
+public class Operations {
     @Value("${airports.config.path}")
     String airportsConfigPath;
 

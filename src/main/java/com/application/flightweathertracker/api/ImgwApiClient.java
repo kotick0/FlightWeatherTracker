@@ -23,7 +23,7 @@ import java.util.HashMap;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class FetchData {
+public class ImgwApiClient {
     private final ObjectMapper objectMapper;
     private final AirportsConfig appConfig;
 
@@ -37,16 +37,16 @@ public class FetchData {
     String imgwSigmet;
 
     public String fetchAllMetar() {
-        return fetchAllData(imgwMetar);
+        return fetchData(imgwMetar);
     }
 
     public String fetchAllTaf() {
-        return fetchAllData(imgwTaf);
+        return fetchData(imgwTaf);
     }
 
     public String fetchAllSigmet() {
-        return fetchAllData(imgwSigmet);
-    } //TODO Error handling dla pustych Sigmetów!!
+        return fetchData(imgwSigmet);
+    }
 
     public String fetchConfigAirportsMetar(String airportsConfigPath) {
         try {
@@ -68,7 +68,7 @@ public class FetchData {
         }
     }
 
-    private String fetchAllData(String uri) {
+    private String fetchData(String uri) {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(uri))
@@ -85,7 +85,7 @@ public class FetchData {
     }
 
     private String fetchAirportsFromConfig(String uri, String airportsConfigJson) {
-        String responseBody = fetchAllData(uri);
+        String responseBody = fetchData(uri);
         JsonNode root = objectMapper.readTree(responseBody);
 
         ObjectNode airportsFromConfig = objectMapper.createObjectNode();

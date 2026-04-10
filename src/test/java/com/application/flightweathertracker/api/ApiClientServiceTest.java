@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FetchDataServiceTest {
-    @Value("${api.responses.path}")
-    String apiResponsesPath;
+class ApiClientServiceTest {
+    @Value("${api.responses.dir}")
+    String apiResponsesDir;
 
     @Autowired
-    FetchDataService fetchDataService;
+    ApiClientService apiClientService;
 
     @Test
     public void fetchDataServiceTest(){
-        fetchDataService.fetchAndSaveData();
+        apiClientService.fetchAndSaveImgwData();
     }
 }
