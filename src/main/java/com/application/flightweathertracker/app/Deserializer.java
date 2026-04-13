@@ -58,6 +58,4 @@ public class Deserializer {
     public OpenMeteoResponse deserializeOpenMeteoResponse(String openMeteoResponseJson) {
         return objectMapper.readValue(openMeteoResponseJson, OpenMeteoResponse.class);
     }
-
-
 }

@@ -15,18 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class ImgwApiClientIT {
 
-    @Value("${airports.config.path}")
-    String configPath;
-
     @Autowired
     private ImgwApiClient imgwApiClient;
-
-    private String airportsJson;
-
-    @BeforeEach
-    void setUp() throws IOException {
-        airportsJson = Files.readString(Paths.get(configPath));
-    }
 
     @Test
     void fetchMetar_returnsNonEmptyJsonResponse() {
@@ -37,8 +27,8 @@ class ImgwApiClientIT {
     }
     @Test
     void fetchFromConfig() {
-        System.out.println("Metars: " + imgwApiClient.fetchConfigAirportsMetar(configPath)
-                            + "\nTafs: " + imgwApiClient.fetchConfigAirportsTaf(configPath)
+        System.out.println("Metars: " + imgwApiClient.fetchConfigAirportsMetar()
+                            + "\nTafs: " + imgwApiClient.fetchConfigAirportsTaf()
                             + "\nSigmets: " + imgwApiClient.fetchAllSigmet());
     }
 }

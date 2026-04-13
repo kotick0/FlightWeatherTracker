@@ -15,6 +15,7 @@ import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -42,9 +43,21 @@ class CustomDeserializerTest {
 
     @BeforeEach
     void setup() throws IOException {
-        metarJson = new String(metarResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-        tafJson = new String(tafResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-        sigmetJson = new String(sigmetResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        if(metarResponseResource.exists()){
+            metarJson = new String(metarResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        } else {
+            throw new FileNotFoundException("metar_response.json not found");
+        }
+        if(tafResponseResource.exists()){
+            tafJson = new String(tafResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        } else {
+            throw new FileNotFoundException("taf_response.json not found");
+        }
+        if(sigmetResponseResource.exists()){
+            sigmetJson = new String(sigmetResponseResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        } else  {
+            throw new FileNotFoundException("sigmet_response.json not found");
+        }
     }
 
     @Test

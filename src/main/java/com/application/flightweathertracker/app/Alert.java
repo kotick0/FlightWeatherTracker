@@ -1,5 +1,7 @@
 package com.application.flightweathertracker.app;
 
+import com.application.flightweathertracker.api.ApiClientService;
+import com.application.flightweathertracker.api.ImgwApiClient;
 import com.application.flightweathertracker.model.imgw.metar.ImgwMetar;
 import com.application.flightweathertracker.model.imgw.sigmet.ImgwSigmet;
 import com.application.flightweathertracker.model.imgw.taf.ImgwTaf;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +28,7 @@ public class Alert {
 
     private final Deserializer deserializer;
 
-    private final Operations operations;
+    private final ImgwApiClient imgwApiClient;
 
     @Scheduled(fixedRate = 60000) //TODO: Zmienić na coś sensownego
     public boolean alertSystem() {
@@ -34,21 +37,21 @@ public class Alert {
         Path sigmetPath = Paths.get(apiResponsesDir + "sigmet_response.json");
 
         try {
-            String metarResponse = Files.readString(metarPath);
-            String tafResponse = Files.readString(tafPath);
-            String sigmetResponse = Files.readString(sigmetPath);
-
-            Map<String, ImgwMetar> deserializedMetars = deserializer.deserializeMetars(metarResponse);
-            Map<String, TafData> deserializedTafs = deserializer.deserializeTafs(tafResponse);
-            Map<String, ImgwSigmet> deserializedSigmets = deserializer.deserializeSigmets(sigmetResponse);
+            if (Files.exists(metarPath) && Files.exists(tafPath) && Files.exists(sigmetPath)) {
+                String metarResponse = Files.readString(metarPath);
+                String tafResponse = Files.readString(tafPath);
+                String sigmetResponse = Files.readString(sigmetPath);
+                Map<String, ImgwMetar> deserializedMetars = deserializer.deserializeMetars(metarResponse);
+                Map<String, TafData> deserializedTafs = deserializer.deserializeTafs(tafResponse);
+                Map<String, ImgwSigmet> deserializedSigmets = deserializer.deserializeSigmets(sigmetResponse);
 
 //            for (String key : deserializedMetars.keySet()) {
 //                System.out.println(deserializedMetars.get(key));
 //            }
-
+            }
         } catch (IOException e) {
-            log.error("Error reading \"metar_response.json\" from saved API responses.");
-            throw new RuntimeException(e);
+            log.error(e.getMessage());
+            throw new RuntimeException("Error reading saved API responses.");
         }
 
         return false;

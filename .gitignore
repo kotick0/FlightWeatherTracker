@@ -34,5 +34,5 @@ build/
 
 ### Own ###
 .DS_Store
-src/main/resources/data/*
+src/test/temp/data/*
 src/main/resources/test_data
