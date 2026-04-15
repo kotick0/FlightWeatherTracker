@@ -7,10 +7,10 @@ import com.application.flightweathertracker.model.imgw.taf.ImgwTaf;
 import com.application.flightweathertracker.model.imgw.taf.TafData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@JsonTest
+@SpringBootTest
 class CustomDeserializerTest {
     @Value("classpath:data/metar_response.json")
     Resource metarResponseResource;

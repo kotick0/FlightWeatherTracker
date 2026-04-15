@@ -18,11 +18,6 @@ class AirportsConfigTest {
     @Value("classpath:data/metar_response.json")
     Resource metarResponseResource;
 
-    @Value("${airports.config.path}")
-    String configPath;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private AirportsConfig airportsConfig;
@@ -42,7 +37,7 @@ class AirportsConfigTest {
     @Test
     void fetchAirportsTest() {
         if (!(metarJson == null)){
-            airportsConfig.fetchAndSaveAirportsConfig(metarJson);
+            airportsConfig.saveAirportsConfig(metarJson);
         }
         //        Map<String, Airport> airports = new HashMap<>();
 //        JsonNode root = objectMapper.readValue(metarJson, JsonNode.class);
@@ -52,7 +47,7 @@ class AirportsConfigTest {
 //            JsonNode airport = entry.getValue().path("airport");
 //            airport.forEach(property -> airports.putIfAbsent(icao, objectMapper.treeToValue(airport, Airport.class)));
 //        });
-//        airportsConfig.fetchAndSaveAirportsConfig(metarJson);
+//        airportsConfig.saveAirportsConfig(metarJson);
 //
 //        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(configPath), airports);
     }

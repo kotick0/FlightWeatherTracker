@@ -1,4 +1,12 @@
 {
+  "EPLB" : {
+    "name" : "Lublin Airport",
+    "icao" : "EPLB",
+    "city" : "Lublin",
+    "latitude" : 51.240278,
+    "longitude" : 22.713611,
+    "isMILITARY" : false
+  },
   "EPTM" : {
     "name" : "Tomaszów Mazowiecki Military Air Base",
     "icao" : "EPTM",

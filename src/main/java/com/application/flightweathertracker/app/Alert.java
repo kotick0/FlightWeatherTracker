@@ -1,6 +1,5 @@
 package com.application.flightweathertracker.app;
 
-import com.application.flightweathertracker.api.ApiClientService;
 import com.application.flightweathertracker.api.ImgwApiClient;
 import com.application.flightweathertracker.model.imgw.metar.ImgwMetar;
 import com.application.flightweathertracker.model.imgw.sigmet.ImgwSigmet;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +26,6 @@ public class Alert {
 
     private final Deserializer deserializer;
 
-    private final ImgwApiClient imgwApiClient;
 
     @Scheduled(fixedRate = 60000) //TODO: Zmienić na coś sensownego
     public boolean alertSystem() {
@@ -51,7 +48,7 @@ public class Alert {
             }
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException("Error reading saved API responses.");
+            throw new RuntimeException("Error reading cached API responses");
         }
 
         return false;

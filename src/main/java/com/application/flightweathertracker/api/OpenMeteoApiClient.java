@@ -69,7 +69,6 @@ public class OpenMeteoApiClient {
     }
 
     private String saveOpenMeteoResponse(Path responsePath, double latitude, double longitude) {
-        createOpenMeteoCacheDirectories();
         try {
             String responseBody = fetchData(latitude, longitude);
             Files.writeString(responsePath, responseBody);
@@ -81,19 +80,5 @@ public class OpenMeteoApiClient {
 
     private boolean doesCachedResponseExist(int latitude, int longitude) {
         return Files.exists(Path.of(apiResponsesDir + "open-meteo" + File.separator + latitude + "_" + longitude + ".json"));
-    }
-
-    private void createOpenMeteoCacheDirectories() {
-        try {
-            if (Files.notExists(Path.of(apiResponsesDir))) {
-                Files.createDirectory(Path.of(apiResponsesDir));
-                Files.createDirectory(Path.of(apiResponsesDir + "open-meteo"));
-            } else if (Files.notExists(Path.of(apiResponsesDir + "open-meteo"))) {
-                Files.createDirectory(Path.of(apiResponsesDir + "open-meteo"));
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw new RuntimeException("Error creating directories to store Open Meteo API responses");
-        }
     }
 }

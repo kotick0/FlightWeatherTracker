@@ -1,6 +1,5 @@
 package com.application.flightweathertracker.app;
 
-import com.application.flightweathertracker.api.ImgwApiClient;
 import com.application.flightweathertracker.model.imgw.sigmet.ImgwSigmet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,19 +10,15 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
 class OperationsTest {
-    @Value("classpath:test_data/sigmet_response.json")
+    @Value("classpath:data/sigmet_response.json")
     Resource sigmetResponseResource;
 
     String sigmetJson;
 
-    @Autowired
-    private ImgwApiClient imgwApiClient;
     @Autowired
     private Deserializer deserializer;
     @Autowired
@@ -39,9 +34,5 @@ class OperationsTest {
         Map<String, ImgwSigmet> sigmets = deserializer.deserializeSigmets(sigmetJson);
         ImgwSigmet sigmet = sigmets.get("M02");
         System.out.println(operations.IsAirportInSigmet(sigmet, "EPTM"));
-
-        List<ImgwSigmet> testSigmetList = new ArrayList<>();
-        testSigmetList.add(sigmet);
-
     }
 }

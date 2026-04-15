@@ -10,7 +10,6 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ObjectNode;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -44,13 +43,7 @@ public class ImgwApiClient {
     @Value("${api.responses.dir}")
     String apiResponsesDir;
 
-    public String fetchAllMetar() {
-        return fetchData(imgwMetar);
-    }
-
-    public String fetchAllTaf() {
-        return fetchData(imgwTaf);
-    }
+    public String fetchAllMetar() { return fetchData(imgwMetar); }
 
     public String fetchAllSigmet() {
         return fetchData(imgwSigmet);
@@ -58,55 +51,38 @@ public class ImgwApiClient {
 
     public String fetchConfigAirportsMetar() {
         try {
-            Path airportsConfigPath = Paths.get(airportsConfigPathString);
-            if (Files.exists(airportsConfigPath)) {
-                String airportsConfigJson = Files.readString(airportsConfigPath);
-                return fetchAirportsFromConfig(imgwMetar, airportsConfigJson);
-            } else {
-                airportsConfig.fetchAndSaveAirportsConfig(fetchAllMetar());
-                throw new FileNotFoundException("Airports config file not found. Creating one...");
-            }
+            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
+            return fetchAirportsFromConfig(imgwMetar, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("Error fetching METARs for airports Config");
         }
     }
 
     public String fetchConfigAirportsTaf() {
         try {
-            Path airportsConfigPath = Paths.get(airportsConfigPathString);
-            if (Files.exists(airportsConfigPath)) {
-                String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-                return fetchAirportsFromConfig(imgwTaf, airportsConfigJson);
-            } else {
-                airportsConfig.fetchAndSaveAirportsConfig(fetchAllTaf());
-                throw new FileNotFoundException("Airports config file not found. Creating one...");
-            }
+            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
+            return fetchAirportsFromConfig(imgwTaf, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("Error fetching TAFs for airports Config");
         }
     }
 
-    public void saveImgwData() {
-        String metarResponse = fetchConfigAirportsMetar();
-        String tafResponse = fetchConfigAirportsTaf();
-        String sigmetResponse = fetchAllSigmet();
+    public void saveAllImgwCache() {
+        saveImgwCache(fetchConfigAirportsMetar(), "metar_response.json");
+        saveImgwCache(fetchConfigAirportsTaf(), "taf_response.json");
+        saveImgwCache(fetchAllSigmet(), "sigmet_response.json");
+    }
 
-        Path metarPath = Paths.get(apiResponsesDir + "metar_response.json");
-        Path tafPath = Paths.get(apiResponsesDir + "taf_response.json");
-        Path sigmetPath = Paths.get(apiResponsesDir + "sigmet_response.json");
-
+    public void saveImgwCache(String apiResponse, String fileName) {
+        Path cachePath = Paths.get(apiResponsesDir + fileName);
         try {
-            if (Files.notExists(Path.of(apiResponsesDir))) {
-                Files.createDirectories(Path.of(apiResponsesDir));
-            }
-            Files.writeString(metarPath, metarResponse);
-            Files.writeString(tafPath, tafResponse);
-            Files.writeString(sigmetPath, sigmetResponse);
+            Files.writeString(cachePath, apiResponse);
+            log.info("Saving API response to file: {}", cachePath);
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("Error caching " + fileName);
         }
     }
 

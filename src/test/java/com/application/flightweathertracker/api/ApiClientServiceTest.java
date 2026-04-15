@@ -7,14 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ApiClientServiceTest {
-    @Value("${api.responses.dir}")
-    String apiResponsesDir;
-
     @Autowired
     ApiClientService apiClientService;
 
     @Test
     public void fetchDataServiceTest(){
-        apiClientService.fetchAndSaveImgwData();
+        apiClientService.saveImgwCacheService();
     }
 }

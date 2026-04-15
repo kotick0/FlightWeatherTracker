@@ -10,9 +10,7 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
@@ -21,13 +19,11 @@ import java.util.HashMap;
 @Component
 public class AirportsConfig {
     @Value("${airports.config.path}")
-    private String airportsConfigPath;
+    private String airportsConfigPathString;
 
     private final ObjectMapper objectMapper;
 
-    public void fetchAndSaveAirportsConfig(String metarOrTafResponseJson) {
-        createConfigDirectory();
-
+    public void saveAirportsConfig(String metarOrTafResponseJson) {
         HashMap<String, Airport> airports = new HashMap<>();
         JsonNode root = objectMapper.readValue(metarOrTafResponseJson, JsonNode.class);
 
@@ -37,7 +33,7 @@ public class AirportsConfig {
             airport.forEach(property -> airports.putIfAbsent(icao, objectMapper.treeToValue(airport, Airport.class)));
         });
 
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(airportsConfigPath), airports);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(airportsConfigPathString), airports);
     }
 
     public HashMap<String, Airport> readAirportsConfig(String airportsConfigJson) {
@@ -45,14 +41,7 @@ public class AirportsConfig {
         });
     }
 
-    private void createConfigDirectory() {
-        if(Files.notExists(Paths.get(airportsConfigPath).getParent())){
-            try {
-                Files.createDirectory(Path.of(airportsConfigPath).getParent());
-            } catch (IOException e) {
-                log.error(e.getMessage());
-                throw new RuntimeException("Error creating Airports config directory");
-            }
-        }
+    public boolean configNotExists() {
+        return Files.notExists(Paths.get(airportsConfigPathString));
     }
 }
