@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class Deserializer {
+public class JsonDeserializer {
     private final ObjectMapper objectMapper;
 
     public Map<String, ImgwMetar> deserializeMetars(String metarResponseJson) {

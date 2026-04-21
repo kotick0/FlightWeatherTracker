@@ -23,8 +23,8 @@ public class AppDirectories {
 
     public void createAllDirectories() {
         createConfigDirectory();
-        createCacheDirectory();
-        createOpenMeteoCacheDirectory();
+        createResponsesDirectory();
+        createOpenMeteoResponsesDirectory();
     }
 
     public void createConfigDirectory() {
@@ -39,7 +39,7 @@ public class AppDirectories {
         }
     }
 
-    private void createCacheDirectory() {
+    private void createResponsesDirectory() {
         if (Files.notExists(Paths.get(apiResponsesDir))) {
             try {
                 Files.createDirectory(Path.of(apiResponsesDir));
@@ -51,7 +51,7 @@ public class AppDirectories {
         }
     }
 
-    private void createOpenMeteoCacheDirectory() {
+    private void createOpenMeteoResponsesDirectory() {
         if (Files.notExists(Paths.get(apiResponsesDir + "open-meteo"))) {
             try {
                 Files.createDirectory(Path.of(apiResponsesDir + "open-meteo"));

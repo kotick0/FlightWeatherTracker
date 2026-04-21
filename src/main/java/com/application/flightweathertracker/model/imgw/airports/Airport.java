@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.model.config.airports;
+package com.application.flightweathertracker.model.imgw.airports;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

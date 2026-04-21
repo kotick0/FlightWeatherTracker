@@ -13,7 +13,7 @@ public class ApiClientService {
     private final ImgwApiClient imgwApiClient;
 
     @Scheduled(fixedRate = 2700000)
-    public void saveImgwCacheService() {
-        imgwApiClient.saveAllImgwCache();
+    public void saveImgwResponsesService() {
+        imgwApiClient.saveAllImgwResponses();
     }
 }

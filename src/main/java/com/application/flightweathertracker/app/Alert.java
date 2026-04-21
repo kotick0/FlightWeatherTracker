@@ -1,6 +1,5 @@
 package com.application.flightweathertracker.app;
 
-import com.application.flightweathertracker.api.ImgwApiClient;
 import com.application.flightweathertracker.model.imgw.metar.ImgwMetar;
 import com.application.flightweathertracker.model.imgw.sigmet.ImgwSigmet;
 import com.application.flightweathertracker.model.imgw.taf.ImgwTaf;
@@ -24,7 +23,7 @@ public class Alert {
     @Value("${api.responses.dir}")
     String apiResponsesDir;
 
-    private final Deserializer deserializer;
+    private final JsonDeserializer jsonDeserializer;
 
 
     @Scheduled(fixedRate = 60000) //TODO: Zmienić na coś sensownego
@@ -38,9 +37,9 @@ public class Alert {
                 String metarResponse = Files.readString(metarPath);
                 String tafResponse = Files.readString(tafPath);
                 String sigmetResponse = Files.readString(sigmetPath);
-                Map<String, ImgwMetar> deserializedMetars = deserializer.deserializeMetars(metarResponse);
-                Map<String, TafData> deserializedTafs = deserializer.deserializeTafs(tafResponse);
-                Map<String, ImgwSigmet> deserializedSigmets = deserializer.deserializeSigmets(sigmetResponse);
+                Map<String, ImgwMetar> deserializedMetars = jsonDeserializer.deserializeMetars(metarResponse);
+                Map<String, TafData> deserializedTafs = jsonDeserializer.deserializeTafs(tafResponse);
+                Map<String, ImgwSigmet> deserializedSigmets = jsonDeserializer.deserializeSigmets(sigmetResponse);
 
 //            for (String key : deserializedMetars.keySet()) {
 //                System.out.println(deserializedMetars.get(key));

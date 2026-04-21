@@ -1,6 +1,6 @@
 package com.application.flightweathertracker.api;
 
-import com.application.flightweathertracker.app.Deserializer;
+import com.application.flightweathertracker.app.JsonDeserializer;
 import com.application.flightweathertracker.model.open_meteo.OpenMeteoResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class OpenMeteoApiClient {
 
-    private final Deserializer deserializer;
+    private final JsonDeserializer jsonDeserializer;
 
     @Value("${api.open-meteo}")
     private String openMeteoUri;
@@ -30,13 +30,13 @@ public class OpenMeteoApiClient {
     @Value("${api.responses.dir}")
     private String apiResponsesDir;
 
-    public String fetchOpenMeteoData(double latitude, double longitude) {
+    public String fetchAndSaveOpenMeteoData(double latitude, double longitude) {
         Path responsePath = Path.of(apiResponsesDir + "open-meteo" + File.separator + (int) latitude + "_" + (int) longitude + ".json");
 
-        if (doesCachedResponseExist((int) latitude, (int) longitude)) {
+        if (doesSavedResponseExist((int) latitude, (int) longitude)) {
             try {
                 String cachedResponse = Files.readString(responsePath);
-                OpenMeteoResponse response = deserializer.deserializeOpenMeteoResponse(cachedResponse);
+                OpenMeteoResponse response = jsonDeserializer.deserializeOpenMeteoResponse(cachedResponse);
                 if (LocalDateTime.now().minusMinutes(15).isAfter(response.current().time())) {
                     return saveOpenMeteoResponse(responsePath, latitude, longitude);
                 } else {
@@ -78,7 +78,7 @@ public class OpenMeteoApiClient {
         }
     }
 
-    private boolean doesCachedResponseExist(int latitude, int longitude) {
+    private boolean doesSavedResponseExist(int latitude, int longitude) {
         return Files.exists(Path.of(apiResponsesDir + "open-meteo" + File.separator + latitude + "_" + longitude + ".json"));
     }
 }

@@ -13,16 +13,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @SpringBootTest
-class OperationsTest {
+class SigmetAreaCheckTest {
     @Value("classpath:data/sigmet_response.json")
     Resource sigmetResponseResource;
 
     String sigmetJson;
 
     @Autowired
-    private Deserializer deserializer;
+    private JsonDeserializer jsonDeserializer;
     @Autowired
-    private Operations operations;
+    private SigmetAreaCheck sigmetAreaCheck;
 
     @BeforeEach
     void setup() throws IOException {
@@ -31,8 +31,8 @@ class OperationsTest {
 
     @Test
     public void sigmetGet() {
-        Map<String, ImgwSigmet> sigmets = deserializer.deserializeSigmets(sigmetJson);
+        Map<String, ImgwSigmet> sigmets = jsonDeserializer.deserializeSigmets(sigmetJson);
         ImgwSigmet sigmet = sigmets.get("M02");
-        System.out.println(operations.IsAirportInSigmet(sigmet, "EPTM"));
+        System.out.println(sigmetAreaCheck.IsAirportInSigmet(sigmet, "EPTM"));
     }
 }

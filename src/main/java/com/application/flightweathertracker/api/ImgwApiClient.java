@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.api;
 
 import com.application.flightweathertracker.config.AirportsConfig;
-import com.application.flightweathertracker.model.config.airports.Airport;
+import com.application.flightweathertracker.model.imgw.airports.Airport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,33 +49,33 @@ public class ImgwApiClient {
         return fetchData(imgwSigmet);
     }
 
-    public String fetchConfigAirportsMetar() {
+    public String fetchMetarsForAirportsConfig() {
         try {
             String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchAirportsFromConfig(imgwMetar, airportsConfigJson);
+            return fetchDataForAirportsConfig(imgwMetar, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException("Error fetching METARs for airports Config");
+            throw new RuntimeException("Error fetching METARs for airports defined in config");
         }
     }
 
-    public String fetchConfigAirportsTaf() {
+    public String fetchTafsForAirportsConfig() {
         try {
             String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchAirportsFromConfig(imgwTaf, airportsConfigJson);
+            return fetchDataForAirportsConfig(imgwTaf, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
-            throw new RuntimeException("Error fetching TAFs for airports Config");
+            throw new RuntimeException("Error fetching TAFs for airports defined in config");
         }
     }
 
-    public void saveAllImgwCache() {
-        saveImgwCache(fetchConfigAirportsMetar(), "metar_response.json");
-        saveImgwCache(fetchConfigAirportsTaf(), "taf_response.json");
-        saveImgwCache(fetchAllSigmet(), "sigmet_response.json");
+    public void saveAllImgwResponses() {
+        saveImgwResponse(fetchMetarsForAirportsConfig(), "metar_response.json");
+        saveImgwResponse(fetchTafsForAirportsConfig(), "taf_response.json");
+        saveImgwResponse(fetchAllSigmet(), "sigmet_response.json");
     }
 
-    public void saveImgwCache(String apiResponse, String fileName) {
+    public void saveImgwResponse(String apiResponse, String fileName) {
         Path cachePath = Paths.get(apiResponsesDir + fileName);
         try {
             Files.writeString(cachePath, apiResponse);
@@ -102,7 +102,7 @@ public class ImgwApiClient {
         throw new IllegalStateException();
     }
 
-    private String fetchAirportsFromConfig(String uri, String airportsConfigJson) {
+    private String fetchDataForAirportsConfig(String uri, String airportsConfigJson) {
         String responseBody = fetchData(uri);
         JsonNode root = objectMapper.readTree(responseBody);
 

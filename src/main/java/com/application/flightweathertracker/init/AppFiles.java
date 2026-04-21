@@ -23,25 +23,25 @@ public class AppFiles {
 
     public void createAllFiles() {
         createAirportsConfig();
-        createCacheResponses();
+        createResponses();
     }
 
     private void createAirportsConfig() {
         if (airportsConfig.configNotExists()) {
-            airportsConfig.saveAirportsConfig(imgwApiClient.fetchAllMetar());
+            airportsConfig.saveDefaultAirportsConfig(imgwApiClient.fetchAllMetar());
             log.info("Created airports config file");
         }
     }
 
-    private void createCacheResponses() {
+    private void createResponses() {
         if (Files.notExists(Path.of(apiResponseDir + "metar_response.json"))) {
-            imgwApiClient.saveImgwCache(imgwApiClient.fetchConfigAirportsMetar(), "metar_response.json");
+            imgwApiClient.saveImgwResponse(imgwApiClient.fetchMetarsForAirportsConfig(), "metar_response.json");
         }
         if (Files.notExists(Path.of(apiResponseDir + "taf_response.json"))) {
-            imgwApiClient.saveImgwCache(imgwApiClient.fetchConfigAirportsTaf(), "taf_response.json");
+            imgwApiClient.saveImgwResponse(imgwApiClient.fetchTafsForAirportsConfig(), "taf_response.json");
         }
         if (Files.notExists(Path.of(apiResponseDir + "sigmet_response.json"))) {
-            imgwApiClient.saveImgwCache(imgwApiClient.fetchAllSigmet(), "sigmet_response.json");
+            imgwApiClient.saveImgwResponse(imgwApiClient.fetchAllSigmet(), "sigmet_response.json");
         }
     }
 }

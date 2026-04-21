@@ -34,3 +34,5 @@ build/
 
 ### Own ###
 .DS_Store
+config
+data

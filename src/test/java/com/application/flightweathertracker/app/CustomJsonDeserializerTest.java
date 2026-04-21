@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-class CustomDeserializerTest {
+class CustomJsonDeserializerTest {
     @Value("classpath:data/metar_response.json")
     Resource metarResponseResource;
 

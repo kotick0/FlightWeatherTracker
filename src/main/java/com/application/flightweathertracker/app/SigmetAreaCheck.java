@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.app;
 
 import com.application.flightweathertracker.config.AirportsConfig;
-import com.application.flightweathertracker.model.config.airports.Airport;
+import com.application.flightweathertracker.model.imgw.airports.Airport;
 import com.application.flightweathertracker.model.imgw.sigmet.ImgwSigmet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class Operations {
+public class SigmetAreaCheck {
     @Value("${airports.config.path}")
     String airportsConfigPath;
 

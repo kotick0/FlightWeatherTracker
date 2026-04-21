@@ -1,7 +1,6 @@
 package com.application.flightweathertracker.api;
 
-import com.application.flightweathertracker.app.Deserializer;
-import com.application.flightweathertracker.model.open_meteo.OpenMeteoResponse;
+import com.application.flightweathertracker.app.JsonDeserializer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,11 +15,11 @@ public class OpenMeteoApiClientTest {
     ObjectMapper objectMapper;
 
     @Autowired
-    Deserializer deserializer;
+    JsonDeserializer jsonDeserializer;
 
     @Test
     public void deserializeOpenMeteoData() {
-        String jsonResponse = openMeteoApiClient.fetchOpenMeteoData(53.584400177, 21.0977993011);
+        String jsonResponse = openMeteoApiClient.fetchAndSaveOpenMeteoData(53.584400177, 21.0977993011);
         System.out.println(jsonResponse);
     }
 }

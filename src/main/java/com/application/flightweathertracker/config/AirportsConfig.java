@@ -1,6 +1,6 @@
 package com.application.flightweathertracker.config;
 
-import com.application.flightweathertracker.model.config.airports.Airport;
+import com.application.flightweathertracker.model.imgw.airports.Airport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class AirportsConfig {
 
     private final ObjectMapper objectMapper;
 
-    public void saveAirportsConfig(String metarOrTafResponseJson) {
+    public void saveDefaultAirportsConfig(String metarOrTafResponseJson) {
         HashMap<String, Airport> airports = new HashMap<>();
         JsonNode root = objectMapper.readValue(metarOrTafResponseJson, JsonNode.class);
 
