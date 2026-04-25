@@ -1,21 +1,14 @@
 package com.application.flightweathertracker.api;
 
-import com.application.flightweathertracker.app.JsonDeserializer;
+import com.application.flightweathertracker.open_meteo.OpenMeteoApiClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tools.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 public class OpenMeteoApiClientTest {
     @Autowired
     private OpenMeteoApiClient openMeteoApiClient;
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Autowired
-    JsonDeserializer jsonDeserializer;
 
     @Test
     public void deserializeOpenMeteoData() {

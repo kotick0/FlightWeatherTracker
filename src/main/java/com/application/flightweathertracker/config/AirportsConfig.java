@@ -1,6 +1,6 @@
 package com.application.flightweathertracker.config;
 
-import com.application.flightweathertracker.model.imgw.airports.Airport;
+import com.application.flightweathertracker.imgw.common.model.Airport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
