@@ -1,14 +1,4 @@
 import {
-  Platform,
-  _getEventTarget,
-  _getFocusedElementPierceShadowDom,
-  _getShadowRoot,
-  coerceArray,
-  coerceElement,
-  coerceNumberProperty,
-  normalizePassiveListenerOptions
-} from "./chunk-FBA6CDIU.js";
-import {
   animate,
   animateChild,
   animation,
@@ -22,6 +12,19 @@ import {
   useAnimation
 } from "./chunk-KMGEZR2J.js";
 import {
+  IconDirective
+} from "./chunk-DEGAVZY4.js";
+import {
+  Platform,
+  _getEventTarget,
+  _getFocusedElementPierceShadowDom,
+  _getShadowRoot,
+  coerceArray,
+  coerceElement,
+  coerceNumberProperty,
+  normalizePassiveListenerOptions
+} from "./chunk-FBA6CDIU.js";
+import {
   takeUntilDestroyed,
   toObservable,
   toSignal
@@ -34,9 +37,6 @@ import {
   RouterLinkActive,
   RouterModule
 } from "./chunk-GDXHQAHN.js";
-import {
-  IconDirective
-} from "./chunk-DEGAVZY4.js";
 import {
   DomSanitizer
 } from "./chunk-IXWD4ASZ.js";

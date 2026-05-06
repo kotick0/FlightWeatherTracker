@@ -1,0 +1,68 @@
+<c-row>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header class="d-flex justify-content-between align-items-center">
+        <strong>Airports List</strong>
+        <button cButton color="primary" size="sm" (click)="addAirport()">Add New Airport</button>
+      </c-card-header>
+      <c-card-body>
+        <table cTable hover responsive>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>ICAO</th>
+              <th>City</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Military</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let airport of airports">
+              <td>{{ airport.id }}</td>
+
+              <ng-container *ngIf="editingId !== airport.id">
+                <td>{{ airport.name }}</td>
+                <td>{{ airport.icao }}</td>
+                <td>{{ airport.city }}</td>
+                <td>{{ airport.latitude }}</td>
+                <td>{{ airport.longitude }}</td>
+                <td>
+                  <c-form-check>
+                    <input cFormCheckInput type="checkbox" [checked]="airport.isMilitary" disabled style="opacity: 1; border-color: #8a93a2;" />
+                  </c-form-check>
+                </td>
+                <td>
+                  <button cButton color="info" variant="ghost" size="sm" (click)="startEdit(airport)">Edit</button>
+                  <button cButton color="danger" variant="ghost" size="sm" (click)="deleteAirport(airport.id)">Delete</button>
+                </td>
+              </ng-container>
+
+              <ng-container *ngIf="editingId === airport.id && editDraft">
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" /></td>
+                <td><input cFormControl size="sm" type="number" [(ngModel)]="editDraft.latitude" (keypress)="($event.charCode >= 48 && $event.charCode <= 57) || $event.charCode === 46 || $event.charCode === 45" /></td>
+                <td><input cFormControl size="sm" type="number" [(ngModel)]="editDraft.longitude" (keypress)="($event.charCode >= 48 && $event.charCode <= 57) || $event.charCode === 46 || $event.charCode === 45" /></td>
+                <td>
+                  <c-form-check>
+                    <input cFormCheckInput type="checkbox" [(ngModel)]="editDraft.isMilitary" />
+                  </c-form-check>
+                </td>
+                <td>
+                  <button cButton color="success" variant="ghost" size="sm" (click)="saveEdit()">Save</button>
+                  <button cButton color="secondary" variant="ghost" size="sm" (click)="cancelEdit()">Cancel</button>
+                </td>
+              </ng-container>
+            </tr>
+            <tr *ngIf="airports.length === 0">
+              <td colspan="8" class="text-center">No airports configured</td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

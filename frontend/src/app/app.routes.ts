@@ -16,6 +16,20 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
+      },
+      {
+        path: 'reports',
+        loadChildren: () => import('./views/reports/routes').then((m) => m.routes),
+        data: {
+          title: 'Reports'
+        }
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('./views/settings/routes').then((m) => m.routes),
+        data: {
+          title: 'Settings'
+        }
       }
     ]
   },
