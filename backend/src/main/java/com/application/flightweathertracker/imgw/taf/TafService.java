@@ -45,8 +45,9 @@ public class TafService {
                         .tempos(tafData.getFc().tempos())
                         .probs(tafData.getFc().probs())
                         .BECMGs(tafData.getFc().BECMGs())
+                        .turbulence(tafData.getFc().turbulence())
+                        .icings(tafData.getFc().icings())
                         .build();
-                // TODO: Dodać "turbulence" i "icings" kiedy się pojawią
                 shortTafResponsesRepository.save(responseRecord);
             }
             if (tafData.getFt() != null) {
@@ -66,8 +67,9 @@ public class TafService {
                         .tempos(tafData.getFt().tempos())
                         .probs(tafData.getFt().probs())
                         .BECMGs(tafData.getFt().BECMGs())
+                        .turbulence(tafData.getFt().turbulence())
+                        .icings(tafData.getFt().icings())
                         .build();
-                // TODO: Dodać "turbulence" i "icings" kiedy się pojawią
                 longTafResponsesRepository.save(responseRecord);
             }
         }

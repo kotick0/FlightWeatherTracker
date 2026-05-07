@@ -5,6 +5,7 @@ import com.application.flightweathertracker.imgw.common.model.Visibility;
 import com.application.flightweathertracker.imgw.common.model.WeatherCondition;
 import com.application.flightweathertracker.imgw.common.model.Wind;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import tools.jackson.databind.JsonNode;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -25,8 +26,10 @@ public record ImgwTaf(String station,
                       Validity validity,
                       List<Tempos> tempos,
                       List<Probs> probs,
-                      List<Becmg> BECMGs
-                      // TODO: Dodać "turbulence" i "icings" kiedy się pojawią
+                      List<Becmg> BECMGs,
+                      List<JsonNode> turbulence,
+                      List<JsonNode> icings
+                      // TODO: Zmienić turbulence i icings na modele kiedy się pojawią
 
 ) {
 }

@@ -1,11 +1,122 @@
 <c-row>
   <c-col xs="12">
-    <c-card>
-      <c-card-header>TAF</c-card-header>
+    <c-card class="mb-4">
+      <c-card-header class="d-flex justify-content-between align-items-center">
+        <strong>{{ selectedTafType }} Records</strong>
+        <div class="d-flex align-items-center">
+          <c-dropdown alignment="end" class="me-2">
+            <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
+              {{ selectedTafType }}
+            </button>
+            <ul cDropdownMenu style="min-width: 0;">
+              <li><button cDropdownItem (click)="setTafType('Long TAF')" class="px-2">Long TAF</button></li>
+              <li><button cDropdownItem (click)="setTafType('Short TAF')" class="px-2">Short TAF</button></li>
+            </ul>
+          </c-dropdown>
+
+          <c-dropdown alignment="end">
+            <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
+              {{ selectedTafType === 'Long TAF' ? selectedLongTimeRange : selectedShortTimeRange }}
+            </button>
+            <ul cDropdownMenu style="min-width: 0;">
+              <ng-container *ngIf="selectedTafType === 'Long TAF'">
+                <li><button cDropdownItem (click)="setLongTimeRange('Last hour')" class="px-2">Last hour</button></li>
+                <li><button cDropdownItem (click)="setLongTimeRange('Last 2 hours')" class="px-2">Last 2 hours</button></li>
+                <li><button cDropdownItem (click)="setLongTimeRange('Last 3 hours')" class="px-2">Last 3 hours</button></li>
+              </ng-container>
+              <ng-container *ngIf="selectedTafType === 'Short TAF'">
+                <li><button cDropdownItem (click)="setShortTimeRange('Last hour')" class="px-2">Last hour</button></li>
+                <li><button cDropdownItem (click)="setShortTimeRange('Last 2 hours')" class="px-2">Last 2 hours</button></li>
+                <li><button cDropdownItem (click)="setShortTimeRange('Last 3 hours')" class="px-2">Last 3 hours</button></li>
+              </ng-container>
+            </ul>
+          </c-dropdown>
+        </div>
+      </c-card-header>
       <c-card-body>
-        <p class="mb-0 text-body-secondary">
-          This tab will be used for TAF.
-        </p>
+        <div style="overflow-x: auto;">
+          <!-- Long TAF Table -->
+          <table cTable hover *ngIf="selectedTafType === 'Long TAF'">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Station</th>
+                <th>Observed At</th>
+                <th>Fetched At</th>
+                <th>Message</th>
+                <th>Validity</th>
+                <th>CAVOK</th>
+                <th>Cancelled</th>
+                <th>Corrected</th>
+                <th>Wind</th>
+                <th>Visibility</th>
+                <th>Clouds</th>
+                <th>Weather Conditions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of longTafRecords">
+                <td>{{ record.id }}</td>
+                <td>{{ record.station }}</td>
+                <td>{{ record.observedAt }}</td>
+                <td>{{ record.fetchedAt }}</td>
+                <td>{{ record.message }}</td>
+                <td>{{ record.validity.from }} - {{ record.validity.to }}</td>
+                <td>{{ record.isCavok ? 'Yes' : 'No' }}</td>
+                <td>{{ record.isCancelled ? 'Yes' : 'No' }}</td>
+                <td>{{ record.isCorrected ? 'Yes' : 'No' }}</td>
+                <td>{{ record.wind.speed }} {{ record.wind.unit }} {{ record.wind.direction }}</td>
+                <td>{{ record.visibility.mainVisibility }} ({{ record.visibility.value }} {{ record.visibility.unit }})</td>
+                <td>{{ record.clouds.length > 0 ? record.clouds.map(c => c.quantity + ' at ' + c.height).join(', ') : 'None' }}</td>
+                <td>{{ record.weatherConditions.length > 0 ? record.weatherConditions.map(w => (w.intensity || '') + ' ' + w.phenomenons.join(', ')).join('; ') : 'None' }}</td>
+              </tr>
+              <tr *ngIf="longTafRecords.length === 0">
+                <td colspan="13" class="text-center">No long TAF records available</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Short TAF Table -->
+          <table cTable hover *ngIf="selectedTafType === 'Short TAF'">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Station</th>
+                <th>Observed At</th>
+                <th>Fetched At</th>
+                <th>Message</th>
+                <th>Validity</th>
+                <th>CAVOK</th>
+                <th>Cancelled</th>
+                <th>Corrected</th>
+                <th>Wind</th>
+                <th>Visibility</th>
+                <th>Clouds</th>
+                <th>Weather Conditions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of shortTafRecords">
+                <td>{{ record.id }}</td>
+                <td>{{ record.station }}</td>
+                <td>{{ record.observedAt }}</td>
+                <td>{{ record.fetchedAt }}</td>
+                <td>{{ record.message }}</td>
+                <td>{{ record.validity.from }} - {{ record.validity.to }}</td>
+                <td>{{ record.isCavok ? 'Yes' : 'No' }}</td>
+                <td>{{ record.isCancelled ? 'Yes' : 'No' }}</td>
+                <td>{{ record.isCorrected ? 'Yes' : 'No' }}</td>
+                <td>{{ record.wind.speed }} {{ record.wind.unit }} {{ record.wind.direction }}</td>
+                <td>{{ record.visibility.mainVisibility }} ({{ record.visibility.value }} {{ record.visibility.unit }})</td>
+                <td>{{ record.clouds.length > 0 ? record.clouds.map(c => c.quantity + ' at ' + c.height).join(', ') : 'None' }}</td>
+                <td>{{ record.weatherConditions.length > 0 ? record.weatherConditions.map(w => (w.intensity || '') + ' ' + w.phenomenons.join(', ')).join('; ') : 'None' }}</td>
+              </tr>
+              <tr *ngIf="shortTafRecords.length === 0">
+                <td colspan="13" class="text-center">No short TAF records available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </c-card-body>
     </c-card>
   </c-col>

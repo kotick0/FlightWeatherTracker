@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { map, startWith, timer } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter, map, startWith, timer } from 'rxjs';
 import { NgScrollbar } from 'ngx-scrollbar';
 
 import {
@@ -43,6 +43,14 @@ function isOverflown(element: HTMLElement) {
   ]
 })
 export class DefaultLayoutComponent {
+  private readonly router = inject(Router);
+
+  public readonly isFluid$ = this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd),
+    map((event: NavigationEnd) => event.urlAfterRedirects.includes('/reports/metar') || event.urlAfterRedirects.includes('/reports/taf')),
+    startWith(this.router.url.includes('/reports/metar') || this.router.url.includes('/reports/taf'))
+  );
+
   public navItems = [...navItems];
   private readonly timeFormatter = new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',

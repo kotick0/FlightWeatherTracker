@@ -1,12 +1,66 @@
 <c-row>
-  <c-col xs="12">
-    <c-card>
-      <c-card-header>METAR</c-card-header>
-      <c-card-body>
-        <p class="mb-0 text-body-secondary">
-          This tab will be used for METAR.
-        </p>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header class="d-flex justify-content-between align-items-center">
+          <strong>METAR Records</strong>
+          <c-dropdown alignment="end">
+            <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
+              {{ selectedTimeRange }}
+            </button>
+            <ul cDropdownMenu style="min-width: 0;">
+              <li><button cDropdownItem (click)="setTimeRange('Last hour')" class="px-2">Last hour</button></li>
+              <li><button cDropdownItem (click)="setTimeRange('Last 2 hours')" class="px-2">Last 2 hours</button></li>
+              <li><button cDropdownItem (click)="setTimeRange('Last 3 hours')" class="px-2">Last 3 hours</button></li>
+            </ul>
+          </c-dropdown>
+        </c-card-header>
+        <c-card-body>
+          <div style="overflow-x: auto;">
+            <table cTable hover>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Station</th>
+                  <th>Observed At</th>
+                  <th>Fetched At</th>
+                  <th>Message</th>
+                  <th>Temperature (°C)</th>
+                  <th>Dew Point (°C)</th>
+                  <th>Altimeter (hPa)</th>
+                  <th>CAVOK</th>
+                  <th>Cancelled</th>
+                  <th>Corrected</th>
+                  <th>Wind</th>
+                  <th>Visibility</th>
+                  <th>Clouds</th>
+                  <th>Weather Conditions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of metarRecords">
+                  <td>{{ record.id }}</td>
+                  <td>{{ record.station }}</td>
+                  <td>{{ record.observedAt }}</td>
+                  <td>{{ record.fetchedAt }}</td>
+                  <td>{{ record.message }}</td>
+                  <td>{{ record.temperature }}</td>
+                  <td>{{ record.dewPoint }}</td>
+                  <td>{{ record.altimeter }}</td>
+                  <td>{{ record.isCavok ? 'Yes' : 'No' }}</td>
+                  <td>{{ record.isCancelled ? 'Yes' : 'No' }}</td>
+                  <td>{{ record.isCorrected ? 'Yes' : 'No' }}</td>
+                  <td>{{ record.wind.speed }} {{ record.wind.unit }} {{ record.wind.direction }}</td>
+                  <td>{{ record.visibility.mainVisibility }} ({{ record.visibility.value }} {{ record.visibility.unit }})</td>
+                  <td>{{ record.cloud.length > 0 ? record.cloud.map(c => c.quantity + ' at ' + c.height).join(', ') : 'None' }}</td>
+                  <td>{{ record.weatherCondition.length > 0 ? record.weatherCondition.map(w => (w.intensity || '') + ' ' + w.phenomenons.join(', ')).join('; ') : 'None' }}</td>
+                </tr>
+                <tr *ngIf="metarRecords.length === 0">
+                  <td colspan="15" class="text-center">No METAR records available</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>

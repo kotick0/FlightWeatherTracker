@@ -12,6 +12,7 @@ import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Type;
+import tools.jackson.databind.JsonNode;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -80,5 +81,13 @@ public class LongTafResponsesTable {
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
     private List<Becmg> BECMGs;
-    // TODO: Dodać "turbulence" i "icings" kiedy się pojawią
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "jsonb")
+    private List<JsonNode> turbulence;
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "jsonb")
+    private List<JsonNode> icings;
+    // TODO: Zmienić "turbulence" i "icings" na modele kiedy się pojawią
 }

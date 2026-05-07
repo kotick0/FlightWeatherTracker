@@ -44,8 +44,8 @@
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" /></td>
-                <td><input cFormControl size="sm" type="number" [(ngModel)]="editDraft.latitude" (keypress)="($event.charCode >= 48 && $event.charCode <= 57) || $event.charCode === 46 || $event.charCode === 45" /></td>
-                <td><input cFormControl size="sm" type="number" [(ngModel)]="editDraft.longitude" (keypress)="($event.charCode >= 48 && $event.charCode <= 57) || $event.charCode === 46 || $event.charCode === 45" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.latitude" (keypress)="onKeyPress($event, editDraft.latitude)" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.longitude" (keypress)="onKeyPress($event, editDraft.longitude)" /></td>
                 <td>
                   <c-form-check>
                     <input cFormCheckInput type="checkbox" [(ngModel)]="editDraft.isMilitary" />
