@@ -41,14 +41,14 @@
               </ng-container>
 
               <ng-container *ngIf="editingId === airport.id && editDraft">
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" /></td>
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" /></td>
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" [class.is-invalid]="submitted && !editDraft.name" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" [class.is-invalid]="submitted && !editDraft.icao" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" [class.is-invalid]="submitted && !editDraft.city" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.latitude" (keypress)="onKeyPress($event, editDraft.latitude)" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.longitude" (keypress)="onKeyPress($event, editDraft.longitude)" /></td>
                 <td>
                   <c-form-check>
-                    <input cFormCheckInput type="checkbox" [(ngModel)]="editDraft.isMilitary" />
+                    <input cFormCheckInput type="checkbox" [(ngModel)]="editDraft.isMilitary" style="border-color: #8a93a2;" />
                   </c-form-check>
                 </td>
                 <td>

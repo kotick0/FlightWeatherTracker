@@ -38,14 +38,20 @@ export class AirportsComponent {
   editingId: number | null = null;
   editDraft: Airport | null = null;
   isAdding: boolean = false;
+  submitted: boolean = false;
 
   startEdit(airport: Airport) {
+    this.submitted = false;
     this.editingId = airport.id;
     this.editDraft = { ...airport };
   }
 
   saveEdit() {
+    this.submitted = true;
     if (this.editDraft) {
+      if (!this.editDraft.name || !this.editDraft.icao || !this.editDraft.city) {
+        return;
+      }
       const index = this.airports.findIndex(a => a.id === this.editDraft!.id);
       if (index !== -1) {
         this.airports[index] = { ...this.editDraft };
@@ -54,9 +60,11 @@ export class AirportsComponent {
     this.editingId = null;
     this.editDraft = null;
     this.isAdding = false;
+    this.submitted = false;
   }
 
   cancelEdit() {
+    this.submitted = false;
     if (this.isAdding && this.editingId !== null) {
       this.deleteAirport(this.editingId);
     }

@@ -22,8 +22,7 @@
         "FOG",
         "RAIN_SNOW",
         "BLOWING_SNOW"
-      ],
-      "description": "Operationally significant phenomenon combined with HEAVY weather intensity may lead to flight cancellation."
+      ]
     },
     "maxWeatherIntensity": "HEAVY"
   },

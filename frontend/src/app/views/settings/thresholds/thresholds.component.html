@@ -1,11 +1,390 @@
 <c-row>
   <c-col xs="12">
-    <c-card>
-      <c-card-header>Thresholds</c-card-header>
+    <c-card class="mb-4">
+      <c-card-header class="d-flex justify-content-between align-items-center">
+        <strong>Thresholds Configuration</strong>
+        <c-dropdown variant="btn-group">
+          <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
+            {{ selectedThresholdType }}
+          </button>
+          <ul cDropdownMenu placement="bottom-start">
+            <li><button cDropdownItem (click)="setThresholdType('METAR')">METAR</button></li>
+            <li><button cDropdownItem (click)="setThresholdType('TAF')">TAF</button></li>
+            <li><button cDropdownItem (click)="setThresholdType('SIGMET')">SIGMET</button></li>
+          </ul>
+        </c-dropdown>
+      </c-card-header>
       <c-card-body>
-        <p class="mb-0 text-body-secondary">
-          This tab will be used for Thresholds.
-        </p>
+        <div *ngIf="selectedThresholdType === 'METAR'">
+  <form #metarForm="ngForm" (mousemove)="onThresholdFieldMouseMove($event)">
+    <c-row class="mb-3">
+      <c-col md="6">
+                <label cLabel for="minVisibility">Minimum Visibility (km)</label>
+                <input cFormControl id="minVisibility" name="minVisibility" type="text"
+                  [(ngModel)]="metarThresholds.minVisibility"
+                  (keypress)="onKeyPress($event, metarThresholds.minVisibility, true)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="minCloudHeight">Minimum Cloud Height (ft)</label>
+                <input cFormControl id="minCloudHeight" name="minCloudHeight" type="text"
+                  [(ngModel)]="metarThresholds.minCloudHeight"
+                  (keypress)="onKeyPress($event, metarThresholds.minCloudHeight, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="maxCloudQuantity">Maximum Cloud Quantity</label>
+                <select cSelect id="maxCloudQuantity" name="maxCloudQuantity"
+                  [(ngModel)]="metarThresholds.maxCloudQuantity" (ngModelChange)="saveThresholds()">
+                  <option value="FEW">FEW</option>
+                  <option value="SCT">SCT</option>
+                  <option value="BKN">BKN</option>
+                  <option value="OVC">OVC</option>
+                </select>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="minAltimeter">Minimum Altimeter (hPa)</label>
+                <input cFormControl id="minAltimeter" name="minAltimeter" type="text"
+                  [(ngModel)]="metarThresholds.minAltimeter"
+                  (keypress)="onKeyPress($event, metarThresholds.minAltimeter, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="minTemperature">Minimum Temperature (°C)</label>
+                <input cFormControl id="minTemperature" name="minTemperature" type="text"
+                  [(ngModel)]="metarThresholds.minTemperature"
+                  (keypress)="onKeyPress($event, metarThresholds.minTemperature, false, true)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="maxWindSpeed">Maximum Wind Speed (kt)</label>
+                <input cFormControl id="maxWindSpeed" name="maxWindSpeed" type="text"
+                  [(ngModel)]="metarThresholds.maxWindSpeed"
+                  (keypress)="onKeyPress($event, metarThresholds.maxWindSpeed, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="maxGust">Maximum Gust Speed (kt)</label>
+                <input cFormControl id="maxGust" name="maxGust" type="text" [(ngModel)]="metarThresholds.maxGust"
+                  (keypress)="onKeyPress($event, metarThresholds.maxGust, false)" (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="maxWeatherIntensity">Maximum Weather Intensity</label>
+                <select cSelect id="maxWeatherIntensity" name="maxWeatherIntensity"
+                  [(ngModel)]="metarThresholds.maxWeatherIntensity" (ngModelChange)="saveThresholds()">
+                  <option value="HEAVY">HEAVY</option>
+                  <option value="LIGHT">LIGHT</option>
+                </select>
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="cancellingPhenomena">Cancelling Phenomena (comma separated)</label>
+                <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
+                  (click)="openPhenomenaModal('cancelling', 'METAR')">
+                  <span *ngFor="let item of metarThresholds.weatherPhenomenon.cancelling"
+                    class="badge bg-primary me-2 mb-2 p-2">
+                    {{ item }}
+                  </span>
+                  <div *ngIf="metarThresholds.weatherPhenomenon.cancelling.length === 0" class="text-muted">No items
+                    selected</div>
+                </div>
+                <div class="d-flex align-items-center mt-3">
+                  <span class="me-2">Wind Shear</span>
+                  <c-form-check [inline]="true" class="mb-0">
+                    <input cFormCheckInput id="isWindShear" name="isWindShear" type="checkbox"
+                      [(ngModel)]="metarThresholds.isWindShear" (change)="saveThresholds()" />
+                  </c-form-check>
+                </div>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="opSignificantPhenomena">Operationally Significant Phenomena (comma separated)</label>
+                <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
+                  (click)="openPhenomenaModal('significant', 'METAR')">
+                  <span *ngFor="let item of metarThresholds.weatherPhenomenon.operationallySignificant"
+                    class="badge bg-primary me-2 mb-2 p-2">
+                    {{ item }}
+                  </span>
+                  <div *ngIf="metarThresholds.weatherPhenomenon.operationallySignificant.length === 0"
+                    class="text-muted">No items selected</div>
+                </div>
+              </c-col>
+            </c-row>
+          </form>
+        </div>
+
+        <c-modal [visible]="showPhenomenaModal" (visibleChange)="showPhenomenaModal = $event" size="lg"
+          alignment="center">
+          <c-modal-header>
+            <h5 cModalTitle>{{ currentPhenomenaType === 'cancelling' ? 'Cancelling' : 'Operationally Significant' }}
+              Phenomena</h5>
+          </c-modal-header>
+          <c-modal-body>
+            <div class="mb-3">
+              <h6>Current Selection:</h6>
+              <div class="p-2 border rounded bg-body min-vh-10">
+                <span *ngFor="let item of currentPhenomenaList" class="badge bg-primary me-2 mb-2 p-2">
+                  {{ item }}
+                  <button type="button" class="btn-close btn-close-white ms-2" style="font-size: 0.5rem;"
+                    (click)="removePhenomenon(item)"></button>
+                </span>
+                <div *ngIf="currentPhenomenaList.length === 0" class="text-muted">No items selected</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 border-end">
+                <h6>Select Phenomenon</h6>
+                <div class="list-group" style="max-height: 300px; overflow-y: auto;">
+                  <button
+                    *ngFor="let opt of (currentModalThresholdType === 'METAR' || currentModalThresholdType === 'TAF' ? phenomenaOptions : (currentModalThresholdType === 'SIGMET_WMO' ? sigmetWmoOptions : sigmetPhenomOptions))"
+                    type="button" class="list-group-item list-group-item-action"
+                    [class.active]="selectedPhenomenon === opt.phenomenon" (click)="selectPhenomenon(opt.phenomenon)">
+                    {{ opt.phenomenon }}
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h6>Select Descriptive</h6>
+                <div *ngIf="selectedPhenomenon; else noPhenom">
+                  <div class="list-group">
+                    <button
+                      *ngFor="let desc of (currentModalThresholdType === 'METAR' || currentModalThresholdType === 'TAF' ? phenomenaOptions : (currentModalThresholdType === 'SIGMET_WMO' ? sigmetWmoOptions : sigmetPhenomOptions)).find(o => o.phenomenon === selectedPhenomenon)?.descriptives"
+                      type="button" class="list-group-item list-group-item-action" (click)="addCombination(desc)">
+                      {{ desc === '(none)' ? selectedPhenomenon : desc + '_' + selectedPhenomenon }}
+                    </button>
+                  </div>
+                </div>
+                <ng-template #noPhenom>
+                  <div class="text-muted p-3 text-center">Please select a phenomenon first</div>
+                </ng-template>
+              </div>
+            </div>
+          </c-modal-body>
+          <c-modal-footer>
+            <button (click)="closePhenomenaModal()" cButton color="secondary">Close</button>
+          </c-modal-footer>
+        </c-modal>
+
+        <div *ngIf="selectedThresholdType === 'TAF'">
+          <form #tafForm="ngForm">
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="tafMinVisibility">Minimum Visibility (km)</label>
+                <input cFormControl id="tafMinVisibility" name="tafMinVisibility" type="text"
+                  [(ngModel)]="tafThresholds.minVisibility"
+                  (keypress)="onKeyPress($event, tafThresholds.minVisibility, true)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="tafMinCloudHeight">Minimum Cloud Height (ft)</label>
+                <input cFormControl id="tafMinCloudHeight" name="tafMinCloudHeight" type="text"
+                  [(ngModel)]="tafThresholds.minCloudHeight"
+                  (keypress)="onKeyPress($event, tafThresholds.minCloudHeight, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="tafMaxCloudQuantity">Maximum Cloud Quantity</label>
+                <select cSelect id="tafMaxCloudQuantity" name="tafMaxCloudQuantity"
+                  [(ngModel)]="tafThresholds.maxCloudQuantity" (ngModelChange)="saveThresholds()">
+                  <option value="FEW">FEW</option>
+                  <option value="SCT">SCT</option>
+                  <option value="BKN">BKN</option>
+                  <option value="OVC">OVC</option>
+                </select>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="tafCancellingTempoCloudType">Cancelling TEMPO Cloud Type</label>
+                <select cSelect id="tafCancellingTempoCloudType" name="tafCancellingTempoCloudType"
+                  [(ngModel)]="tafThresholds.cancellingTempoCloudType" (ngModelChange)="saveThresholds()">
+                  <option value="CB">CB</option>
+                  <option value="TCU">TCU</option>
+                </select>
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="tafMaxWindSpeed">Maximum Wind Speed (kt)</label>
+                <input cFormControl id="tafMaxWindSpeed" name="tafMaxWindSpeed" type="text"
+                  [(ngModel)]="tafThresholds.maxWindSpeed"
+                  (keypress)="onKeyPress($event, tafThresholds.maxWindSpeed, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="tafMaxGust">Maximum Gust Speed (kt)</label>
+                <input cFormControl id="tafMaxGust" name="tafMaxGust" type="text" [(ngModel)]="tafThresholds.maxGust"
+                  (keypress)="onKeyPress($event, tafThresholds.maxGust, false)" (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="tafMinTempoProbability">Minimum TEMPO Probability (%)</label>
+                <input cFormControl id="tafMinTempoProbability" name="tafMinTempoProbability" type="text"
+                  [(ngModel)]="tafThresholds.minTempoProbability"
+                  (keypress)="onKeyPress($event, tafThresholds.minTempoProbability, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="tafCancellingPhenomena">Cancelling Phenomena (comma separated)</label>
+                <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
+                  (click)="openPhenomenaModal('cancelling', 'TAF')">
+                  <span *ngFor="let item of tafThresholds.weatherConditions.cancelling"
+                    class="badge bg-primary me-2 mb-2 p-2">
+                    {{ item }}
+                  </span>
+                  <div *ngIf="tafThresholds.weatherConditions.cancelling.length === 0" class="text-muted">No items
+                    selected</div>
+                </div>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="tafOpSignificantPhenomena">Operationally Significant Phenomena (comma
+                  separated)</label>
+                <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
+                  (click)="openPhenomenaModal('significant', 'TAF')">
+                  <span *ngFor="let item of tafThresholds.weatherConditions.operationallySignificant"
+                    class="badge bg-primary me-2 mb-2 p-2">
+                    {{ item }}
+                  </span>
+                  <div *ngIf="tafThresholds.weatherConditions.operationallySignificant.length === 0" class="text-muted">
+                    No items selected</div>
+                </div>
+              </c-col>
+            </c-row>
+          </form>
+        </div>
+
+        <div *ngIf="selectedThresholdType === 'SIGMET'">
+          <form #sigmetForm="ngForm">
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="minFlightLevel">Minimum Flight Level</label>
+                <input cFormControl id="minFlightLevel" name="minFlightLevel" type="text"
+                  [(ngModel)]="sigmetThresholds.minFlightLevel"
+                  (keypress)="onKeyPress($event, sigmetThresholds.minFlightLevel, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="maxFlightLevel">Maximum Flight Level</label>
+                <input cFormControl id="maxFlightLevel" name="maxFlightLevel" type="text"
+                  [(ngModel)]="sigmetThresholds.maxFlightLevel"
+                  (keypress)="onKeyPress($event, sigmetThresholds.maxFlightLevel, false)"
+                  (ngModelChange)="saveThresholds()" />
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="sigmetMaxIntensity">Maximum Intensity</label>
+                <select cSelect id="sigmetMaxIntensity" name="sigmetMaxIntensity"
+                  [(ngModel)]="sigmetThresholds.maxIntensity" (ngModelChange)="saveThresholds()">
+                  <option value="INTSF">INTSF</option>
+                  <option value="WKN">WKN</option>
+                  <option value="NC">NC</option>
+                </select>
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="sigmetWmoCancelling">WMO Cancelling</label>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="wmoCancellingDropdownOpen = !wmoCancellingDropdownOpen" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ sigmetThresholds.WMO.cancelling.length ? sigmetThresholds.WMO.cancelling.join(', ') : 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="wmoCancellingDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetWmoOptions" (click)="$event.stopPropagation();">
+                      <span>{{ opt.phenomenon }}</span>
+                      <c-form-check [inline]="true" class="mb-0 ms-2">
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.cancelling.includes(opt.phenomenon)" (change)="toggleWmoCancelling(opt.phenomenon)" />
+                      </c-form-check>
+                    </div>
+                  </div>
+                </div>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="sigmetWmoSignificant">WMO Operationally Significant</label>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="wmoSignificantDropdownOpen = !wmoSignificantDropdownOpen" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ sigmetThresholds.WMO.operationallySignificant.length ? sigmetThresholds.WMO.operationallySignificant.join(', ') : 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="wmoSignificantDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetWmoOptions" (click)="$event.stopPropagation();">
+                      <span>{{ opt.phenomenon }}</span>
+                      <c-form-check [inline]="true" class="mb-0 ms-2">
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.operationallySignificant.includes(opt.phenomenon)" (change)="toggleWmoSignificant(opt.phenomenon)" />
+                      </c-form-check>
+                    </div>
+                  </div>
+                </div>
+              </c-col>
+            </c-row>
+
+            <c-row class="mb-3">
+              <c-col md="6">
+                <label cLabel for="sigmetPhenomCancelling">Phenomenon Cancelling</label>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="phenomCancellingDropdownOpen = !phenomCancellingDropdownOpen" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ sigmetThresholds.phenomenon.cancelling.length ? sigmetThresholds.phenomenon.cancelling.join(', ') : 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="phenomCancellingDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetPhenomOptions" (click)="$event.stopPropagation();">
+                      <span>{{ opt.phenomenon }}</span>
+                      <c-form-check [inline]="true" class="mb-0 ms-2">
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.cancelling.includes(opt.phenomenon)" (change)="togglePhenomCancelling(opt.phenomenon)" />
+                      </c-form-check>
+                    </div>
+                  </div>
+                </div>
+              </c-col>
+              <c-col md="6">
+                <label cLabel for="sigmetPhenomSignificant">Phenomenon Operationally Significant</label>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="phenomSignificantDropdownOpen = !phenomSignificantDropdownOpen" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ sigmetThresholds.phenomenon.operationallySignificant.length ? sigmetThresholds.phenomenon.operationallySignificant.join(', ') : 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="phenomSignificantDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetPhenomOptions" (click)="$event.stopPropagation();">
+                      <span>{{ opt.phenomenon }}</span>
+                      <c-form-check [inline]="true" class="mb-0 ms-2">
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.operationallySignificant.includes(opt.phenomenon)" (change)="togglePhenomSignificant(opt.phenomenon)" />
+                      </c-form-check>
+                    </div>
+                  </div>
+                </div>
+              </c-col>
+            </c-row>
+          </form>
+        </div>
       </c-card-body>
     </c-card>
   </c-col>
