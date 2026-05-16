@@ -15,7 +15,6 @@ import {
   FormLabelDirective,
   FormCheckComponent,
   FormCheckInputDirective,
-  FormSelectDirective,
   RowComponent,
   ModalModule
 } from '@coreui/angular';
@@ -77,7 +76,6 @@ interface SigmetThresholds {
     FormLabelDirective,
     FormCheckComponent,
     FormCheckInputDirective,
-    FormSelectDirective,
     ModalModule
   ],
   templateUrl: './thresholds.component.html',
@@ -197,6 +195,124 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
   wmoSignificantDropdownOpen = false;
   phenomCancellingDropdownOpen = false;
   phenomSignificantDropdownOpen = false;
+  intensityDropdownOpen = false;
+
+  // Dropdown open state variables for single-select dropdowns
+  metarCloudQuantityDropdownOpen = false;
+  metarWeatherIntensityDropdownOpen = false;
+  tafCloudQuantityDropdownOpen = false;
+  tafTempoCloudTypeDropdownOpen = false;
+
+  // Options arrays
+  intensityOptions = ['INTSF', 'WKN', 'NC'];
+  cloudQuantityOptions = ['FEW', 'SCT', 'BKN', 'OVC'];
+  weatherIntensityOptions = ['HEAVY', 'LIGHT'];
+  tempoCloudTypeOptions = ['CB', 'TCU'];
+
+  toggleSigmetDropdown(dropdown: 'wmoCancelling' | 'wmoSignificant' | 'phenomCancelling' | 'phenomSignificant') {
+    const shouldOpen = !this.getSigmetDropdownState(dropdown);
+
+    this.wmoCancellingDropdownOpen = false;
+    this.wmoSignificantDropdownOpen = false;
+    this.phenomCancellingDropdownOpen = false;
+    this.phenomSignificantDropdownOpen = false;
+    this.intensityDropdownOpen = false;
+
+    if (shouldOpen) {
+      this.setSigmetDropdownState(dropdown, true);
+    }
+  }
+
+  toggleIntensityDropdown() {
+    this.intensityDropdownOpen = !this.intensityDropdownOpen;
+    this.wmoCancellingDropdownOpen = false;
+    this.wmoSignificantDropdownOpen = false;
+    this.phenomCancellingDropdownOpen = false;
+    this.phenomSignificantDropdownOpen = false;
+  }
+
+  selectIntensity(value: string) {
+    this.sigmetThresholds.maxIntensity = value;
+    this.intensityDropdownOpen = false;
+    this.saveThresholds();
+  }
+
+  toggleMetarCloudQuantityDropdown() {
+    this.metarCloudQuantityDropdownOpen = !this.metarCloudQuantityDropdownOpen;
+    this.metarWeatherIntensityDropdownOpen = false;
+  }
+
+  selectMetarCloudQuantity(value: string) {
+    this.metarThresholds.maxCloudQuantity = value;
+    this.metarCloudQuantityDropdownOpen = false;
+    this.saveThresholds();
+  }
+
+  toggleMetarWeatherIntensityDropdown() {
+    this.metarWeatherIntensityDropdownOpen = !this.metarWeatherIntensityDropdownOpen;
+    this.metarCloudQuantityDropdownOpen = false;
+  }
+
+  selectMetarWeatherIntensity(value: string) {
+    this.metarThresholds.maxWeatherIntensity = value;
+    this.metarWeatherIntensityDropdownOpen = false;
+    this.saveThresholds();
+  }
+
+  toggleTafCloudQuantityDropdown() {
+    this.tafCloudQuantityDropdownOpen = !this.tafCloudQuantityDropdownOpen;
+    this.tafTempoCloudTypeDropdownOpen = false;
+  }
+
+  selectTafCloudQuantity(value: string) {
+    this.tafThresholds.maxCloudQuantity = value;
+    this.tafCloudQuantityDropdownOpen = false;
+    this.saveThresholds();
+  }
+
+  toggleTafTempoCloudTypeDropdown() {
+    this.tafTempoCloudTypeDropdownOpen = !this.tafTempoCloudTypeDropdownOpen;
+    this.tafCloudQuantityDropdownOpen = false;
+  }
+
+  selectTafTempoCloudType(value: string) {
+    this.tafThresholds.cancellingTempoCloudType = value;
+    this.tafTempoCloudTypeDropdownOpen = false;
+    this.saveThresholds();
+  }
+
+  private getSigmetDropdownState(dropdown: 'wmoCancelling' | 'wmoSignificant' | 'phenomCancelling' | 'phenomSignificant'): boolean {
+    switch (dropdown) {
+      case 'wmoCancelling':
+        return this.wmoCancellingDropdownOpen;
+      case 'wmoSignificant':
+        return this.wmoSignificantDropdownOpen;
+      case 'phenomCancelling':
+        return this.phenomCancellingDropdownOpen;
+      case 'phenomSignificant':
+        return this.phenomSignificantDropdownOpen;
+    }
+  }
+
+  private setSigmetDropdownState(
+    dropdown: 'wmoCancelling' | 'wmoSignificant' | 'phenomCancelling' | 'phenomSignificant',
+    isOpen: boolean
+  ) {
+    switch (dropdown) {
+      case 'wmoCancelling':
+        this.wmoCancellingDropdownOpen = isOpen;
+        break;
+      case 'wmoSignificant':
+        this.wmoSignificantDropdownOpen = isOpen;
+        break;
+      case 'phenomCancelling':
+        this.phenomCancellingDropdownOpen = isOpen;
+        break;
+      case 'phenomSignificant':
+        this.phenomSignificantDropdownOpen = isOpen;
+        break;
+    }
+  }
 
   openPhenomenaModal(type: 'cancelling' | 'significant', thresholdType: 'METAR' | 'TAF' | 'SIGMET_WMO' | 'SIGMET_PHENOM' = 'METAR') {
     this.currentPhenomenaType = type;
@@ -304,11 +420,16 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
     // If the click happened inside any .dropdown-multiselect, do nothing
     if (target.closest('.dropdown-multiselect')) return;
 
-    // Otherwise close all SIGMET dropdowns
+    // Otherwise close all dropdowns
     this.wmoCancellingDropdownOpen = false;
     this.wmoSignificantDropdownOpen = false;
     this.phenomCancellingDropdownOpen = false;
     this.phenomSignificantDropdownOpen = false;
+    this.intensityDropdownOpen = false;
+    this.metarCloudQuantityDropdownOpen = false;
+    this.metarWeatherIntensityDropdownOpen = false;
+    this.tafCloudQuantityDropdownOpen = false;
+    this.tafTempoCloudTypeDropdownOpen = false;
   }
 
   setThresholdType(type: string) {

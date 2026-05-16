@@ -37,13 +37,19 @@
             <c-row class="mb-3">
               <c-col md="6">
                 <label cLabel for="maxCloudQuantity">Maximum Cloud Quantity</label>
-                <select cSelect id="maxCloudQuantity" name="maxCloudQuantity"
-                  [(ngModel)]="metarThresholds.maxCloudQuantity" (ngModelChange)="saveThresholds()">
-                  <option value="FEW">FEW</option>
-                  <option value="SCT">SCT</option>
-                  <option value="BKN">BKN</option>
-                  <option value="OVC">OVC</option>
-                </select>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleMetarCloudQuantityDropdown()" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ metarThresholds.maxCloudQuantity || 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="metarCloudQuantityDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item" *ngFor="let opt of cloudQuantityOptions" (click)="selectMetarCloudQuantity(opt); $event.stopPropagation();">
+                      <span>{{ opt }}</span>
+                    </div>
+                  </div>
+                </div>
               </c-col>
               <c-col md="6">
                 <label cLabel for="minAltimeter">Minimum Altimeter (hPa)</label>
@@ -79,17 +85,25 @@
               </c-col>
               <c-col md="6">
                 <label cLabel for="maxWeatherIntensity">Maximum Weather Intensity</label>
-                <select cSelect id="maxWeatherIntensity" name="maxWeatherIntensity"
-                  [(ngModel)]="metarThresholds.maxWeatherIntensity" (ngModelChange)="saveThresholds()">
-                  <option value="HEAVY">HEAVY</option>
-                  <option value="LIGHT">LIGHT</option>
-                </select>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleMetarWeatherIntensityDropdown()" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ metarThresholds.maxWeatherIntensity || 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="metarWeatherIntensityDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item" *ngFor="let opt of weatherIntensityOptions" (click)="selectMetarWeatherIntensity(opt); $event.stopPropagation();">
+                      <span>{{ opt }}</span>
+                    </div>
+                  </div>
+                </div>
               </c-col>
             </c-row>
 
             <c-row class="mb-3">
               <c-col md="6">
-                <label cLabel for="cancellingPhenomena">Cancelling Phenomena (comma separated)</label>
+                <label cLabel for="cancellingPhenomena">Cancelling Phenomena</label>
                 <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
                   (click)="openPhenomenaModal('cancelling', 'METAR')">
                   <span *ngFor="let item of metarThresholds.weatherPhenomenon.cancelling"
@@ -103,12 +117,12 @@
                   <span class="me-2">Wind Shear</span>
                   <c-form-check [inline]="true" class="mb-0">
                     <input cFormCheckInput id="isWindShear" name="isWindShear" type="checkbox"
-                      [(ngModel)]="metarThresholds.isWindShear" (change)="saveThresholds()" />
+                      [(ngModel)]="metarThresholds.isWindShear" (change)="saveThresholds()" style="border-color: #8a93a2;" />
                   </c-form-check>
                 </div>
               </c-col>
               <c-col md="6">
-                <label cLabel for="opSignificantPhenomena">Operationally Significant Phenomena (comma separated)</label>
+                <label cLabel for="opSignificantPhenomena">Operationally Significant Phenomena</label>
                 <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
                   (click)="openPhenomenaModal('significant', 'METAR')">
                   <span *ngFor="let item of metarThresholds.weatherPhenomenon.operationallySignificant"
@@ -198,21 +212,35 @@
             <c-row class="mb-3">
               <c-col md="6">
                 <label cLabel for="tafMaxCloudQuantity">Maximum Cloud Quantity</label>
-                <select cSelect id="tafMaxCloudQuantity" name="tafMaxCloudQuantity"
-                  [(ngModel)]="tafThresholds.maxCloudQuantity" (ngModelChange)="saveThresholds()">
-                  <option value="FEW">FEW</option>
-                  <option value="SCT">SCT</option>
-                  <option value="BKN">BKN</option>
-                  <option value="OVC">OVC</option>
-                </select>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleTafCloudQuantityDropdown()" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ tafThresholds.maxCloudQuantity || 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="tafCloudQuantityDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item" *ngFor="let opt of cloudQuantityOptions" (click)="selectTafCloudQuantity(opt); $event.stopPropagation();">
+                      <span>{{ opt }}</span>
+                    </div>
+                  </div>
+                </div>
               </c-col>
               <c-col md="6">
                 <label cLabel for="tafCancellingTempoCloudType">Cancelling TEMPO Cloud Type</label>
-                <select cSelect id="tafCancellingTempoCloudType" name="tafCancellingTempoCloudType"
-                  [(ngModel)]="tafThresholds.cancellingTempoCloudType" (ngModelChange)="saveThresholds()">
-                  <option value="CB">CB</option>
-                  <option value="TCU">TCU</option>
-                </select>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleTafTempoCloudTypeDropdown()" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ tafThresholds.cancellingTempoCloudType || 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="tafTempoCloudTypeDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item" *ngFor="let opt of tempoCloudTypeOptions" (click)="selectTafTempoCloudType(opt); $event.stopPropagation();">
+                      <span>{{ opt }}</span>
+                    </div>
+                  </div>
+                </div>
               </c-col>
             </c-row>
 
@@ -243,7 +271,7 @@
 
             <c-row class="mb-3">
               <c-col md="6">
-                <label cLabel for="tafCancellingPhenomena">Cancelling Phenomena (comma separated)</label>
+                <label cLabel for="tafCancellingPhenomena">Cancelling Phenomena</label>
                 <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
                   (click)="openPhenomenaModal('cancelling', 'TAF')">
                   <span *ngFor="let item of tafThresholds.weatherConditions.cancelling"
@@ -255,8 +283,7 @@
                 </div>
               </c-col>
               <c-col md="6">
-                <label cLabel for="tafOpSignificantPhenomena">Operationally Significant Phenomena (comma
-                  separated)</label>
+                <label cLabel for="tafOpSignificantPhenomena">Operationally Significant Phenomena</label>
                 <div class="p-2 border rounded bg-body min-vh-10 cursor-pointer" style="cursor: pointer;"
                   (click)="openPhenomenaModal('significant', 'TAF')">
                   <span *ngFor="let item of tafThresholds.weatherConditions.operationallySignificant"
@@ -293,12 +320,19 @@
             <c-row class="mb-3">
               <c-col md="6">
                 <label cLabel for="sigmetMaxIntensity">Maximum Intensity</label>
-                <select cSelect id="sigmetMaxIntensity" name="sigmetMaxIntensity"
-                  [(ngModel)]="sigmetThresholds.maxIntensity" (ngModelChange)="saveThresholds()">
-                  <option value="INTSF">INTSF</option>
-                  <option value="WKN">WKN</option>
-                  <option value="NC">NC</option>
-                </select>
+                <div class="dropdown-multiselect position-relative">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleIntensityDropdown()" tabindex="0">
+                    <span class="flex-grow-1 text-truncate">
+                      {{ sigmetThresholds.maxIntensity || 'Select...' }}
+                    </span>
+                    <span class="ms-2"><i class="bi bi-caret-down-fill"></i></span>
+                  </div>
+                  <div class="dropdown-menu w-100 mt-1 show" *ngIf="intensityDropdownOpen" style="max-height:200px;overflow:auto;z-index:1050;">
+                    <div class="dropdown-item" *ngFor="let opt of intensityOptions" (click)="selectIntensity(opt); $event.stopPropagation();">
+                      <span>{{ opt }}</span>
+                    </div>
+                  </div>
+                </div>
               </c-col>
             </c-row>
 
@@ -306,7 +340,7 @@
               <c-col md="6">
                 <label cLabel for="sigmetWmoCancelling">WMO Cancelling</label>
                 <div class="dropdown-multiselect position-relative">
-                  <div class="form-select bg-body d-flex align-items-center" (click)="wmoCancellingDropdownOpen = !wmoCancellingDropdownOpen" tabindex="0">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleSigmetDropdown('wmoCancelling')" tabindex="0">
                     <span class="flex-grow-1 text-truncate">
                       {{ sigmetThresholds.WMO.cancelling.length ? sigmetThresholds.WMO.cancelling.join(', ') : 'Select...' }}
                     </span>
@@ -316,7 +350,7 @@
                     <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetWmoOptions" (click)="$event.stopPropagation();">
                       <span>{{ opt.phenomenon }}</span>
                       <c-form-check [inline]="true" class="mb-0 ms-2">
-                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.cancelling.includes(opt.phenomenon)" (change)="toggleWmoCancelling(opt.phenomenon)" />
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.cancelling.includes(opt.phenomenon)" (change)="toggleWmoCancelling(opt.phenomenon)" style="border-color: #8a93a2;" />
                       </c-form-check>
                     </div>
                   </div>
@@ -325,7 +359,7 @@
               <c-col md="6">
                 <label cLabel for="sigmetWmoSignificant">WMO Operationally Significant</label>
                 <div class="dropdown-multiselect position-relative">
-                  <div class="form-select bg-body d-flex align-items-center" (click)="wmoSignificantDropdownOpen = !wmoSignificantDropdownOpen" tabindex="0">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleSigmetDropdown('wmoSignificant')" tabindex="0">
                     <span class="flex-grow-1 text-truncate">
                       {{ sigmetThresholds.WMO.operationallySignificant.length ? sigmetThresholds.WMO.operationallySignificant.join(', ') : 'Select...' }}
                     </span>
@@ -335,7 +369,7 @@
                     <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetWmoOptions" (click)="$event.stopPropagation();">
                       <span>{{ opt.phenomenon }}</span>
                       <c-form-check [inline]="true" class="mb-0 ms-2">
-                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.operationallySignificant.includes(opt.phenomenon)" (change)="toggleWmoSignificant(opt.phenomenon)" />
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.WMO.operationallySignificant.includes(opt.phenomenon)" (change)="toggleWmoSignificant(opt.phenomenon)" style="border-color: #8a93a2;" />
                       </c-form-check>
                     </div>
                   </div>
@@ -347,7 +381,7 @@
               <c-col md="6">
                 <label cLabel for="sigmetPhenomCancelling">Phenomenon Cancelling</label>
                 <div class="dropdown-multiselect position-relative">
-                  <div class="form-select bg-body d-flex align-items-center" (click)="phenomCancellingDropdownOpen = !phenomCancellingDropdownOpen" tabindex="0">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleSigmetDropdown('phenomCancelling')" tabindex="0">
                     <span class="flex-grow-1 text-truncate">
                       {{ sigmetThresholds.phenomenon.cancelling.length ? sigmetThresholds.phenomenon.cancelling.join(', ') : 'Select...' }}
                     </span>
@@ -357,7 +391,7 @@
                     <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetPhenomOptions" (click)="$event.stopPropagation();">
                       <span>{{ opt.phenomenon }}</span>
                       <c-form-check [inline]="true" class="mb-0 ms-2">
-                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.cancelling.includes(opt.phenomenon)" (change)="togglePhenomCancelling(opt.phenomenon)" />
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.cancelling.includes(opt.phenomenon)" (change)="togglePhenomCancelling(opt.phenomenon)" style="border-color: #8a93a2;" />
                       </c-form-check>
                     </div>
                   </div>
@@ -366,7 +400,7 @@
               <c-col md="6">
                 <label cLabel for="sigmetPhenomSignificant">Phenomenon Operationally Significant</label>
                 <div class="dropdown-multiselect position-relative">
-                  <div class="form-select bg-body d-flex align-items-center" (click)="phenomSignificantDropdownOpen = !phenomSignificantDropdownOpen" tabindex="0">
+                  <div class="form-select bg-body d-flex align-items-center" (click)="toggleSigmetDropdown('phenomSignificant')" tabindex="0">
                     <span class="flex-grow-1 text-truncate">
                       {{ sigmetThresholds.phenomenon.operationallySignificant.length ? sigmetThresholds.phenomenon.operationallySignificant.join(', ') : 'Select...' }}
                     </span>
@@ -376,7 +410,7 @@
                     <div class="dropdown-item d-flex justify-content-between align-items-center" *ngFor="let opt of sigmetPhenomOptions" (click)="$event.stopPropagation();">
                       <span>{{ opt.phenomenon }}</span>
                       <c-form-check [inline]="true" class="mb-0 ms-2">
-                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.operationallySignificant.includes(opt.phenomenon)" (change)="togglePhenomSignificant(opt.phenomenon)" />
+                        <input cFormCheckInput type="checkbox" [checked]="sigmetThresholds.phenomenon.operationallySignificant.includes(opt.phenomenon)" (change)="togglePhenomSignificant(opt.phenomenon)" style="border-color: #8a93a2;" />
                       </c-form-check>
                     </div>
                   </div>
