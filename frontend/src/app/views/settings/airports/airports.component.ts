@@ -49,7 +49,7 @@ export class AirportsComponent {
   saveEdit() {
     this.submitted = true;
     if (this.editDraft) {
-      if (!this.editDraft.name || !this.editDraft.icao || !this.editDraft.city) {
+      if (!this.editDraft.name || !this.editDraft.icao || this.editDraft.icao.length !== 4 || !this.editDraft.city) {
         return;
       }
       const index = this.airports.findIndex(a => a.id === this.editDraft!.id);
@@ -75,6 +75,15 @@ export class AirportsComponent {
 
   deleteAirport(id: number) {
     this.airports = this.airports.filter(a => a.id !== id);
+  }
+
+  onKeyPressNoNumbers(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode >= 48 && charCode <= 57) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
   }
 
   onKeyPress(event: KeyboardEvent, currentValue: any) {
@@ -125,6 +134,9 @@ export class AirportsComponent {
   }
 
   addAirport() {
+    if (this.editingId !== null) {
+      return;
+    }
     this.isAdding = true;
     const newId = this.airports.length > 0 ? Math.max(...this.airports.map(a => a.id)) + 1 : 1;
     const newAirport: Airport = {

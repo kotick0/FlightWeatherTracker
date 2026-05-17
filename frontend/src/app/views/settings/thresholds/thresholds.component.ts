@@ -140,30 +140,33 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
     maxFlightLevel: 450
   };
 
-  phenomenaOptions: { phenomenon: string, descriptives: string[] }[] = [
-    { phenomenon: 'DRIZZLE', descriptives: ['THUNDERSTORM', 'SHOWERS', 'FREEZING', '(none)'] },
-    { phenomenon: 'RAIN', descriptives: ['THUNDERSTORM', 'SHOWERS', 'FREEZING', '(none)'] },
-    { phenomenon: 'SNOW', descriptives: ['THUNDERSTORM', 'SHOWERS', 'BLOWING', 'LOW_DRIFTING', '(none)'] },
-    { phenomenon: 'SNOW_GRAINS', descriptives: ['(none)'] },
-    { phenomenon: 'ICE_CRYSTALS', descriptives: ['(none)'] },
-    { phenomenon: 'ICE_PELLETS', descriptives: ['THUNDERSTORM', 'SHOWERS', '(none)'] },
-    { phenomenon: 'HAIL', descriptives: ['THUNDERSTORM', 'SHOWERS', '(none)'] },
-    { phenomenon: 'SMALL_HAIL', descriptives: ['THUNDERSTORM', 'SHOWERS', '(none)'] },
-    { phenomenon: 'UNKNOWN_PRECIPITATION', descriptives: ['(none)'] },
-    { phenomenon: 'MIST', descriptives: ['(none)'] },
-    { phenomenon: 'FOG', descriptives: ['FREEZING', 'PATCHES', 'SHALLOW', 'PARTIAL', '(none)'] },
-    { phenomenon: 'SMOKE', descriptives: ['(none)'] },
-    { phenomenon: 'VOLCANIC_ASH', descriptives: ['(none)'] },
-    { phenomenon: 'DUST', descriptives: ['BLOWING', 'LOW_DRIFTING', '(none)'] },
-    { phenomenon: 'SAND', descriptives: ['BLOWING', 'LOW_DRIFTING', '(none)'] },
-    { phenomenon: 'HAZE', descriptives: ['(none)'] },
-    { phenomenon: 'SPRAY', descriptives: ['(none)'] },
-    { phenomenon: 'DUST_WHIRLS', descriptives: ['(none)'] },
-    { phenomenon: 'SQUALL', descriptives: ['(none)'] },
-    { phenomenon: 'FUNNEL_CLOUD', descriptives: ['(none)'] },
-    { phenomenon: 'SANDSTORM', descriptives: ['(none)'] },
-    { phenomenon: 'DUSTSTORM', descriptives: ['(none)'] },
-    { phenomenon: 'THUNDERSTORM', descriptives: ['(none)'] }
+  phenomenaOptions: { phenomenon: string, descriptives: string[], isStandalone?: boolean }[] = [
+    { phenomenon: 'DRIZZLE', descriptives: ['DRIZZLE', 'FREEZING'] },
+    { phenomenon: 'RAIN', descriptives: ['RAIN', 'FREEZING', 'SHOWERS', 'THUNDERSTORM'] },
+    { phenomenon: 'SNOW', descriptives: ['SNOW', 'DRIFTING', 'BLOWING', 'SHOWERS', 'THUNDERSTORM'] },
+    { phenomenon: 'SNOW_GRAINS', descriptives: ['SNOW_GRAINS'] },
+    { phenomenon: 'ICE_CRYSTALS', descriptives: ['ICE_CRYSTALS'] },
+    { phenomenon: 'ICE_PELLETS', descriptives: ['ICE_PELLETS', 'SHOWERS', 'THUNDERSTORM'] },
+    { phenomenon: 'HAIL', descriptives: ['HAIL', 'SHOWERS', 'THUNDERSTORM'] },
+    { phenomenon: 'SMALL_HAIL', descriptives: ['SMALL_HAIL', 'SHOWERS', 'THUNDERSTORM'] },
+    { phenomenon: 'UNKNOWN_PRECIP', descriptives: ['UNKNOWN_PRECIP', 'FREEZING'] },
+    { phenomenon: 'FOG', descriptives: ['FOG', 'SHALLOW', 'PATCHES', 'PARTIAL', 'FREEZING'] },
+    { phenomenon: 'DUST', descriptives: ['DUST', 'DRIFTING', 'BLOWING'] },
+    { phenomenon: 'SAND', descriptives: ['SAND', 'DRIFTING', 'BLOWING'] },
+    { phenomenon: 'SPRAY', descriptives: ['SPRAY', 'BLOWING'] },
+    { phenomenon: 'MIST', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'SMOKE', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'VOLCANIC_ASH', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'HAZE', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'DUST_WHIRLS', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'SAND_WHIRLS', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'SQUALL', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'FUNNEL_CLOUD', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'TORNADO', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'WATERSPOUT', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'SANDSTORM', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'DUSTSTORM', descriptives: ['(none)'], isStandalone: true },
+    { phenomenon: 'THUNDERSTORM', descriptives: ['(none)'], isStandalone: true }
   ];
 
   sigmetWmoOptions: { phenomenon: string, descriptives: string[] }[] = [
@@ -346,9 +349,9 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
       : (this.currentModalThresholdType === 'SIGMET_WMO' ? this.sigmetWmoOptions : this.sigmetPhenomOptions);
 
     const opt = options.find(o => o.phenomenon === p);
-    if (opt && opt.descriptives.length === 1 && opt.descriptives[0] === '(none)') {
+    if (opt && opt.descriptives.length === 1 && (opt.descriptives[0] === '(none)' || opt.descriptives[0] === p)) {
       this.selectedPhenomenon = p;
-      this.addCombination('(none)');
+      this.addCombination(opt.descriptives[0]);
     } else {
       this.selectedPhenomenon = p;
     }
@@ -358,7 +361,7 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
     if (!this.selectedPhenomenon) return;
 
     let value = '';
-    if (descriptive === '(none)') {
+    if (descriptive === '(none)' || descriptive === this.selectedPhenomenon) {
       value = this.selectedPhenomenon;
     } else {
       value = `${descriptive}_${this.selectedPhenomenon}`;

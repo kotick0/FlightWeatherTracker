@@ -222,6 +222,12 @@ form {
     padding-left: 0.75rem;
   }
 
+  .dropdown-item.d-flex.justify-content-between.align-items-center.active,
+  .dropdown-item.d-flex.justify-content-between.align-items-center:active {
+    background-color: transparent;
+    color: inherit;
+  }
+
   .dropdown-item.d-flex.justify-content-between.align-items-center > span {
     display: block;
     min-width: 0;

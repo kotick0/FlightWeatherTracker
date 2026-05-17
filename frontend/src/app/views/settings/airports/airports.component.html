@@ -3,7 +3,7 @@
     <c-card class="mb-4">
       <c-card-header class="d-flex justify-content-between align-items-center">
         <strong>Airports List</strong>
-        <button cButton color="primary" size="sm" (click)="addAirport()">Add New Airport</button>
+        <button cButton color="primary" size="sm" (click)="addAirport()" [disabled]="editingId !== null">Add New Airport</button>
       </c-card-header>
       <c-card-body>
         <table cTable hover responsive>
@@ -35,15 +35,15 @@
                   </c-form-check>
                 </td>
                 <td>
-                  <button cButton color="info" variant="ghost" size="sm" (click)="startEdit(airport)">Edit</button>
-                  <button cButton color="danger" variant="ghost" size="sm" (click)="deleteAirport(airport.id)">Delete</button>
+                  <button cButton color="info" variant="ghost" size="sm" (click)="startEdit(airport)" [disabled]="editingId !== null">Edit</button>
+                  <button cButton color="danger" variant="ghost" size="sm" (click)="deleteAirport(airport.id)" [disabled]="editingId !== null">Delete</button>
                 </td>
               </ng-container>
 
               <ng-container *ngIf="editingId === airport.id && editDraft">
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" [class.is-invalid]="submitted && !editDraft.name" /></td>
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" [class.is-invalid]="submitted && !editDraft.icao" /></td>
-                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" [class.is-invalid]="submitted && !editDraft.city" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.name" (keypress)="onKeyPressNoNumbers($event)" [class.is-invalid]="submitted && !editDraft.name" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.icao" maxlength="4" (keypress)="onKeyPressNoNumbers($event)" [class.is-invalid]="submitted && (!editDraft.icao || editDraft.icao.length !== 4)" /></td>
+                <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.city" (keypress)="onKeyPressNoNumbers($event)" [class.is-invalid]="submitted && !editDraft.city" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.latitude" (keypress)="onKeyPress($event, editDraft.latitude)" /></td>
                 <td><input cFormControl size="sm" type="text" [(ngModel)]="editDraft.longitude" (keypress)="onKeyPress($event, editDraft.longitude)" /></td>
                 <td>
