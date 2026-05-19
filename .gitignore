@@ -36,3 +36,4 @@ build/
 .DS_Store
 backend/config/
 backend/data/
+frontend/node_modules/

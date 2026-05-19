@@ -28,11 +28,8 @@ public class ImgwApiClient {
     private final ObjectMapper objectMapper;
     private final AirportsConfig airportsConfig;
 
-    @Value("${api.imgw.metar}")
-    String imgwMetar;
-
-    @Value("${api.imgw.taf}")
-    String imgwTaf;
+    @Value("${api.imgw.metar.taf}")
+    String imgwMetarTaf;
 
     @Value("${api.imgw.sigmet}")
     String imgwSigmet;
@@ -41,7 +38,7 @@ public class ImgwApiClient {
     String airportsConfigPathString;
 
     public String fetchAllMetar() {
-        return fetchData(imgwMetar);
+        return fetchData(imgwMetarTaf);
     }
 
     public String fetchAllSigmet() {
@@ -51,7 +48,7 @@ public class ImgwApiClient {
     public String fetchMetarsForAirportsConfig() {
         try {
             String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchDataForAirportsConfig(imgwMetar, airportsConfigJson);
+            return fetchDataForAirportsConfig(imgwMetarTaf, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new RuntimeException("Error fetching METARs for airports defined in config");
@@ -61,7 +58,7 @@ public class ImgwApiClient {
     public String fetchTafsForAirportsConfig() {
         try {
             String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchDataForAirportsConfig(imgwTaf, airportsConfigJson);
+            return fetchDataForAirportsConfig(imgwMetarTaf, airportsConfigJson);
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new RuntimeException("Error fetching TAFs for airports defined in config");
@@ -74,8 +71,8 @@ public class ImgwApiClient {
                     .uri(URI.create(uri))
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response == null || !String.valueOf(response.statusCode()).startsWith("2")) {
-                throw new RuntimeException("Error fetching data from API");
+            if (response.statusCode() < 200 || response.statusCode() >= 300) {
+                throw new RuntimeException("API returned non-2xx status: " + response.statusCode());
             }
             return response.body();
         } catch (IOException | InterruptedException e) {

@@ -58,7 +58,7 @@ public class SigmetResponsesTable {
 
     private String sigmet_id;
 
-    private Boolean cnl_valid;
+    private String cnl_valid;
 
     @Column(nullable = false, length = 4)
     private String CCCC;
