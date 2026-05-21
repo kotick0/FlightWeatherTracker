@@ -21,7 +21,7 @@ public class MetarService {
     private final MetarResponsesRepository metarResponsesRepository;
 
     public void saveImgwMetarResponse() {
-        String imgwMetarResponseJson = imgwApiClient.fetchMetarsForAirportsConfig();
+        String imgwMetarResponseJson = imgwApiClient.fetchDataPerAirport();
         Map<String, ImgwMetar> deserializedMetarResponse = imgwJsonDeserializer.deserializeMetars(imgwMetarResponseJson);
         for (ImgwMetar imgwMetar : deserializedMetarResponse.values()) {
             MetarResponsesTable responseRecord = MetarResponsesTable.builder()

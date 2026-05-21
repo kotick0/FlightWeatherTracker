@@ -11,8 +11,7 @@ public class OpenMeteoApiClientTest {
     private OpenMeteoApiClient openMeteoApiClient;
 
     @Test
-    public void deserializeOpenMeteoData() {
-        String jsonResponse = openMeteoApiClient.fetchAndSaveOpenMeteoData(53.584400177, 21.0977993011);
-        System.out.println(jsonResponse);
+    public void OpenMeteoDatabaseSaveTest() {
+        openMeteoApiClient.fetchAndSaveOpenMeteoData(53.584400177, 21.0977993011);
     }
 }

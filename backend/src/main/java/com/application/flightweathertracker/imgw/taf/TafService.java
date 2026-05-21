@@ -25,7 +25,7 @@ public class TafService {
     private final LongTafResponsesRepository longTafResponsesRepository;
 
     public void saveImgwTafResponse() {
-        String imgwTafResponseJson = imgwApiClient.fetchTafsForAirportsConfig();
+        String imgwTafResponseJson = imgwApiClient.fetchDataPerAirport();
         Map<String, TafData> deserializedTafResponse = imgwJsonDeserializer.deserializeTafs(imgwTafResponseJson);
         for (TafData tafData : deserializedTafResponse.values()) {
             if (tafData.getFc() != null) {

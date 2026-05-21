@@ -1,5 +1,6 @@
 package com.application.flightweathertracker.init;
 
+import com.application.flightweathertracker.config.airports.AirportsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
@@ -12,12 +13,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class AppInitializer implements ApplicationRunner {
 
-    private final AppDirectories appDirectories;
-    private final AppFiles appFiles;
+    private final AirportsService airportsService;
 
     @Override
     public void run(@NonNull ApplicationArguments args) {
-        appDirectories.createAllDirectories();
-        appFiles.createAllFiles();
+        airportsService.initalizeAirports();
     }
 }

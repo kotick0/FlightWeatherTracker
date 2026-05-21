@@ -1,0 +1,562 @@
+{
+  "EPWA": {
+    "name": "Warsaw Chopin Airport",
+    "icao": "EPWA",
+    "city": "Warsaw",
+    "latitude": 52.165699,
+    "longitude": 20.9671,
+    "isMILITARY": false
+  },
+  "EPKK": {
+    "name": "Kraków John Paul II International Airport",
+    "icao": "EPKK",
+    "city": "Balice",
+    "latitude": 50.077702,
+    "longitude": 19.7848,
+    "isMILITARY": false
+  },
+  "EPGD": {
+    "name": "Gdańsk Lech Wałęsa Airport",
+    "icao": "EPGD",
+    "city": "Gdańsk",
+    "latitude": 54.377602,
+    "longitude": 18.4662,
+    "isMILITARY": false
+  },
+  "EPKT": {
+    "name": "Katowice Wojciech Korfanty International Airport",
+    "icao": "EPKT",
+    "city": "Katowice",
+    "latitude": 50.476015,
+    "longitude": 19.080705,
+    "isMILITARY": false
+  },
+  "EPPO": {
+    "name": "Poznań-Ławica Airport",
+    "icao": "EPPO",
+    "city": "Poznań",
+    "latitude": 52.421598,
+    "longitude": 16.823359,
+    "isMILITARY": false
+  },
+  "EPMO": {
+    "name": "Warsaw Modlin Airport",
+    "icao": "EPMO",
+    "city": "Nowy Dwór Mazowiecki",
+    "latitude": 52.451099,
+    "longitude": 20.6518,
+    "isMILITARY": false
+  },
+  "EPWR": {
+    "name": "Copernicus Wrocław Airport",
+    "icao": "EPWR",
+    "city": "Wrocław",
+    "latitude": 51.103719,
+    "longitude": 16.882096,
+    "isMILITARY": false
+  },
+  "EPBY": {
+    "name": "Ignacy Jan Paderewski Bydgoszcz Airport",
+    "icao": "EPBY",
+    "city": "Bydgoszcz",
+    "latitude": 53.096802,
+    "longitude": 17.977699,
+    "isMILITARY": false
+  },
+  "EPSC": {
+    "name": "Solidarity Szczecin–Goleniów Airport",
+    "icao": "EPSC",
+    "city": "Szczecin(Glewice)",
+    "latitude": 53.584702,
+    "longitude": 14.9022,
+    "isMILITARY": false
+  },
+  "EPRZ": {
+    "name": "Rzeszów-Jasionka Airport",
+    "icao": "EPRZ",
+    "city": "Jasionka",
+    "latitude": 50.109791,
+    "longitude": 22.024155,
+    "isMILITARY": false
+  },
+  "EPLL": {
+    "name": "Łódź Władysław Reymont Airport",
+    "icao": "EPLL",
+    "city": "Łódź",
+    "latitude": 51.721901,
+    "longitude": 19.3981,
+    "isMILITARY": false
+  },
+  "EPBC": {
+    "name": "Warsaw Babice Airport",
+    "icao": "EPBC",
+    "city": "Warsaw",
+    "latitude": 52.269199,
+    "longitude": 20.907203,
+    "isMILITARY": false
+  },
+  "EPLB": {
+    "name": "Lublin Airport",
+    "icao": "EPLB",
+    "city": "Lublin",
+    "latitude": 51.240157,
+    "longitude": 22.713461,
+    "isMILITARY": false
+  },
+  "EPZG": {
+    "name": "Zielona Góra-Babimost Airport",
+    "icao": "EPZG",
+    "city": "Nowe Kramsko",
+    "latitude": 52.1385,
+    "longitude": 15.7986,
+    "isMILITARY": false
+  },
+  "EPRA": {
+    "name": "Warsaw Radom Airport",
+    "icao": "EPRA",
+    "city": "Radom",
+    "latitude": 51.38937,
+    "longitude": 21.214742,
+    "isMILITARY": true
+  },
+  "EPRU": {
+    "name": "Częstochowa-Rudniki Airport",
+    "icao": "EPRU",
+    "city": "Rudniki",
+    "latitude": 50.884716,
+    "longitude": 19.201842,
+    "isMILITARY": false
+  },
+  "EPKA": {
+    "name": "Kielce-Masłów Airfield",
+    "icao": "EPKA",
+    "city": "Kielce",
+    "latitude": 50.896702,
+    "longitude": 20.731701,
+    "isMILITARY": false
+  },
+  "EPBK": {
+    "name": "Białystok-Krywlany Airfield",
+    "icao": "EPBK",
+    "city": "Białystok",
+    "latitude": 53.101398,
+    "longitude": 23.170601,
+    "isMILITARY": false
+  },
+  "EPKR": {
+    "name": "Krosno Airfield",
+    "icao": "EPKR",
+    "city": "Krosno",
+    "latitude": 49.683807,
+    "longitude": 21.740953,
+    "isMILITARY": false
+  },
+  "EPST": {
+    "name": "Stalowa Wola-Turbia Airfield",
+    "icao": "EPST",
+    "city": "Zaleszany",
+    "latitude": 50.62638,
+    "longitude": 21.998963,
+    "isMILITARY": false
+  },
+  "EPSY": {
+    "name": "Olsztyn-Mazury Airport",
+    "icao": "EPSY",
+    "city": "Szymany",
+    "latitude": 53.481899,
+    "longitude": 20.9377,
+    "isMILITARY": false
+  },
+  "EPEL": {
+    "name": "Elbląg Airfield",
+    "icao": "EPEL",
+    "city": "Elbląg",
+    "latitude": 54.1408,
+    "longitude": 19.4233,
+    "isMILITARY": false
+  },
+  "EPOD": {
+    "name": "Olsztyn-Dajtki Airfield",
+    "icao": "EPOD",
+    "city": "Olsztyn",
+    "latitude": 53.773889,
+    "longitude": 20.413468,
+    "isMILITARY": false
+  },
+  "EPPL": {
+    "name": "Płock Airfield",
+    "icao": "EPPL",
+    "city": "Płock",
+    "latitude": 52.562225,
+    "longitude": 19.720322,
+    "isMILITARY": false
+  },
+  "EPDE": {
+    "name": "Deblin Military Air Base",
+    "icao": "EPDE",
+    "city": "Dęblin",
+    "latitude": 51.551021,
+    "longitude": 21.892322,
+    "isMILITARY": true
+  },
+  "EPKI": {
+    "name": "Kikity",
+    "icao": "EPKI",
+    "city": "Kikity",
+    "latitude": 53.9829,
+    "longitude": 20.877218,
+    "isMILITARY": false
+  },
+  "EPBD": {
+    "name": "Bydgoszcz Aeroklub Airfield",
+    "icao": "EPBD",
+    "city": "Bydgoszcz",
+    "latitude": 53.105214,
+    "longitude": 17.960376,
+    "isMILITARY": false
+  },
+  "EPGI": {
+    "name": "Grudziądz Lisie Kąty Airfield",
+    "icao": "EPGI",
+    "city": "Grudziądz",
+    "latitude": 53.524399,
+    "longitude": 18.849199,
+    "isMILITARY": false
+  },
+  "EPJG": {
+    "name": "Jelenia Góra Airfield",
+    "icao": "EPJG",
+    "city": "Jelenia Góra",
+    "latitude": 50.898899,
+    "longitude": 15.7856,
+    "isMILITARY": false
+  },
+  "EPKN": {
+    "name": "Opole-Kamień Śląski Airfield",
+    "icao": "EPKN",
+    "city": "Kamień Śląski",
+    "latitude": 50.530598,
+    "longitude": 18.079283,
+    "isMILITARY": false
+  },
+  "EPKB": {
+    "name": "Kazimierz Biskupi Airfield",
+    "icao": "EPKB",
+    "city": "Kazimierz Biskupi",
+    "latitude": 52.319549,
+    "longitude": 18.164322,
+    "isMILITARY": false
+  },
+  "EPKE": {
+    "name": "Kȩtrzyn-Wilamowo Airfield",
+    "icao": "EPKE",
+    "city": "Kȩtrzyn",
+    "latitude": 54.047144,
+    "longitude": 21.426121,
+    "isMILITARY": false
+  },
+  "EPKC": {
+    "name": "Kraków Rakowice-Czyżyny Airport (Disused)",
+    "icao": "EPKC",
+    "city": "Kraków",
+    "latitude": 50.084353,
+    "longitude": 19.99031,
+    "isMILITARY": false
+  },
+  "EPCD": {
+    "name": "Depułtycze Królewskie Airfield",
+    "icao": "EPCD",
+    "city": "Królewskie",
+    "latitude": 51.082067,
+    "longitude": 23.437014,
+    "isMILITARY": false
+  },
+  "EPJL": {
+    "name": "Laszki Field",
+    "icao": "EPJL",
+    "city": "Laszki",
+    "latitude": 50.008497,
+    "longitude": 22.918897,
+    "isMILITARY": false
+  },
+  "EPRJ": {
+    "name": "Rzeszów Sports Airfield",
+    "icao": "EPRJ",
+    "city": "Nowa Wieś",
+    "latitude": 50.104169,
+    "longitude": 22.047029,
+    "isMILITARY": false
+  },
+  "EPRP": {
+    "name": "Radom-Piastrów Airfield",
+    "icao": "EPRP",
+    "city": "Piastów",
+    "latitude": 51.478901,
+    "longitude": 21.110001,
+    "isMILITARY": false
+  },
+  "EPSD": {
+    "name": "Szczecin-Dąbie Airfield",
+    "icao": "EPSD",
+    "city": "Szczecin",
+    "latitude": 53.390659,
+    "longitude": 14.632774,
+    "isMILITARY": false
+  },
+  "EPTO": {
+    "name": "Toruń Airfield",
+    "icao": "EPTO",
+    "city": "Toruń",
+    "latitude": 53.029202,
+    "longitude": 18.5459,
+    "isMILITARY": false
+  },
+  "EPAR": {
+    "name": "Arłamów Airfield",
+    "icao": "EPAR",
+    "city": "Wola Korzeniecka",
+    "latitude": 49.657501,
+    "longitude": 22.514298,
+    "isMILITARY": false
+  },
+  "EPIR": {
+    "name": "Inowroclaw Military Air Base",
+    "icao": "EPIR",
+    "city": "Inowrocław",
+    "latitude": 52.829399,
+    "longitude": 18.330601,
+    "isMILITARY": true
+  },
+  "EPSN": {
+    "name": "Swidwin Military Air Base",
+    "icao": "EPSN",
+    "city": "Świdwin",
+    "latitude": 53.7906,
+    "longitude": 15.8263,
+    "isMILITARY": true
+  },
+  "EPLY": {
+    "name": "Leźnica Wielka Air Base",
+    "icao": "EPLY",
+    "city": "Leźnica Wielka",
+    "latitude": 52.004945,
+    "longitude": 19.143792,
+    "isMILITARY": true
+  },
+  "EPTM": {
+    "name": "Tomaszów Mazowiecki Military Air Base",
+    "icao": "EPTM",
+    "city": "Nowy Glinnik",
+    "latitude": 51.5844,
+    "longitude": 20.097799,
+    "isMILITARY": true
+  },
+  "EPCE": {
+    "name": "Cewice Naval Air Base",
+    "icao": "EPCE",
+    "city": "Siemirowice",
+    "latitude": 54.416525,
+    "longitude": 17.765734,
+    "isMILITARY": true
+  },
+  "EPBB": {
+    "name": "Babięta",
+    "icao": "EPBB",
+    "city": "Babięta",
+    "latitude": 53.667905,
+    "longitude": 21.255426,
+    "isMILITARY": false
+  },
+  "EPKG": {
+    "name": "Kołobrzeg-Bagicz Airfield",
+    "icao": "EPKG",
+    "city": "Bagicz",
+    "latitude": 54.200077,
+    "longitude": 15.683752,
+    "isMILITARY": false
+  },
+  "EPBA": {
+    "name": "Bielsko-Biała Aleksandrowice Airfield",
+    "icao": "EPBA",
+    "city": "Bielsko-Biała",
+    "latitude": 49.805,
+    "longitude": 19.0019,
+    "isMILITARY": false
+  },
+  "EPBO": {
+    "name": "Borsk Airfield",
+    "icao": "EPBO",
+    "city": "Borsk",
+    "latitude": 53.951046,
+    "longitude": 17.948034,
+    "isMILITARY": false
+  },
+  "EPDA": {
+    "name": "Darłówo Naval Air Base",
+    "icao": "EPDA",
+    "city": "Darłowo",
+    "latitude": 54.404701,
+    "longitude": 16.3531,
+    "isMILITARY": true
+  },
+  "EPGE": {
+    "name": "Giże Airfield",
+    "icao": "EPGE",
+    "city": "Giże",
+    "latitude": 53.982436,
+    "longitude": 22.403149,
+    "isMILITARY": false
+  },
+  "EPGR": {
+    "name": "Łańsk / Gryźliny Airfield",
+    "icao": "EPGR",
+    "city": "Gryźliny",
+    "latitude": 53.608072,
+    "longitude": 20.349692,
+    "isMILITARY": false
+  },
+  "EPIN": {
+    "name": "Inowrocław Airfield",
+    "icao": "EPIN",
+    "city": "Inowrocław",
+    "latitude": 52.806155,
+    "longitude": 18.283133,
+    "isMILITARY": false
+  },
+  "EPJS": {
+    "name": "Jeżów Sudecki Airfield",
+    "icao": "EPJS",
+    "city": "Jeżów Sudecki",
+    "latitude": 50.944028,
+    "longitude": 15.766528,
+    "isMILITARY": false
+  },
+  "EPPG": {
+    "name": "Kakolewo (former military)",
+    "icao": "EPPG",
+    "city": "Kąkolewo",
+    "latitude": 52.235001,
+    "longitude": 16.243,
+    "isMILITARY": false
+  },
+  "EPBE": {
+    "name": "Bełchatów Airstrip",
+    "icao": "EPBE",
+    "city": "Kałduny",
+    "latitude": 51.402116,
+    "longitude": 19.378239,
+    "isMILITARY": false
+  },
+  "EPSK": {
+    "name": "Słupsk-Krȩpa Airfield",
+    "icao": "EPSK",
+    "city": "Krępa Słupska",
+    "latitude": 54.410036,
+    "longitude": 17.090572,
+    "isMILITARY": false
+  },
+  "EPMY": {
+    "name": "Myślibórz-Giżyn Airfield",
+    "icao": "EPMY",
+    "city": "Nowogródek Pomorski",
+    "latitude": 52.941164,
+    "longitude": 15.029812,
+    "isMILITARY": false
+  },
+  "EPGW": {
+    "name": "Ulim",
+    "icao": "EPGW",
+    "city": "Ulim",
+    "latitude": 52.693563,
+    "longitude": 15.215912,
+    "isMILITARY": false
+  },
+  "EPBG": {
+    "name": "Gołubie Heliport",
+    "icao": "EPBG",
+    "city": "Gołubie",
+    "latitude": 54.1975,
+    "longitude": 18.0025,
+    "isMILITARY": false
+  },
+  "EPLK": {
+    "name": "Łask Military Air Base",
+    "icao": "EPLK",
+    "city": "Łask",
+    "latitude": 51.551700592,
+    "longitude": 19.1791000366,
+    "isMILITARY": true
+  },
+  "EPPR": {
+    "name": "Pruszcz Gdański Air Base",
+    "icao": "EPPR",
+    "city": "Pruszcz Gdański",
+    "latitude": 54.248001,
+    "longitude": 18.6716,
+    "isMILITARY": true
+  },
+  "EPPW": {
+    "name": "Powidz Military Air Base",
+    "icao": "EPPW",
+    "city": "Powidz",
+    "latitude": 52.379398,
+    "longitude": 17.853901,
+    "isMILITARY": true
+  },
+  "EPMB": {
+    "name": "Malbork Military Air Base",
+    "icao": "EPMB",
+    "city": "Malbork",
+    "latitude": 54.0269012451,
+    "longitude": 19.1341991425,
+    "isMILITARY": true
+  },
+  "EPMI": {
+    "name": "MirosŁawiec Military Air Base",
+    "icao": "EPMI",
+    "city": "Mirosławiec",
+    "latitude": 53.3950996399,
+    "longitude": 16.0827999115,
+    "isMILITARY": true
+  },
+  "EPOK": {
+    "name": "Oksywie Military Air Base",
+    "icao": "EPOK",
+    "city": "Gdynia",
+    "latitude": 54.57970047,
+    "longitude": 18.51720047,
+    "isMILITARY": true
+  },
+  "EPML": {
+    "name": "Mielec Airport",
+    "icao": "EPML",
+    "city": "Mielec",
+    "latitude": 50.3222999573,
+    "longitude": 21.4620990753,
+    "isMILITARY": false
+  },
+  "EPMM": {
+    "name": "Mińsk Mazowiecki Military Air Base",
+    "icao": "EPMM",
+    "city": "Mińsk Mazowiecki",
+    "latitude": 52.1954994202,
+    "longitude": 21.6558990479,
+    "isMILITARY": true
+  },
+  "EPKS": {
+    "name": "Krzesiny Military Air Base",
+    "icao": "EPKS",
+    "city": "Poznań",
+    "latitude": 52.3316993713,
+    "longitude": 16.9664001465,
+    "isMILITARY": true
+  },
+  "EPNA": {
+    "name": "Nadarzyce Air Base",
+    "icao": "EPNA",
+    "city": "Nadarzyce",
+    "latitude": 53.454885,
+    "longitude": 16.48946,
+    "isMILITARY": true
+  }
+}

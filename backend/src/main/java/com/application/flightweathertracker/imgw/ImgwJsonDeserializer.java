@@ -4,7 +4,6 @@ import com.application.flightweathertracker.imgw.metar.model.ImgwMetar;
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
 import com.application.flightweathertracker.imgw.taf.model.ImgwTaf;
 import com.application.flightweathertracker.imgw.taf.model.TafData;
-import com.application.flightweathertracker.open_meteo.model.OpenMeteoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.core.type.TypeReference;
@@ -53,9 +52,5 @@ public class ImgwJsonDeserializer {
         List<ImgwSigmet> list = objectMapper.readValue(sigmetResponseJson, new TypeReference<>() {
         });
         return list.stream().collect(Collectors.toMap(ImgwSigmet::id, sigmet -> sigmet));
-    }
-
-    public OpenMeteoResponse deserializeOpenMeteoResponse(String openMeteoResponseJson) {
-        return objectMapper.readValue(openMeteoResponseJson, OpenMeteoResponse.class);
     }
 }

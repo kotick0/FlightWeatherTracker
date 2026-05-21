@@ -1,5 +1,7 @@
 package com.application.flightweathertracker.imgw.sigmet;
 
+import com.application.flightweathertracker.config.airports.database.AirportsRepository;
+import com.application.flightweathertracker.config.airports.database.AirportsTable;
 import com.application.flightweathertracker.imgw.ImgwApiClient;
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
 import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesRepository;
@@ -7,9 +9,15 @@ import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponses
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -19,6 +27,8 @@ public class SigmetService {
     private final ImgwApiClient imgwApiClient;
     private final ImgwJsonDeserializer imgwJsonDeserializer;
     private final SigmetResponsesRepository sigmetResponsesRepository;
+    private final GeometryFactory geometryFactory;
+    private final AirportsRepository airportsRepository;
 
     public void saveImgwSigmetResponse() {
         String imgwSigmetResponseJson = imgwApiClient.fetchAllSigmet();
@@ -48,5 +58,28 @@ public class SigmetService {
             }
         }
         log.info("Sigmet responses successfully saved to the database");
+    }
+
+    public boolean IsAirportInSigmet(ImgwSigmet sigmet, String icao) {
+        if (sigmet != null) {
+            AirportsTable airport = airportsRepository.findByIcao(icao);
+
+            List<List<Double>> coordinates = sigmet.geojson().features().getFirst().geometry().coordinates().getFirst();
+            List<Coordinate> coords = new ArrayList<>();
+            for (List<Double> coordinateSet : coordinates) {
+                coords.add(new Coordinate(coordinateSet.get(0), coordinateSet.get(1)));
+            }
+            Coordinate[] coordinatesArray = coords.toArray(new Coordinate[0]);
+            Polygon polygon = geometryFactory.createPolygon(coordinatesArray);
+
+            double longitude = airport.getLongitude();
+            double latitude = airport.getLatitude();
+
+            Point airportPoint = geometryFactory.createPoint(new Coordinate(longitude, latitude));
+
+            return polygon.covers(airportPoint);
+        } else {
+            throw new RuntimeException("Provided SIGMET was null");
+        }
     }
 }

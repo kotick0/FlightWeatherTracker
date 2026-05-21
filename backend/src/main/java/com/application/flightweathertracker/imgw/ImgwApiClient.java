@@ -1,7 +1,6 @@
 package com.application.flightweathertracker.imgw;
 
-import com.application.flightweathertracker.config.AirportsConfig;
-import com.application.flightweathertracker.imgw.common.model.Airport;
+import com.application.flightweathertracker.config.airports.database.AirportsRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +15,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.List;
 
 
 @Component
@@ -26,7 +23,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class ImgwApiClient {
     private final ObjectMapper objectMapper;
-    private final AirportsConfig airportsConfig;
+    private final AirportsRepository airportsRepository;
 
     @Value("${api.imgw.metar.taf}")
     String imgwMetarTaf;
@@ -34,35 +31,12 @@ public class ImgwApiClient {
     @Value("${api.imgw.sigmet}")
     String imgwSigmet;
 
-    @Value("${airports.config.path}")
-    String airportsConfigPathString;
-
     public String fetchAllMetar() {
         return fetchData(imgwMetarTaf);
     }
 
     public String fetchAllSigmet() {
         return fetchData(imgwSigmet);
-    }
-
-    public String fetchMetarsForAirportsConfig() {
-        try {
-            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchDataForAirportsConfig(imgwMetarTaf, airportsConfigJson);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException("Error fetching METARs for airports defined in config");
-        }
-    }
-
-    public String fetchTafsForAirportsConfig() {
-        try {
-            String airportsConfigJson = Files.readString(Paths.get(airportsConfigPathString));
-            return fetchDataForAirportsConfig(imgwMetarTaf, airportsConfigJson);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException("Error fetching TAFs for airports defined in config");
-        }
     }
 
     private String fetchData(String uri) {
@@ -81,17 +55,17 @@ public class ImgwApiClient {
         throw new IllegalStateException();
     }
 
-    private String fetchDataForAirportsConfig(String uri, String airportsConfigJson) {
-        String responseBody = fetchData(uri);
+    public String fetchDataPerAirport() {
+        List<String> airports = airportsRepository.findAllDistinctIcaoCodes();
+        String responseBody = fetchData(imgwMetarTaf);
         JsonNode root = objectMapper.readTree(responseBody);
 
         ObjectNode airportsFromConfig = objectMapper.createObjectNode();
-        HashMap<String, Airport> airports = airportsConfig.readAirportsConfig(airportsConfigJson);
 
-        for (String key : airports.keySet()) {
-            if (responseBody.contains(key)) {
-                JsonNode airportNode = root.get(key);
-                airportsFromConfig.set(key, airportNode);
+        for (String icao : airports) {
+            if (responseBody.contains(icao)) {
+                JsonNode airportNode = root.get(icao);
+                airportsFromConfig.set(icao, airportNode);
             }
         }
         return airportsFromConfig.toString();
