@@ -21,6 +21,8 @@ import java.util.List;
 @Table(name = "long_taf_responses", indexes = {
         @Index(name = "idx_long_taf_station_observed", columnList = "station, observed_at DESC"),
         @Index(name = "idx_long_taf_fetched_at", columnList = "fetched_at DESC")
+}, uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"station", "observed_at"})
 })
 @Getter
 @Setter

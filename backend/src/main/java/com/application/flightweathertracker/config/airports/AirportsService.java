@@ -26,7 +26,7 @@ public class AirportsService {
 
     private final AirportsRepository airportsRepository;
 
-    public void initalizeAirports() {
+    public void initializeAirports() {
         if (!airportsRepository.existsByIdNotNull()) {
             try {
                 String airportsJson = Files.readString(Path.of(airportsConfigPathString));
@@ -42,7 +42,8 @@ public class AirportsService {
                 saveAirportsToDatabase(airports);
 
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                log.error("Failed to read airports config from '{}': {}", airportsConfigPathString, e.getMessage(), e);
+                throw new RuntimeException("Failed to read airports config from: " + airportsConfigPathString, e);
             }
         }
     }

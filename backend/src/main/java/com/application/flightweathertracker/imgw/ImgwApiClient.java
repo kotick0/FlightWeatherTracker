@@ -46,13 +46,14 @@ public class ImgwApiClient {
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() < 200 || response.statusCode() >= 300) {
-                throw new RuntimeException("API returned non-2xx status: " + response.statusCode());
+                log.error("IMGW API returned non-2xx status for '{}': {}", uri, response.statusCode());
+                throw new RuntimeException("IMGW API returned non-2xx status for: " + uri + ", status: " + response.statusCode());
             }
             return response.body();
         } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
+            log.error("Failed to fetch data from IMGW API '{}': {}", uri, e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch data from IMGW API: " + uri, e);
         }
-        throw new IllegalStateException();
     }
 
     public String fetchDataPerAirport() {

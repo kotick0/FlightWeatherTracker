@@ -7,6 +7,7 @@ import com.application.flightweathertracker.imgw.metar.database.MetarResponsesTa
 import com.application.flightweathertracker.imgw.metar.model.ImgwMetar;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,26 +22,31 @@ public class MetarService {
     private final MetarResponsesRepository metarResponsesRepository;
 
     public void saveImgwMetarResponse() {
+        // TODO: Jezeli sa dane nowsze niz 30 min nie pobieraj danych
         String imgwMetarResponseJson = imgwApiClient.fetchDataPerAirport();
         Map<String, ImgwMetar> deserializedMetarResponse = imgwJsonDeserializer.deserializeMetars(imgwMetarResponseJson);
         for (ImgwMetar imgwMetar : deserializedMetarResponse.values()) {
-            MetarResponsesTable responseRecord = MetarResponsesTable.builder()
-                    .station(imgwMetar.station())
-                    .observedAt(imgwMetar.date())
-                    .fetchedAt(LocalDateTime.now())
-                    .message(imgwMetar.message())
-                    .temperature(imgwMetar.temperature())
-                    .dewPoint(imgwMetar.dewPoint())
-                    .altimeter(imgwMetar.altimeter())
-                    .isCavok(imgwMetar.isCAVOK())
-                    .isCancelled(imgwMetar.isCancelled())
-                    .isCorrected(imgwMetar.isCorrected())
-                    .wind(imgwMetar.wind())
-                    .visibility(imgwMetar.visibility())
-                    .cloud(imgwMetar.cloud())
-                    .weatherCondition(imgwMetar.weatherCondition())
-                    .build();
-            metarResponsesRepository.save(responseRecord);
+            try {
+                MetarResponsesTable responseRecord = MetarResponsesTable.builder()
+                        .station(imgwMetar.station())
+                        .observedAt(imgwMetar.date())
+                        .fetchedAt(LocalDateTime.now())
+                        .message(imgwMetar.message())
+                        .temperature(imgwMetar.temperature())
+                        .dewPoint(imgwMetar.dewPoint())
+                        .altimeter(imgwMetar.altimeter())
+                        .isCavok(imgwMetar.isCAVOK())
+                        .isCancelled(imgwMetar.isCancelled())
+                        .isCorrected(imgwMetar.isCorrected())
+                        .wind(imgwMetar.wind())
+                        .visibility(imgwMetar.visibility())
+                        .cloud(imgwMetar.cloud())
+                        .weatherCondition(imgwMetar.weatherCondition())
+                        .build();
+                metarResponsesRepository.save(responseRecord);
+            } catch (DataIntegrityViolationException e) {
+                log.info("METAR already exists: ICAO={} observed_at={}", imgwMetar.station(), imgwMetar.date());
+            }
         }
         log.info("Metar responses successfully saved to the database");
     }

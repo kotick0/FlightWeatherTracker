@@ -56,19 +56,21 @@ public class OpenMeteoApiClient {
     }
 
     private String fetchData(double latitude, double longitude) {
+        String uri = String.format(openMeteoUri, latitude, longitude);
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(String.format(openMeteoUri, latitude, longitude)))
+                    .uri(URI.create(uri))
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response == null || !String.valueOf(response.statusCode()).startsWith("2")) {
-                throw new RuntimeException("Error fetching data from API");
+                log.error("OpenMeteo API returned non-2xx status for '{}': {}", uri, response != null ? response.statusCode() : "null");
+                throw new RuntimeException("OpenMeteo API returned non-2xx status for: " + uri + ", status: " + (response != null ? response.statusCode() : "null"));
             }
             return response.body();
         } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
+            log.error("Failed to fetch data from OpenMeteo API '{}': {}", uri, e.getMessage(), e);
+            throw new RuntimeException("Failed to fetch data from OpenMeteo API: " + uri, e);
         }
-        throw new IllegalStateException();
     }
 
 

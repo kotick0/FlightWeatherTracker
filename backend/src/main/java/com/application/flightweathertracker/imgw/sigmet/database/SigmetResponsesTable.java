@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "sigmet_responses", indexes = {
         @Index(name = "idx_sigmet_fetched_at", columnList = "fetched_at DESC")
+}, uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"sigmet_id"})
 })
 @Getter
 @Setter
@@ -55,8 +57,6 @@ public class SigmetResponsesTable {
     private Instant valid_to;
 
     private Boolean is_valid;
-
-    private String sigmet_id;
 
     private String cnl_valid;
 

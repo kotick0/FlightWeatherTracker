@@ -13,6 +13,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -35,32 +36,35 @@ public class SigmetService {
         Map<String, ImgwSigmet> deserializedSigmetResponse = imgwJsonDeserializer.deserializeSigmets(imgwSigmetResponseJson);
         for (ImgwSigmet imgwSigmet : deserializedSigmetResponse.values()) {
             if (imgwSigmet != null) {
-                SigmetResponsesTable responseRecord = SigmetResponsesTable.builder()
-                        .fetchedAt(LocalDateTime.now())
-                        .TT(imgwSigmet.TT())
-                        .AA(imgwSigmet.AA())
-                        .ii(imgwSigmet.ii())
-                        .is_cnl(imgwSigmet.is_cnl())
-                        .BBB(imgwSigmet.BBB())
-                        .YYGGgg(imgwSigmet.YYGGgg())
-                        .valid_from(imgwSigmet.valid_from())
-                        .cnl_id(imgwSigmet.cnl_id())
-                        .message(imgwSigmet.message())
-                        .geojson(imgwSigmet.geojson())
-                        .Transmission_time(imgwSigmet.Transmission_time())
-                        .valid_to(imgwSigmet.valid_to())
-                        .is_valid(imgwSigmet.is_valid())
-                        .sigmet_id(imgwSigmet.id())
-                        .cnl_valid(imgwSigmet.cnl_valid())
-                        .CCCC(imgwSigmet.CCCC())
-                        .build();
-                sigmetResponsesRepository.save(responseRecord);
+                try {
+                    SigmetResponsesTable responseRecord = SigmetResponsesTable.builder()
+                            .fetchedAt(LocalDateTime.now())
+                            .TT(imgwSigmet.TT())
+                            .AA(imgwSigmet.AA())
+                            .ii(imgwSigmet.ii())
+                            .is_cnl(imgwSigmet.is_cnl())
+                            .BBB(imgwSigmet.BBB())
+                            .YYGGgg(imgwSigmet.YYGGgg())
+                            .valid_from(imgwSigmet.valid_from())
+                            .cnl_id(imgwSigmet.cnl_id())
+                            .message(imgwSigmet.message())
+                            .geojson(imgwSigmet.geojson())
+                            .Transmission_time(imgwSigmet.Transmission_time())
+                            .valid_to(imgwSigmet.valid_to())
+                            .is_valid(imgwSigmet.is_valid())
+                            .cnl_valid(imgwSigmet.cnl_valid())
+                            .CCCC(imgwSigmet.CCCC())
+                            .build();
+                    sigmetResponsesRepository.save(responseRecord);
+                } catch (DataIntegrityViolationException e) {
+                    log.warn("SIGMET already exists: message={}", imgwSigmet.message());
+                }
             }
+            log.info("Sigmet responses successfully saved to the database");
         }
-        log.info("Sigmet responses successfully saved to the database");
     }
 
-    public boolean IsAirportInSigmet(ImgwSigmet sigmet, String icao) {
+    public boolean isAirportInSigmet(ImgwSigmet sigmet, String icao) {
         if (sigmet != null) {
             AirportsTable airport = airportsRepository.findByIcao(icao);
 
@@ -79,7 +83,8 @@ public class SigmetService {
 
             return polygon.covers(airportPoint);
         } else {
-            throw new RuntimeException("Provided SIGMET was null");
+            log.error("Provided SIGMET was null for ICAO: {}", icao);
+            throw new RuntimeException("Provided SIGMET was null for ICAO: " + icao);
         }
     }
 }

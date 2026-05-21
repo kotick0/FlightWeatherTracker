@@ -15,7 +15,9 @@ import java.util.List;
 @Entity
 @Table(name = "metar_responses", indexes = {
         @Index(name = "idx_metar_station_observed", columnList = "station, observed_at DESC"),
-        @Index(name = "idx_metar_fetched_at", columnList = "fetched_at DESC")
+        @Index(name = "idx_metar_fetched_at", columnList = "fetched_at DESC"),
+}, uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"station", "observed_at"})
 })
 @Getter
 @Setter

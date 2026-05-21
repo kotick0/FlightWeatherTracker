@@ -35,6 +35,6 @@ class SigmetAreaCheckTest {
     public void sigmetGet() {
         Map<String, ImgwSigmet> sigmets = imgwJsonDeserializer.deserializeSigmets(sigmetJson);
         ImgwSigmet sigmet = sigmets.get("M02");
-        System.out.println(sigmetService.IsAirportInSigmet(sigmet, "EPTM"));
+        System.out.println(sigmetService.isAirportInSigmet(sigmet, "EPTM"));;
     }
 }

@@ -17,6 +17,6 @@ public class AppInitializer implements ApplicationRunner {
 
     @Override
     public void run(@NonNull ApplicationArguments args) {
-        airportsService.initalizeAirports();
+        airportsService.initializeAirports();
     }
 }
