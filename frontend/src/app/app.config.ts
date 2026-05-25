@@ -1,5 +1,5 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {ApplicationConfig} from '@angular/core';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -8,8 +8,9 @@ import {
   withRouterConfig,
   withViewTransitions
 } from '@angular/router';
-import { IconSetService } from '@coreui/icons-angular';
-import { routes } from './app.routes';
+import {IconSetService} from '@coreui/icons-angular';
+import {routes} from './app.routes';
+import {provideHttpClient} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,7 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       withHashLocation()
     ),
+    provideHttpClient(),
     IconSetService,
     provideAnimationsAsync()
   ]

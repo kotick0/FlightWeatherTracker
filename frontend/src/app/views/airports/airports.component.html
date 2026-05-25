@@ -1,0 +1,36 @@
+<c-card>
+  <c-card-header><strong>Airports</strong></c-card-header>
+  <c-card-body>
+
+    <div *ngIf="loading" class="text-muted">Loading...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <table *ngIf="!loading && !error" cTable hover responsive>
+      <thead>
+      <tr>
+        <th>ICAO</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let a of airports">
+        <td>{{ a.icao }}</td>
+        <td>{{ a.name }}</td>
+        <td>{{ a.city }}</td>
+        <td>{{ a.latitude }}</td>
+        <td>{{ a.longitude }}</td>
+        <td>
+          <c-badge [color]="a.isMilitary ? 'danger' : 'success'">
+            {{ a.isMilitary ? 'Military' : 'Civil' }}
+          </c-badge>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </c-card-body>
+</c-card>

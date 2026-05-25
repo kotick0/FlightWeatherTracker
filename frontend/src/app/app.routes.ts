@@ -1,10 +1,42 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: 'metar',
+        loadComponent: () =>
+          import('./views/metar/metar.component').then(m => m.MetarComponent)
+      },
+      {
+        path: 'taf/long',
+        loadComponent: () =>
+          import('./views/taf/long-taf.component').then(m => m.LongTafComponent)
+      },
+      {
+        path: 'taf/short',
+        loadComponent: () =>
+          import('./views/taf/short-taf.component').then(m => m.ShortTafComponent)
+      },
+      {
+        path: 'sigmet',
+        loadComponent: () =>
+          import('./views/sigmet/sigmet.component').then(m => m.SigmetComponent)
+      },
+      {
+        path: 'open-meteo',
+        loadComponent: () =>
+          import('./views/open-meteo/open-meteo.component').then(m => m.OpenMeteoComponent)
+      },
+      {path: '', redirectTo: 'metar', pathMatch: 'full'}
+    ]
   },
   {
     path: '',
@@ -60,6 +92,11 @@ export const routes: Routes = [
     data: {
       title: 'Register Page'
     }
+  },
+  {
+    path: 'airports',
+    loadComponent: () =>
+      import('./views/airports/airports.component').then(m => m.AirportsComponent)
   },
   { path: '**', redirectTo: 'dashboard' }
 ];

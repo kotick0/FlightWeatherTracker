@@ -1,0 +1,20 @@
+<c-card>
+  <c-card-header><strong>Current Weather</strong></c-card-header>
+  <c-card-body>
+
+    <div *ngIf="loading" class="text-muted">Loading...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <div *ngIf="!loading && !error && data?.current">
+      <p>Temperature: {{ data.current.temperature2m }} °C</p>
+      <p>Wind: {{ data.current.windDirection10m }}° /
+        {{ data.current.windSpeed10m }} km/h
+        <span *ngIf="data.current.windGusts10m"> G{{ data.current.windGusts10m }}</span>
+      </p>
+      <p>Precipitation: {{ data.current.precipitation }} mm</p>
+      <p>Cloud Cover: {{ data.current.cloudCover }} %</p>
+      <p>Pressure: {{ data.current.surfacePressure }} hPa</p>
+    </div>
+
+  </c-card-body>
+</c-card>

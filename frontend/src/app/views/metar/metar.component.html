@@ -1,0 +1,44 @@
+<c-card>
+  <c-card-header><strong>METAR Records</strong></c-card-header>
+  <c-card-body>
+
+    <div *ngIf="loading" class="text-muted">Loading...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <table *ngIf="!loading && !error" cTable hover responsive>
+      <thead>
+      <tr>
+        <th>Station</th>
+        <th>Observed At</th>
+        <th>Wind</th>
+        <th>Visibility</th>
+        <th>Temp / Dew</th>
+        <th>Clouds</th>
+        <th>Conditions</th>
+        <th>Flags</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let m of metars">
+        <td>{{ m.station }}</td>
+        <td>{{ m.observedAt }}</td>
+        <td *ngIf="m.wind">
+          {{ m.wind.direction }} {{ m.wind.directionDegrees }}° / {{ m.wind.speed }} kt
+        </td>
+        <td *ngIf="!m.wind">—</td>
+        <td *ngIf="m.visibility">{{ m.visibility.value }} {{ m.visibility.unit }}</td>
+        <td *ngIf="!m.visibility">—</td>
+        <td>{{ m.temperature }}° / {{ m.dewPoint }}°</td>
+        <td>{{ m.clouds.length ? m.clouds.map(c => c.formatted).join(', ') : '—' }}</td>
+        <td>{{ m.conditions.length ? m.conditions.map(c => c.formatted).join(', ') : '—' }}</td>
+        <td>
+          <c-badge *ngIf="m.isCavok" color="success">CAVOK</c-badge>
+          <c-badge *ngIf="m.isCancelled" color="danger">CANX</c-badge>
+          <c-badge *ngIf="m.isCorrected" color="warning">COR</c-badge>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </c-card-body>
+</c-card>

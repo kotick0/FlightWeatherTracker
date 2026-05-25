@@ -1,0 +1,37 @@
+<c-card>
+  <c-card-header><strong>SIGMET Records</strong></c-card-header>
+  <c-card-body>
+
+    <div *ngIf="loading" class="text-muted">Loading...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <table *ngIf="!loading && !error" cTable hover responsive>
+      <thead>
+      <tr>
+        <th>Station</th>
+        <th>Valid From</th>
+        <th>Valid To</th>
+        <th>Phenomenon</th>
+        <th>Intensity</th>
+        <th>Flight Level</th>
+        <th>Flags</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let s of sigmets">
+        <td>{{ s.station }}</td>
+        <td>{{ s.validFrom ?? '—' }}</td>
+        <td>{{ s.validTo ?? '—' }}</td>
+        <td>{{ s.features[0]?.phenomenon ?? '—' }}</td>
+        <td>{{ s.features[0]?.intensity ?? '—' }}</td>
+        <td>{{ s.features[0]?.flightLevel ?? '—' }}</td>
+        <td>
+          <c-badge *ngIf="s.isCancelled" color="danger">CANX</c-badge>
+          <c-badge *ngIf="s.isValid" color="success">VALID</c-badge>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </c-card-body>
+</c-card>

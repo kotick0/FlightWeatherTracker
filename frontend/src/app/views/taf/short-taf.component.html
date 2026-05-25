@@ -1,0 +1,48 @@
+<c-card>
+  <c-card-header><strong>Short TAF Records</strong></c-card-header>
+  <c-card-body>
+
+    <div *ngIf="loading" class="text-muted">Loading...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <table *ngIf="!loading && !error" cTable hover responsive>
+      <thead>
+      <tr>
+        <th>Station</th>
+        <th>Observed At</th>
+        <th>Validity</th>
+        <th>Wind</th>
+        <th>Visibility</th>
+        <th>Clouds</th>
+        <th>Conditions</th>
+        <th>Flags</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let t of tafs">
+        <td>{{ t.station }}</td>
+        <td>{{ t.observedAt }}</td>
+        <td *ngIf="t.validity">
+          {{ t.validity.startDay }}/{{ t.validity.startHour }}Z –
+          {{ t.validity.endDay }}/{{ t.validity.endHour }}Z
+        </td>
+        <td *ngIf="!t.validity">—</td>
+        <td *ngIf="t.wind">
+          {{ t.wind.direction }} {{ t.wind.directionDegrees }}° / {{ t.wind.speed }} kt
+        </td>
+        <td *ngIf="!t.wind">—</td>
+        <td *ngIf="t.visibility">{{ t.visibility.value }} {{ t.visibility.unit }}</td>
+        <td *ngIf="!t.visibility">—</td>
+        <td>{{ t.clouds.length ? t.clouds.map(c => c.formatted).join(', ') : '—' }}</td>
+        <td>{{ t.conditions.length ? t.conditions.map(c => c.formatted).join(', ') : '—' }}</td>
+        <td>
+          <c-badge *ngIf="t.isCAVOK" color="success">CAVOK</c-badge>
+          <c-badge *ngIf="t.isCancelled" color="danger">CANX</c-badge>
+          <c-badge *ngIf="t.isCorrected" color="warning">COR</c-badge>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </c-card-body>
+</c-card>

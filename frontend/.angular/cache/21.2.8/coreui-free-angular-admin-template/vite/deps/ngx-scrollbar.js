@@ -2,11 +2,12 @@ import {
   Platform,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-FBA6CDIU.js";
+} from "./chunk-MSZEQ3UN.js";
 import {
   NgIf,
   isPlatformBrowser
-} from "./chunk-VEY2AHVD.js";
+} from "./chunk-SBEYB655.js";
+import "./chunk-KY4BAJ7B.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
