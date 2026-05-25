@@ -1,7 +1,7 @@
 package com.application.flightweathertracker;
 
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
-import com.application.flightweathertracker.imgw.sigmet.SigmetService;
+import com.application.flightweathertracker.imgw.sigmet.ImgwSigmetService;
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class SigmetAreaCheckTest {
     @Autowired
     private ImgwJsonDeserializer imgwJsonDeserializer;
     @Autowired
-    private SigmetService sigmetService;
+    private ImgwSigmetService sigmetService;
 
     @BeforeEach
     void setup() throws IOException {
@@ -35,6 +35,6 @@ class SigmetAreaCheckTest {
     public void sigmetGet() {
         Map<String, ImgwSigmet> sigmets = imgwJsonDeserializer.deserializeSigmets(sigmetJson);
         ImgwSigmet sigmet = sigmets.get("M02");
-        System.out.println(sigmetService.isAirportInSigmet(sigmet, "EPTM"));;
+        System.out.println(sigmetService.isAirportInSigmet(sigmet, "EPTM"));
     }
 }

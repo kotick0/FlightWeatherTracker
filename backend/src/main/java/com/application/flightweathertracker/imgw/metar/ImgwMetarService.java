@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MetarService {
+public class ImgwMetarService {
     private final ImgwApiClient imgwApiClient;
     private final ImgwJsonDeserializer imgwJsonDeserializer;
     private final MetarResponsesRepository metarResponsesRepository;

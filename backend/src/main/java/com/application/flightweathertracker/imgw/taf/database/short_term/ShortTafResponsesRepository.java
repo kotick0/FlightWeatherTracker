@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ShortTafResponsesRepository extends JpaRepository<ShortTafResponsesTable, Long> {
-    List<ShortTafResponsesRepository> findAllByStation(String station);
-    List<ShortTafResponsesRepository> findByObservedAtAfter(LocalDateTime observedAt);
+    List<ShortTafResponsesTable> findAllByStation(String station);
+
+    List<ShortTafResponsesTable> findByObservedAtAfter(LocalDateTime observedAt);
+
+    List<ShortTafResponsesTable> findAllByOrderByObservedAtDesc();
 }

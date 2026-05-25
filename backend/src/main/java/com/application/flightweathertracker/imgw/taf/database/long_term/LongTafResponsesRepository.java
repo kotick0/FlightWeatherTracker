@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface LongTafResponsesRepository extends JpaRepository<LongTafResponsesTable, Long> {
-    List<LongTafResponsesRepository> findAllByStation(String station);
-    List<LongTafResponsesRepository> findByObservedAtAfter(LocalDateTime observedAt);
+    List<LongTafResponsesTable> findAllByStation(String station);
+
+    List<LongTafResponsesTable> findByObservedAtAfter(LocalDateTime observedAt);
+
+    List<LongTafResponsesTable> findAllByOrderByObservedAtDesc();
 }

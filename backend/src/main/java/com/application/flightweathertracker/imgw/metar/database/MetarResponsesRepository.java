@@ -8,4 +8,6 @@ import java.util.List;
 public interface MetarResponsesRepository extends JpaRepository<MetarResponsesTable, Long> {
     List<MetarResponsesTable> findAllByStation(String station);
     List<MetarResponsesTable> findByObservedAtAfter(LocalDateTime observedAt);
+
+    List<MetarResponsesTable> findAllByOrderByObservedAtDesc();
 }

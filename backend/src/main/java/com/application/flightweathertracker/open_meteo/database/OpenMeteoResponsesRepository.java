@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface OpenMeteoResponsesRepository extends JpaRepository<OpenMeteoResponsesTable, Long> {
     Optional<OpenMeteoResponsesTable> findTop1ByLatitudeAndLongitudeOrderByIdDesc(double latitude, double longitude);
+
+    Optional<OpenMeteoResponsesTable> findTopByOrderByFetchedAtDesc();
 }
