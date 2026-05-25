@@ -1,6 +1,16 @@
-import {isPlatformBrowser} from "./chunk-SBEYB655.js";
-import {ElementRef, Injectable, PLATFORM_ID, setClassMetadata} from "./chunk-GDLWIGNW.js";
-import {inject, ɵɵdefineInjectable} from "./chunk-2IEJMMMM.js";
+import {
+  isPlatformBrowser
+} from "./chunk-QUJP7ID6.js";
+import {
+  ElementRef,
+  Injectable,
+  PLATFORM_ID,
+  setClassMetadata
+} from "./chunk-GDLWIGNW.js";
+import {
+  inject,
+  ɵɵdefineInjectable
+} from "./chunk-2IEJMMMM.js";
 
 // node_modules/@angular/cdk/fesm2022/_element-chunk.mjs
 function coerceNumberProperty(value, fallbackValue = 0) {
@@ -9,11 +19,9 @@ function coerceNumberProperty(value, fallbackValue = 0) {
   }
   return arguments.length === 2 ? fallbackValue : 0;
 }
-
 function _isNumberValue(value) {
   return !isNaN(parseFloat(value)) && !isNaN(Number(value));
 }
-
 function coerceElement(elementOrRef) {
   return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
 }
@@ -36,10 +44,8 @@ var Platform = class _Platform {
   FIREFOX = this.isBrowser && /(firefox|minefield)/i.test(navigator.userAgent);
   ANDROID = this.isBrowser && /android/i.test(navigator.userAgent) && !this.TRIDENT;
   SAFARI = this.isBrowser && /safari/i.test(navigator.userAgent) && this.WEBKIT;
-
   constructor() {
   }
-
   static ɵfac = function Platform_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Platform)();
   };
@@ -65,7 +71,6 @@ function coerceArray(value) {
 
 // node_modules/@angular/cdk/fesm2022/_shadow-dom-chunk.mjs
 var shadowDomIsSupported;
-
 function _supportsShadowDom() {
   if (shadowDomIsSupported == null) {
     const head = typeof document !== "undefined" ? document.head : null;
@@ -73,7 +78,6 @@ function _supportsShadowDom() {
   }
   return shadowDomIsSupported;
 }
-
 function _getShadowRoot(element) {
   if (_supportsShadowDom()) {
     const rootNode = element.getRootNode ? element.getRootNode() : null;
@@ -83,7 +87,6 @@ function _getShadowRoot(element) {
   }
   return null;
 }
-
 function _getFocusedElementPierceShadowDom() {
   let activeElement = typeof document !== "undefined" && document ? document.activeElement : null;
   while (activeElement && activeElement.shadowRoot) {
@@ -96,14 +99,12 @@ function _getFocusedElementPierceShadowDom() {
   }
   return activeElement;
 }
-
 function _getEventTarget(event) {
   return event.composedPath ? event.composedPath()[0] : event.target;
 }
 
 // node_modules/@angular/cdk/fesm2022/_passive-listeners-chunk.mjs
 var supportsPassiveEvents;
-
 function supportsPassiveEventListeners() {
   if (supportsPassiveEvents == null && typeof window !== "undefined") {
     try {
@@ -116,7 +117,6 @@ function supportsPassiveEventListeners() {
   }
   return supportsPassiveEvents;
 }
-
 function normalizePassiveListenerOptions(options) {
   return supportsPassiveEventListeners() ? options : !!options.capture;
 }
@@ -131,4 +131,4 @@ export {
   _getEventTarget,
   normalizePassiveListenerOptions
 };
-//# sourceMappingURL=chunk-MSZEQ3UN.js.map
+//# sourceMappingURL=chunk-A2OYAN6L.js.map

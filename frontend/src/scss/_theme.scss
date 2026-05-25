@@ -15,6 +15,7 @@ body {
 .header.header-sticky {
   z-index: 1030;
   background-color: var(--cui-body-bg);
+  overflow: visible;
 }
 
 .header > .container-fluid,
@@ -24,8 +25,12 @@ body {
 
 .header > .container-fluid {
   position: relative;
-  z-index: 1030;
   background-color: var(--cui-body-bg);
+  overflow: visible;
+}
+
+.header > .container-fluid:first-child {
+  z-index: 1031;
 }
 
 .sidebar-brand-full {
@@ -58,6 +63,7 @@ body {
 
 .header > .container-fluid + .container-fluid {
   min-height: 3rem;
+  z-index: 1030;
 }
 
 .footer {

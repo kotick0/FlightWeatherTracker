@@ -1,6 +1,7 @@
-import {getDOM} from "./chunk-KY4BAJ7B.js";
 import {
-  allLeavingAnimations,
+  getDOM
+} from "./chunk-UWVZGDMY.js";
+import {
   APP_ID,
   CSP_NONCE,
   Inject,
@@ -8,40 +9,42 @@ import {
   Optional,
   PLATFORM_ID,
   RendererStyleFlags2,
-  setClassMetadata,
   TracingService,
-  ViewEncapsulation
+  ViewEncapsulation,
+  allLeavingAnimations,
+  setClassMetadata
 } from "./chunk-GDLWIGNW.js";
-import {DOCUMENT, InjectionToken, NgZone, RuntimeError, ɵɵdefineInjectable, ɵɵinject} from "./chunk-2IEJMMMM.js";
+import {
+  DOCUMENT,
+  InjectionToken,
+  NgZone,
+  RuntimeError,
+  ɵɵdefineInjectable,
+  ɵɵinject
+} from "./chunk-2IEJMMMM.js";
 
 // node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 var EventManagerPlugin = class {
   _doc;
-
   constructor(_doc) {
     this._doc = _doc;
   }
-
   manager;
 };
 var DomEventsPlugin = class _DomEventsPlugin extends EventManagerPlugin {
   constructor(doc) {
     super(doc);
   }
-
   supports(eventName) {
     return true;
   }
-
   addEventListener(element, eventName, handler, options) {
     element.addEventListener(eventName, handler, options);
     return () => this.removeEventListener(element, eventName, handler, options);
   }
-
   removeEventListener(target, eventName, callback, options) {
     return target.removeEventListener(eventName, callback, options);
   }
-
   static ɵfac = function DomEventsPlugin_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DomEventsPlugin)(ɵɵinject(DOCUMENT));
   };
@@ -66,7 +69,6 @@ var EventManager = class _EventManager {
   _zone;
   _plugins;
   _eventNameToPlugin = /* @__PURE__ */ new Map();
-
   constructor(plugins, _zone) {
     this._zone = _zone;
     plugins.forEach((plugin) => {
@@ -79,16 +81,13 @@ var EventManager = class _EventManager {
       this._plugins.push(domEventPlugin);
     }
   }
-
   addEventListener(element, eventName, handler, options) {
     const plugin = this._findPluginFor(eventName);
     return plugin.addEventListener(element, eventName, handler, options);
   }
-
   getZone() {
     return this._zone;
   }
-
   _findPluginFor(eventName) {
     let plugin = this._eventNameToPlugin.get(eventName);
     if (plugin) {
@@ -102,7 +101,6 @@ var EventManager = class _EventManager {
     this._eventNameToPlugin.set(eventName, plugin);
     return plugin;
   }
-
   static ɵfac = function EventManager_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _EventManager)(ɵɵinject(EVENT_MANAGER_PLUGINS), ɵɵinject(NgZone));
   };
@@ -125,19 +123,16 @@ var EventManager = class _EventManager {
   }], null);
 })();
 var APP_ID_ATTRIBUTE_NAME = "ng-app-id";
-
 function removeElements(elements) {
   for (const element of elements) {
     element.remove();
   }
 }
-
 function createStyleElement(style, doc) {
   const styleElement = doc.createElement("style");
   styleElement.textContent = style;
   return styleElement;
 }
-
 function addServerStyles(doc, appId, inline, external) {
   const elements = doc.head?.querySelectorAll(`style[${APP_ID_ATTRIBUTE_NAME}="${appId}"],link[${APP_ID_ATTRIBUTE_NAME}="${appId}"]`);
   if (elements) {
@@ -157,14 +152,12 @@ function addServerStyles(doc, appId, inline, external) {
     }
   }
 }
-
 function createLinkElement(url, doc) {
   const linkElement = doc.createElement("link");
   linkElement.setAttribute("rel", "stylesheet");
   linkElement.setAttribute("href", url);
   return linkElement;
 }
-
 var SharedStylesHost = class _SharedStylesHost {
   doc;
   appId;
@@ -172,7 +165,6 @@ var SharedStylesHost = class _SharedStylesHost {
   inline = /* @__PURE__ */ new Map();
   external = /* @__PURE__ */ new Map();
   hosts = /* @__PURE__ */ new Set();
-
   constructor(doc, appId, nonce, platformId = {}) {
     this.doc = doc;
     this.appId = appId;
@@ -180,21 +172,18 @@ var SharedStylesHost = class _SharedStylesHost {
     addServerStyles(doc, appId, this.inline, this.external);
     this.hosts.add(doc.head);
   }
-
   addStyles(styles, urls) {
     for (const value of styles) {
       this.addUsage(value, this.inline, createStyleElement);
     }
     urls?.forEach((value) => this.addUsage(value, this.external, createLinkElement));
   }
-
   removeStyles(styles, urls) {
     for (const value of styles) {
       this.removeUsage(value, this.inline);
     }
     urls?.forEach((value) => this.removeUsage(value, this.external));
   }
-
   addUsage(value, usages, creator) {
     const record = usages.get(value);
     if (record) {
@@ -209,7 +198,6 @@ var SharedStylesHost = class _SharedStylesHost {
       });
     }
   }
-
   removeUsage(value, usages) {
     const record = usages.get(value);
     if (record) {
@@ -220,7 +208,6 @@ var SharedStylesHost = class _SharedStylesHost {
       }
     }
   }
-
   ngOnDestroy() {
     for (const [, {
       elements
@@ -229,7 +216,6 @@ var SharedStylesHost = class _SharedStylesHost {
     }
     this.hosts.clear();
   }
-
   addHost(hostNode) {
     this.hosts.add(hostNode);
     for (const [style, {
@@ -243,11 +229,9 @@ var SharedStylesHost = class _SharedStylesHost {
       elements.push(this.addElement(hostNode, createLinkElement(url, this.doc)));
     }
   }
-
   removeHost(hostNode) {
     this.hosts.delete(hostNode);
   }
-
   addElement(host, element) {
     if (this.nonce) {
       element.setAttribute("nonce", this.nonce);
@@ -257,7 +241,6 @@ var SharedStylesHost = class _SharedStylesHost {
     }
     return host.appendChild(element);
   }
-
   static ɵfac = function SharedStylesHost_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SharedStylesHost)(ɵɵinject(DOCUMENT), ɵɵinject(APP_ID), ɵɵinject(CSP_NONCE, 8), ɵɵinject(PLATFORM_ID));
   };
@@ -315,19 +298,15 @@ var REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT = true;
 var REMOVE_STYLES_ON_COMPONENT_DESTROY = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "RemoveStylesOnCompDestroy" : "", {
   factory: () => REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT
 });
-
 function shimContentAttribute(componentShortId) {
   return CONTENT_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
-
 function shimHostAttribute(componentShortId) {
   return HOST_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
-
 function shimStylesContent(compId, styles) {
   return styles.map((s) => s.replace(COMPONENT_REGEX, compId));
 }
-
 function addBaseHrefToCssSourceMap(baseHref, styles) {
   if (!baseHref) {
     return styles;
@@ -348,7 +327,6 @@ function addBaseHrefToCssSourceMap(baseHref, styles) {
     });
   });
 }
-
 var DomRendererFactory2 = class _DomRendererFactory2 {
   eventManager;
   sharedStylesHost;
@@ -360,7 +338,6 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
   tracingService;
   rendererByCompId = /* @__PURE__ */ new Map();
   defaultRenderer;
-
   constructor(eventManager, sharedStylesHost, appId, removeStylesOnCompDestroy, doc, ngZone, nonce = null, tracingService = null) {
     this.eventManager = eventManager;
     this.sharedStylesHost = sharedStylesHost;
@@ -372,7 +349,6 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     this.tracingService = tracingService;
     this.defaultRenderer = new DefaultDomRenderer2(eventManager, doc, ngZone, this.tracingService);
   }
-
   createRenderer(element, type) {
     if (!element || !type) {
       return this.defaultRenderer;
@@ -390,7 +366,6 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     }
     return renderer;
   }
-
   getOrCreateRenderer(element, type) {
     const rendererByCompId = this.rendererByCompId;
     let renderer = rendererByCompId.get(type.id);
@@ -417,15 +392,12 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     }
     return renderer;
   }
-
   ngOnDestroy() {
     this.rendererByCompId.clear();
   }
-
   componentReplaced(componentId) {
     this.rendererByCompId.delete(componentId);
   }
-
   static ɵfac = function DomRendererFactory2_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DomRendererFactory2)(ɵɵinject(EventManager), ɵɵinject(SharedStylesHost), ɵɵinject(APP_ID), ɵɵinject(REMOVE_STYLES_ON_COMPONENT_DESTROY), ɵɵinject(DOCUMENT), ɵɵinject(NgZone), ɵɵinject(CSP_NONCE), ɵɵinject(TracingService, 8));
   };
@@ -484,50 +456,40 @@ var DefaultDomRenderer2 = class {
   tracingService;
   data = /* @__PURE__ */ Object.create(null);
   throwOnSyntheticProps = true;
-
   constructor(eventManager, doc, ngZone, tracingService) {
     this.eventManager = eventManager;
     this.doc = doc;
     this.ngZone = ngZone;
     this.tracingService = tracingService;
   }
-
   destroy() {
   }
-
   destroyNode = null;
-
   createElement(name, namespace) {
     if (namespace) {
       return this.doc.createElementNS(NAMESPACE_URIS[namespace] || namespace, name);
     }
     return this.doc.createElement(name);
   }
-
   createComment(value) {
     return this.doc.createComment(value);
   }
-
   createText(value) {
     return this.doc.createTextNode(value);
   }
-
   appendChild(parent, newChild) {
     const targetParent = isTemplateNode(parent) ? parent.content : parent;
     targetParent.appendChild(newChild);
   }
-
   insertBefore(parent, newChild, refChild) {
     if (parent) {
       const targetParent = isTemplateNode(parent) ? parent.content : parent;
       targetParent.insertBefore(newChild, refChild);
     }
   }
-
   removeChild(_parent, oldChild) {
     oldChild.remove();
   }
-
   selectRootElement(selectorOrNode, preserveContent) {
     let el = typeof selectorOrNode === "string" ? this.doc.querySelector(selectorOrNode) : selectorOrNode;
     if (!el) {
@@ -538,15 +500,12 @@ var DefaultDomRenderer2 = class {
     }
     return el;
   }
-
   parentNode(node) {
     return node.parentNode;
   }
-
   nextSibling(node) {
     return node.nextSibling;
   }
-
   setAttribute(el, name, value, namespace) {
     if (namespace) {
       name = namespace + ":" + name;
@@ -560,7 +519,6 @@ var DefaultDomRenderer2 = class {
       el.setAttribute(name, value);
     }
   }
-
   removeAttribute(el, name, namespace) {
     if (namespace) {
       const namespaceUri = NAMESPACE_URIS[namespace];
@@ -573,15 +531,12 @@ var DefaultDomRenderer2 = class {
       el.removeAttribute(name);
     }
   }
-
   addClass(el, name) {
     el.classList.add(name);
   }
-
   removeClass(el, name) {
     el.classList.remove(name);
   }
-
   setStyle(el, style, value, flags) {
     if (flags & (RendererStyleFlags2.DashCase | RendererStyleFlags2.Important)) {
       el.style.setProperty(style, value, flags & RendererStyleFlags2.Important ? "important" : "");
@@ -589,7 +544,6 @@ var DefaultDomRenderer2 = class {
       el.style[style] = value;
     }
   }
-
   removeStyle(el, style, flags) {
     if (flags & RendererStyleFlags2.DashCase) {
       el.style.removeProperty(style);
@@ -597,7 +551,6 @@ var DefaultDomRenderer2 = class {
       el.style[style] = "";
     }
   }
-
   setProperty(el, name, value) {
     if (el == null) {
       return;
@@ -605,11 +558,9 @@ var DefaultDomRenderer2 = class {
     (typeof ngDevMode === "undefined" || ngDevMode) && this.throwOnSyntheticProps && checkNoSyntheticProp(name, "property");
     el[name] = value;
   }
-
   setValue(node, value) {
     node.nodeValue = value;
   }
-
   listen(target, event, callback, options) {
     (typeof ngDevMode === "undefined" || ngDevMode) && this.throwOnSyntheticProps && checkNoSyntheticProp(event, "listener");
     if (typeof target === "string") {
@@ -624,7 +575,6 @@ var DefaultDomRenderer2 = class {
     }
     return this.eventManager.addEventListener(target, event, wrappedCallback, options);
   }
-
   decoratePreventDefault(eventHandler) {
     return (event) => {
       if (event === "__ngUnwrap__") {
@@ -639,7 +589,6 @@ var DefaultDomRenderer2 = class {
   }
 };
 var AT_CHARCODE = (() => "@".charCodeAt(0))();
-
 function checkNoSyntheticProp(name, nameKind) {
   if (name.charCodeAt(0) === AT_CHARCODE) {
     throw new RuntimeError(5105, `Unexpected synthetic ${nameKind} ${name} found. Please make sure that:
@@ -647,16 +596,13 @@ function checkNoSyntheticProp(name, nameKind) {
   - There is a corresponding animation configuration named \`${name}\` defined in the \`animations\` field of the \`@Component\` decorator (see https://angular.dev/api/core/Component#animations).`);
   }
 }
-
 function isTemplateNode(node) {
   return node.tagName === "TEMPLATE" && node.content !== void 0;
 }
-
 var ShadowDomRenderer = class extends DefaultDomRenderer2 {
   hostEl;
   sharedStylesHost;
   shadowRoot;
-
   constructor(eventManager, hostEl, component, doc, ngZone, nonce, tracingService, sharedStylesHost) {
     super(eventManager, doc, ngZone, tracingService);
     this.hostEl = hostEl;
@@ -692,27 +638,21 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
       }
     }
   }
-
   nodeOrShadowRoot(node) {
     return node === this.hostEl ? this.shadowRoot : node;
   }
-
   appendChild(parent, newChild) {
     return super.appendChild(this.nodeOrShadowRoot(parent), newChild);
   }
-
   insertBefore(parent, newChild, refChild) {
     return super.insertBefore(this.nodeOrShadowRoot(parent), newChild, refChild);
   }
-
   removeChild(_parent, oldChild) {
     return super.removeChild(null, oldChild);
   }
-
   parentNode(node) {
     return this.nodeOrShadowRoot(super.parentNode(this.nodeOrShadowRoot(node)));
   }
-
   destroy() {
     if (this.sharedStylesHost) {
       this.sharedStylesHost.removeHost(this.shadowRoot);
@@ -724,7 +664,6 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
   removeStylesOnCompDestroy;
   styles;
   styleUrls;
-
   constructor(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, compId) {
     super(eventManager, doc, ngZone, tracingService);
     this.sharedStylesHost = sharedStylesHost;
@@ -737,11 +676,9 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
     this.styles = compId ? shimStylesContent(compId, styles) : styles;
     this.styleUrls = component.getExternalStyles?.(compId);
   }
-
   applyStyles() {
     this.sharedStylesHost.addStyles(this.styles, this.styleUrls);
   }
-
   destroy() {
     if (!this.removeStylesOnCompDestroy) {
       return;
@@ -754,19 +691,16 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
 var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRenderer {
   contentAttr;
   hostAttr;
-
   constructor(eventManager, sharedStylesHost, component, appId, removeStylesOnCompDestroy, doc, ngZone, tracingService) {
     const compId = appId + "-" + component.id;
     super(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, compId);
     this.contentAttr = shimContentAttribute(compId);
     this.hostAttr = shimHostAttribute(compId);
   }
-
   applyToHost(element) {
     this.applyStyles();
     this.setAttribute(element, this.hostAttr, "");
   }
-
   createElement(parent, name) {
     const el = super.createElement(parent, name);
     super.setAttribute(el, this.contentAttr, "");
@@ -783,4 +717,4 @@ export {
   REMOVE_STYLES_ON_COMPONENT_DESTROY,
   DomRendererFactory2
 };
-//# sourceMappingURL=chunk-KRHLD5H4.js.map
+//# sourceMappingURL=chunk-OECQIUYM.js.map

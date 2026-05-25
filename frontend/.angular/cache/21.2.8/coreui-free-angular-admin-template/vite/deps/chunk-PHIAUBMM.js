@@ -1,4 +1,3 @@
-import {withHttpTransferCache} from "./chunk-3QPCR6TE.js";
 import {
   DomEventsPlugin,
   DomRendererFactory2,
@@ -6,39 +5,51 @@ import {
   EventManager,
   EventManagerPlugin,
   SharedStylesHost
-} from "./chunk-KRHLD5H4.js";
-import {CommonModule, PLATFORM_BROWSER_ID} from "./chunk-SBEYB655.js";
-import {DomAdapter, getDOM, parseCookieValue, setRootDomAdapter, XhrFactory} from "./chunk-KY4BAJ7B.js";
+} from "./chunk-OECQIUYM.js";
 import {
+  withHttpTransferCache
+} from "./chunk-D5NIYRA6.js";
+import {
+  CommonModule,
+  PLATFORM_BROWSER_ID
+} from "./chunk-QUJP7ID6.js";
+import {
+  DomAdapter,
+  XhrFactory,
+  getDOM,
+  parseCookieValue,
+  setRootDomAdapter
+} from "./chunk-UWVZGDMY.js";
+import {
+  ApplicationModule,
+  ApplicationRef,
+  Console,
+  IS_ENABLED_BLOCKING_INITIAL_NAVIGATION,
+  Inject,
+  Injectable,
+  NgModule,
+  Optional,
+  PLATFORM_ID,
+  PLATFORM_INITIALIZER,
+  RendererFactory2,
+  SecurityContext,
+  TESTABILITY,
+  TESTABILITY_GETTER,
+  Testability,
   _sanitizeHtml,
   _sanitizeUrl,
   allowSanitizationBypassAndThrow,
-  ApplicationModule,
-  ApplicationRef,
   bypassSanitizationTrustHtml,
   bypassSanitizationTrustResourceUrl,
   bypassSanitizationTrustScript,
   bypassSanitizationTrustStyle,
   bypassSanitizationTrustUrl,
-  Console,
   createPlatformFactory,
-  Inject,
-  Injectable,
   internalCreateApplication,
-  IS_ENABLED_BLOCKING_INITIAL_NAVIGATION,
-  NgModule,
-  Optional,
-  PLATFORM_ID,
-  PLATFORM_INITIALIZER,
   platformCore,
   provideStabilityDebugging,
-  RendererFactory2,
-  SecurityContext,
   setClassMetadata,
   setDocument,
-  TESTABILITY,
-  Testability,
-  TESTABILITY_GETTER,
   unwrapSafeValue,
   withDomHydration,
   withEventReplay,
@@ -47,70 +58,63 @@ import {
   ɵɵdefineNgModule
 } from "./chunk-GDLWIGNW.js";
 import {
-  _global,
   DOCUMENT,
   ENVIRONMENT_INITIALIZER,
   ErrorHandler,
-  formatRuntimeError,
-  forwardRef,
-  inject,
+  INJECTOR_SCOPE,
   InjectionToken,
   Injector,
-  INJECTOR_SCOPE,
-  makeEnvironmentProviders,
   RuntimeError,
   Version,
   XSS_SECURITY_URL,
+  _global,
+  formatRuntimeError,
+  forwardRef,
+  inject,
+  makeEnvironmentProviders,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵinject
 } from "./chunk-2IEJMMMM.js";
-import {__async, __spreadValues} from "./chunk-XWLXMCJQ.js";
+import {
+  __async,
+  __spreadValues
+} from "./chunk-XWLXMCJQ.js";
 
 // node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 var BrowserDomAdapter = class _BrowserDomAdapter extends DomAdapter {
   supportsDOMEvents = true;
-
   static makeCurrent() {
     setRootDomAdapter(new _BrowserDomAdapter());
   }
-
   onAndCancel(el, evt, listener, options) {
     el.addEventListener(evt, listener, options);
     return () => {
       el.removeEventListener(evt, listener, options);
     };
   }
-
   dispatchEvent(el, evt) {
     el.dispatchEvent(evt);
   }
-
   remove(node) {
     node.remove();
   }
-
   createElement(tagName, doc) {
     doc = doc || this.getDefaultDocument();
     return doc.createElement(tagName);
   }
-
   createHtmlDocument() {
     return document.implementation.createHTMLDocument("fakeTitle");
   }
-
   getDefaultDocument() {
     return document;
   }
-
   isElementNode(node) {
     return node.nodeType === Node.ELEMENT_NODE;
   }
-
   isShadowRoot(node) {
     return node instanceof DocumentFragment;
   }
-
   getGlobalEventTarget(doc, target) {
     if (target === "window") {
       return window;
@@ -123,35 +127,28 @@ var BrowserDomAdapter = class _BrowserDomAdapter extends DomAdapter {
     }
     return null;
   }
-
   getBaseHref(doc) {
     const href = getBaseElementHref();
     return href == null ? null : relativePath(href);
   }
-
   resetBaseElement() {
     baseElement = null;
   }
-
   getUserAgent() {
     return window.navigator.userAgent;
   }
-
   getCookie(name) {
     return parseCookieValue(document.cookie, name);
   }
 };
 var baseElement = null;
-
 function getBaseElementHref() {
   baseElement = baseElement || document.head.querySelector("base");
   return baseElement ? baseElement.getAttribute("href") : null;
 }
-
 function relativePath(url) {
   return new URL(url, document.baseURI).pathname;
 }
-
 var BrowserGetTestability = class {
   addToWindow(registry) {
     _global["getAngularTestability"] = (elem, findInAncestors = true) => {
@@ -166,7 +163,7 @@ var BrowserGetTestability = class {
     const whenAllStable = (callback) => {
       const testabilities = _global["getAllAngularTestabilities"]();
       let count = testabilities.length;
-      const decrement = function () {
+      const decrement = function() {
         count--;
         if (count == 0) {
           callback();
@@ -181,7 +178,6 @@ var BrowserGetTestability = class {
     }
     _global["frameworkStabilizers"].push(whenAllStable);
   }
-
   findTestabilityInTree(registry, elem, findInAncestors) {
     if (elem == null) {
       return null;
@@ -202,7 +198,6 @@ var BrowserXhr = class _BrowserXhr {
   build() {
     return new XMLHttpRequest();
   }
-
   static ɵfac = function BrowserXhr_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _BrowserXhr)();
   };
@@ -242,11 +237,9 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
   constructor(doc) {
     super(doc);
   }
-
   supports(eventName) {
     return _KeyEventsPlugin.parseEventName(eventName) != null;
   }
-
   addEventListener(element, eventName, handler, options) {
     const parsedEvent = _KeyEventsPlugin.parseEventName(eventName);
     const outsideHandler = _KeyEventsPlugin.eventCallback(parsedEvent["fullKey"], handler, this.manager.getZone());
@@ -254,7 +247,6 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
       return getDOM().onAndCancel(element, parsedEvent["domEventName"], outsideHandler, options);
     });
   }
-
   static parseEventName(eventName) {
     const parts = eventName.toLowerCase().split(".");
     const domEventName = parts.shift();
@@ -284,7 +276,6 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
     result["fullKey"] = fullKey;
     return result;
   }
-
   static matchEventFullKeyCode(event, fullKeyCode) {
     let keycode = _keyMap[event.key] || event.key;
     let key = "";
@@ -310,7 +301,6 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
     key += keycode;
     return key === fullKeyCode;
   }
-
   static eventCallback(fullKey, handler, zone) {
     return (event) => {
       if (_KeyEventsPlugin.matchEventFullKeyCode(event, fullKey)) {
@@ -318,11 +308,9 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
       }
     };
   }
-
   static _normalizeKey(keyName) {
     return keyName === "esc" ? "escape" : keyName;
   }
-
   static ɵfac = function KeyEventsPlugin_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _KeyEventsPlugin)(ɵɵinject(DOCUMENT));
   };
@@ -342,7 +330,6 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
     }]
   }], null);
 })();
-
 function bootstrapApplication(rootComponent, options, context) {
   return __async(this, null, function* () {
     const config = __spreadValues({
@@ -354,7 +341,6 @@ function bootstrapApplication(rootComponent, options, context) {
     return internalCreateApplication(config);
   });
 }
-
 function createApplication(options, context) {
   return __async(this, null, function* () {
     if (false) {
@@ -363,7 +349,6 @@ function createApplication(options, context) {
     return internalCreateApplication(createProvidersConfig(options, context));
   });
 }
-
 function createProvidersConfig(options, context) {
   return {
     platformRef: context?.platformRef,
@@ -371,24 +356,19 @@ function createProvidersConfig(options, context) {
     platformProviders: INTERNAL_BROWSER_PLATFORM_PROVIDERS
   };
 }
-
 function provideProtractorTestingSupport() {
   return [...TESTABILITY_PROVIDERS];
 }
-
 function initDomAdapter() {
   BrowserDomAdapter.makeCurrent();
 }
-
 function errorHandler() {
   return new ErrorHandler();
 }
-
 function _document() {
   setDocument(document);
   return document;
 }
-
 var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [{
   provide: PLATFORM_ID,
   useValue: PLATFORM_BROWSER_ID
@@ -448,7 +428,6 @@ var BrowserModule = class _BrowserModule {
       }
     }
   }
-
   static ɵfac = function BrowserModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _BrowserModule)();
   };
@@ -475,17 +454,14 @@ var BrowserModule = class _BrowserModule {
 var Meta = class _Meta {
   _doc;
   _dom;
-
   constructor(_doc) {
     this._doc = _doc;
     this._dom = getDOM();
   }
-
   addTag(tag, forceCreation = false) {
     if (!tag) return null;
     return this._getOrCreateElement(tag, forceCreation);
   }
-
   addTags(tags, forceCreation = false) {
     if (!tags) return [];
     return tags.reduce((result, tag) => {
@@ -495,18 +471,15 @@ var Meta = class _Meta {
       return result;
     }, []);
   }
-
   getTag(attrSelector) {
     if (!attrSelector) return null;
     return this._doc.querySelector(`meta[${attrSelector}]`) || null;
   }
-
   getTags(attrSelector) {
     if (!attrSelector) return [];
     const list = this._doc.querySelectorAll(`meta[${attrSelector}]`);
     return list ? [].slice.call(list) : [];
   }
-
   updateTag(tag, selector) {
     if (!tag) return null;
     selector = selector || this._parseSelector(tag);
@@ -516,17 +489,14 @@ var Meta = class _Meta {
     }
     return this._getOrCreateElement(tag, true);
   }
-
   removeTag(attrSelector) {
     this.removeTagElement(this.getTag(attrSelector));
   }
-
   removeTagElement(meta) {
     if (meta) {
       this._dom.remove(meta);
     }
   }
-
   _getOrCreateElement(meta, forceCreation = false) {
     if (!forceCreation) {
       const selector = this._parseSelector(meta);
@@ -539,25 +509,20 @@ var Meta = class _Meta {
     head.appendChild(element);
     return element;
   }
-
   _setMetaElementAttributes(tag, el) {
     Object.keys(tag).forEach((prop) => el.setAttribute(this._getMetaKeyMap(prop), tag[prop]));
     return el;
   }
-
   _parseSelector(tag) {
     const attr = tag.name ? "name" : "property";
     return `${attr}="${tag[attr]}"`;
   }
-
   _containsAttributes(tag, elem) {
     return Object.keys(tag).every((key) => elem.getAttribute(this._getMetaKeyMap(key)) === tag[key]);
   }
-
   _getMetaKeyMap(prop) {
     return META_KEYS_MAP[prop] || prop;
   }
-
   static ɵfac = function Meta_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Meta)(ɵɵinject(DOCUMENT));
   };
@@ -586,19 +551,15 @@ var META_KEYS_MAP = {
 };
 var Title = class _Title {
   _doc;
-
   constructor(_doc) {
     this._doc = _doc;
   }
-
   getTitle() {
     return this._doc.title;
   }
-
   setTitle(newTitle) {
     this._doc.title = newTitle || "";
   }
-
   static ɵfac = function Title_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Title)(ɵɵinject(DOCUMENT));
   };
@@ -622,18 +583,15 @@ var Title = class _Title {
     }]
   }], null);
 })();
-
 function exportNgVar(name, value) {
   if (typeof COMPILED === "undefined" || !COMPILED) {
     const ng = _global["ng"] = _global["ng"] || {};
     ng[name] = value;
   }
 }
-
 var ChangeDetectionPerfRecord = class {
   msPerTick;
   numTicks;
-
   constructor(msPerTick, numTicks) {
     this.msPerTick = msPerTick;
     this.numTicks = numTicks;
@@ -641,11 +599,9 @@ var ChangeDetectionPerfRecord = class {
 };
 var AngularProfiler = class {
   appRef;
-
   constructor(ref) {
     this.appRef = ref.injector.get(ApplicationRef);
   }
-
   timeChangeDetection(config) {
     const record = config && config["record"];
     const profileName = "Change Detection";
@@ -669,39 +625,32 @@ var AngularProfiler = class {
   }
 };
 var PROFILER_GLOBAL_NAME = "profiler";
-
 function enableDebugTools(ref) {
   exportNgVar(PROFILER_GLOBAL_NAME, new AngularProfiler(ref));
   return ref;
 }
-
 function disableDebugTools() {
   exportNgVar(PROFILER_GLOBAL_NAME, null);
 }
-
 var By = class {
   static all() {
     return () => true;
   }
-
   static css(selector) {
     return (debugElement) => {
       return debugElement.nativeElement != null ? elementMatches(debugElement.nativeElement, selector) : false;
     };
   }
-
   static directive(type) {
     return (debugNode) => debugNode.providerTokens.indexOf(type) !== -1;
   }
 };
-
 function elementMatches(n, selector) {
   if (getDOM().isElementNode(n)) {
     return n.matches && n.matches(selector) || n.msMatchesSelector && n.msMatchesSelector(selector) || n.webkitMatchesSelector && n.webkitMatchesSelector(selector);
   }
   return false;
 }
-
 var EVENT_NAMES = {
   "pan": true,
   "panstart": true,
@@ -740,7 +689,6 @@ var HammerGestureConfig = class _HammerGestureConfig {
   events = [];
   overrides = {};
   options;
-
   buildHammer(element) {
     const mc = new Hammer(element, this.options);
     mc.get("pinch").set({
@@ -754,7 +702,6 @@ var HammerGestureConfig = class _HammerGestureConfig {
     }
     return mc;
   }
-
   static ɵfac = function HammerGestureConfig_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HammerGestureConfig)();
   };
@@ -773,14 +720,12 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
   _injector;
   loader;
   _loaderPromise = null;
-
   constructor(doc, _config, _injector, loader) {
     super(doc);
     this._config = _config;
     this._injector = _injector;
     this.loader = loader;
   }
-
   supports(eventName) {
     if (!EVENT_NAMES.hasOwnProperty(eventName.toLowerCase()) && !this.isCustomEvent(eventName)) {
       return false;
@@ -794,7 +739,6 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
     }
     return true;
   }
-
   addEventListener(element, eventName, handler) {
     const zone = this.manager.getZone();
     eventName = eventName.toLowerCase();
@@ -831,8 +775,8 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
     }
     return zone.runOutsideAngular(() => {
       const mc = this._config.buildHammer(element);
-      const callback = function (eventObj) {
-        zone.runGuarded(function () {
+      const callback = function(eventObj) {
+        zone.runGuarded(function() {
           handler(eventObj);
         });
       };
@@ -845,11 +789,9 @@ var HammerGesturesPlugin = class _HammerGesturesPlugin extends EventManagerPlugi
       };
     });
   }
-
   isCustomEvent(eventName) {
     return this._config.events.indexOf(eventName) > -1;
   }
-
   static ɵfac = function HammerGesturesPlugin_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HammerGesturesPlugin)(ɵɵinject(DOCUMENT), ɵɵinject(HAMMER_GESTURE_CONFIG), ɵɵinject(Injector), ɵɵinject(HAMMER_LOADER, 8));
   };
@@ -949,12 +891,10 @@ var DomSanitizer = class _DomSanitizer {
 })();
 var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   _doc;
-
   constructor(_doc) {
     super();
     this._doc = _doc;
   }
-
   sanitize(ctx, value) {
     if (value == null) return null;
     switch (ctx) {
@@ -989,27 +929,21 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
         throw new RuntimeError(5202, (typeof ngDevMode === "undefined" || ngDevMode) && `Unexpected SecurityContext ${ctx} (see ${XSS_SECURITY_URL})`);
     }
   }
-
   bypassSecurityTrustHtml(value) {
     return bypassSanitizationTrustHtml(value);
   }
-
   bypassSecurityTrustStyle(value) {
     return bypassSanitizationTrustStyle(value);
   }
-
   bypassSecurityTrustScript(value) {
     return bypassSanitizationTrustScript(value);
   }
-
   bypassSecurityTrustUrl(value) {
     return bypassSanitizationTrustUrl(value);
   }
-
   bypassSecurityTrustResourceUrl(value) {
     return bypassSanitizationTrustResourceUrl(value);
   }
-
   static ɵfac = function DomSanitizerImpl_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DomSanitizerImpl)(ɵɵinject(DOCUMENT));
   };
@@ -1034,41 +968,34 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null);
 })();
 var HydrationFeatureKind;
-(function (HydrationFeatureKind2) {
+(function(HydrationFeatureKind2) {
   HydrationFeatureKind2[HydrationFeatureKind2["NoHttpTransferCache"] = 0] = "NoHttpTransferCache";
   HydrationFeatureKind2[HydrationFeatureKind2["HttpTransferCacheOptions"] = 1] = "HttpTransferCacheOptions";
   HydrationFeatureKind2[HydrationFeatureKind2["I18nSupport"] = 2] = "I18nSupport";
   HydrationFeatureKind2[HydrationFeatureKind2["EventReplay"] = 3] = "EventReplay";
   HydrationFeatureKind2[HydrationFeatureKind2["IncrementalHydration"] = 4] = "IncrementalHydration";
 })(HydrationFeatureKind || (HydrationFeatureKind = {}));
-
 function hydrationFeature(ɵkind, ɵproviders = [], ɵoptions = {}) {
   return {
     ɵkind,
     ɵproviders
   };
 }
-
 function withNoHttpTransferCache() {
   return hydrationFeature(HydrationFeatureKind.NoHttpTransferCache);
 }
-
 function withHttpTransferCacheOptions(options) {
   return hydrationFeature(HydrationFeatureKind.HttpTransferCacheOptions, withHttpTransferCache(options));
 }
-
 function withI18nSupport2() {
   return hydrationFeature(HydrationFeatureKind.I18nSupport, withI18nSupport());
 }
-
 function withEventReplay2() {
   return hydrationFeature(HydrationFeatureKind.EventReplay, withEventReplay());
 }
-
 function withIncrementalHydration2() {
   return hydrationFeature(HydrationFeatureKind.IncrementalHydration, withIncrementalHydration());
 }
-
 function provideEnabledBlockingInitialNavigationDetector() {
   return [{
     provide: ENVIRONMENT_INITIALIZER,
@@ -1085,7 +1012,6 @@ function provideEnabledBlockingInitialNavigationDetector() {
     multi: true
   }];
 }
-
 function provideClientHydration(...features) {
   const providers = [];
   const featuresKind = /* @__PURE__ */ new Set();
@@ -1104,7 +1030,6 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideEnabledBlockingInitialNavigationDetector() : [], typeof ngDevMode !== "undefined" && ngDevMode ? provideStabilityDebugging() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-
 var VERSION = new Version("21.2.10");
 
 export {
@@ -1137,4 +1062,4 @@ export {
   provideClientHydration,
   VERSION
 };
-//# sourceMappingURL=chunk-RYHSNRSB.js.map
+//# sourceMappingURL=chunk-PHIAUBMM.js.map

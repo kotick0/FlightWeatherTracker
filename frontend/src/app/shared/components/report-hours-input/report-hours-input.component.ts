@@ -20,9 +20,9 @@ import {normalizeHoursValue} from '../../../core/utils/reports-query.util';
         step="1"
         inputmode="numeric"
         (keypress)="onKeyPress($event)"
-        aria-label="Hours to look back"
+        [attr.aria-label]="'Look back ' + hours() + (hours() === 1 ? ' hour' : ' hours')"
       />
-      <span class="ms-1 text-nowrap small text-body-secondary">hours</span>
+      <span class="ms-1 text-nowrap small text-body-secondary">{{ hours() === 1 ? 'hour' : 'hours' }}</span>
     </div>
   `,
   styles: `

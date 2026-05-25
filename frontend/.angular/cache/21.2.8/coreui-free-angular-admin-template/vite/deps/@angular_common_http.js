@@ -19,7 +19,6 @@ import {
   HttpInterceptorHandler,
   HttpParams,
   HttpRequest,
-  httpResource,
   HttpResponse,
   HttpResponseBase,
   HttpStatusCode,
@@ -28,8 +27,9 @@ import {
   HttpXsrfTokenExtractor,
   JsonpClientBackend,
   JsonpInterceptor,
-  provideHttpClient,
   REQUESTS_CONTRIBUTE_TO_STABILITY,
+  httpResource,
+  provideHttpClient,
   withFetch,
   withHttpTransferCache,
   withInterceptors,
@@ -38,15 +38,14 @@ import {
   withNoXsrfProtection,
   withRequestsMadeViaParent,
   withXsrfConfiguration
-} from "./chunk-3QPCR6TE.js";
-import "./chunk-KY4BAJ7B.js";
+} from "./chunk-D5NIYRA6.js";
+import "./chunk-UWVZGDMY.js";
 import "./chunk-GDLWIGNW.js";
 import "./chunk-2IEJMMMM.js";
 import "./chunk-HWYXSU2G.js";
 import "./chunk-JRFR6BLO.js";
 import "./chunk-MARUHEWW.js";
 import "./chunk-XWLXMCJQ.js";
-
 export {
   FetchBackend,
   HTTP_INTERCEPTORS,

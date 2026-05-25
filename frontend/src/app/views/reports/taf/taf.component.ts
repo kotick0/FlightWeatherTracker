@@ -22,6 +22,8 @@ import {ShortTafService} from '../../../core/services/short-taf.service';
 import {TafView} from '../../../core/models/taf.model';
 import {forkJoin} from 'rxjs';
 import {filterRecordsByStations} from '../../../core/utils/reports-query.util';
+import {AirportIcaoMultiselectComponent} from '../../../shared/components/airport-icao-multiselect/airport-icao-multiselect.component';
+import {ReportHoursInputComponent} from '../../../shared/components/report-hours-input/report-hours-input.component';
 
 @Component({
   selector: 'app-taf',
@@ -37,7 +39,9 @@ import {filterRecordsByStations} from '../../../core/utils/reports-query.util';
     DropdownToggleDirective,
     DropdownMenuDirective,
     DropdownItemDirective,
-    ButtonDirective
+    ButtonDirective,
+    AirportIcaoMultiselectComponent,
+    ReportHoursInputComponent,
   ],
   templateUrl: './taf.component.html',
   styleUrl: './taf.component.scss',

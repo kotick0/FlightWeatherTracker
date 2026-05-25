@@ -12,6 +12,9 @@ import {
   useAnimation
 } from "./chunk-KMGEZR2J.js";
 import {
+  IconDirective
+} from "./chunk-OCWKHY7N.js";
+import {
   Platform,
   _getEventTarget,
   _getFocusedElementPierceShadowDom,
@@ -20,7 +23,7 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-MSZEQ3UN.js";
+} from "./chunk-A2OYAN6L.js";
 import {
   takeUntilDestroyed,
   toObservable,
@@ -33,21 +36,18 @@ import {
   RouterLink,
   RouterLinkActive,
   RouterModule
-} from "./chunk-JO4LCU6Q.js";
-import {
-  IconDirective
-} from "./chunk-6T3ULNIC.js";
+} from "./chunk-RAG7CSZ7.js";
 import {
   DomSanitizer
-} from "./chunk-RYHSNRSB.js";
-import "./chunk-3QPCR6TE.js";
-import "./chunk-KRHLD5H4.js";
+} from "./chunk-PHIAUBMM.js";
+import "./chunk-OECQIUYM.js";
+import "./chunk-D5NIYRA6.js";
 import {
   NgTemplateOutlet,
   isPlatformBrowser,
   isPlatformServer
-} from "./chunk-SBEYB655.js";
-import "./chunk-KY4BAJ7B.js";
+} from "./chunk-QUJP7ID6.js";
+import "./chunk-UWVZGDMY.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,
@@ -12038,20 +12038,20 @@ var DropdownComponent = class _DropdownComponent {
       }
       if (this.clickedTarget !== target && autoClose === "outside") {
         this.setVisibleState(false);
-
+        return;
       }
     }));
     this.listeners.push(this.#renderer.listen(this.#elementRef.nativeElement, "keyup", (event) => {
       if (event.key === "Escape" && this.autoClose() !== false) {
         event.stopPropagation();
         this.setVisibleState(false);
-
+        return;
       }
     }));
     this.listeners.push(this.#renderer.listen(this.#document, "keyup", (event) => {
       if (event.key === "Tab" && this.autoClose() !== false && !this.#elementRef.nativeElement.contains(event.target)) {
         this.setVisibleState(false);
-
+        return;
       }
     }));
   }
@@ -23080,7 +23080,7 @@ var TabsListComponent = class _TabsListComponent {
     if (["Tab"].includes($event.key)) {
       this.#focusKeyManager?.tabOut.next();
     }
-
+    return;
   }
   static ɵfac = function TabsListComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _TabsListComponent)();

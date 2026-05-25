@@ -1,15 +1,17 @@
-import {DomSanitizer} from "./chunk-RYHSNRSB.js";
+import {
+  DomSanitizer
+} from "./chunk-PHIAUBMM.js";
 import {
   Component,
   Directive,
   ElementRef,
   Injectable,
   Input,
-  input,
   NgModule,
   Renderer2,
-  setClassMetadata,
   ViewChild,
+  input,
+  setClassMetadata,
   viewChild,
   ɵɵadvance,
   ɵɵattribute,
@@ -29,12 +31,21 @@ import {
   ɵɵsanitizeHtml,
   ɵɵviewQuerySignal
 } from "./chunk-GDLWIGNW.js";
-import {computed, effect, inject, ɵɵdefineInjectable, ɵɵdefineInjector, ɵɵnamespaceSVG} from "./chunk-2IEJMMMM.js";
-import {__spreadProps, __spreadValues} from "./chunk-XWLXMCJQ.js";
+import {
+  computed,
+  effect,
+  inject,
+  ɵɵdefineInjectable,
+  ɵɵdefineInjector,
+  ɵɵnamespaceSVG
+} from "./chunk-2IEJMMMM.js";
+import {
+  __spreadProps,
+  __spreadValues
+} from "./chunk-XWLXMCJQ.js";
 
 // node_modules/@coreui/icons-angular/fesm2022/coreui-icons-angular.mjs
 var _c0 = ["svgElement"];
-
 function IconComponent_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵnamespaceSVG();
@@ -47,7 +58,6 @@ function IconComponent_Conditional_0_Template(rf, ctx) {
     ɵɵattribute("width", ctx_r0.width())("height", ctx_r0.height() || ctx_r0.width())("viewBox", ctx_r0.viewBox() ?? ctx_r0.scale());
   }
 }
-
 function IconComponent_Conditional_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵnamespaceSVG();
@@ -64,27 +74,21 @@ function IconComponent_Conditional_1_Template(rf, ctx) {
     ɵɵattribute("href", ctx_r0.use());
   }
 }
-
 var IconSetService = class _IconSetService {
   get iconNames() {
     return this.#iconNames;
   }
-
   #iconNames = {};
-
   get icons() {
     return this.#icons;
   }
-
   set icons(iconSet) {
     for (const iconsKey in iconSet) {
       this.#iconNames[iconsKey] = iconsKey;
     }
     this.#icons = iconSet;
   }
-
   #icons = {};
-
   getIcon(name) {
     const icon = this.icons[name];
     if (!icon) {
@@ -92,7 +96,6 @@ var IconSetService = class _IconSetService {
     }
     return this.icons[name];
   }
-
   static ɵfac = function IconSetService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _IconSetService)();
   };
@@ -120,7 +123,6 @@ var IconSetModule = class _IconSetModule {
       throw new Error("CoreUI IconSetModule is already loaded. Import it in the AppModule only");
     }
   }
-
   static forRoot() {
     return {
       ngModule: _IconSetModule,
@@ -129,7 +131,6 @@ var IconSetModule = class _IconSetModule {
       }]
     };
   }
-
   static ɵfac = function IconSetModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _IconSetModule)();
   };
@@ -148,17 +149,14 @@ var IconSetModule = class _IconSetModule {
     }]
   }], () => [], null);
 })();
-
 function toCamelCase(value) {
   return value.replace(/([-_][a-z0-9])/ig, ($1) => {
     return $1.toUpperCase().replace("-", "");
   });
 }
-
 function transformName(value) {
   return value && value.includes("-") ? toCamelCase(value) : value;
 }
-
 var IconDirective = class _IconDirective {
   #sanitizer = inject(DomSanitizer);
   #iconSet = inject(IconSetService);
@@ -285,7 +283,7 @@ var IconDirective = class _IconDirective {
       return this.#iconSet.getIcon(name);
     }
     if (name && !this.#iconSet?.icons[name]) {
-      console.warn(`cIcon directive: The '${name}' icon not found. Add it to the IconSet service for use with the 'name' property.
+      console.warn(`cIcon directive: The '${name}' icon not found. Add it to the IconSet service for use with the 'name' property. 
 `, name);
     }
     return "";
@@ -475,7 +473,6 @@ var HtmlAttributesDirective = class _HtmlAttributesDirective {
     /* istanbul ignore next */
     []
   ));
-
   setStyle(styles) {
     for (const style in styles) {
       if (style) {
@@ -483,18 +480,15 @@ var HtmlAttributesDirective = class _HtmlAttributesDirective {
       }
     }
   }
-
   addClass(classes) {
     const classArray = Array.isArray(classes) ? classes : classes.split(" ");
     classArray.filter((element) => element.length > 0).forEach((element) => {
       this.#renderer.addClass(this.#elementRef.nativeElement, element);
     });
   }
-
   setAttrib(key, value) {
     value !== null ? this.#renderer.setAttribute(this.#elementRef.nativeElement, key, value) : this.#renderer.removeAttribute(this.#elementRef.nativeElement, key);
   }
-
   static ɵfac = function HtmlAttributesDirective_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _HtmlAttributesDirective)();
   };
@@ -656,7 +650,7 @@ var IconComponent = class _IconComponent {
       return this.#iconSet.getIcon(name);
     }
     if (name && !this.#iconSet?.icons[name]) {
-      console.warn(`c-icon component: The '${name}' icon not found. Add it to the IconSet service for use with the 'name' property.
+      console.warn(`c-icon component: The '${name}' icon not found. Add it to the IconSet service for use with the 'name' property. 
 `, name);
     }
     return "";
@@ -869,4 +863,4 @@ export {
   IconComponent,
   IconModule
 };
-//# sourceMappingURL=chunk-6T3ULNIC.js.map
+//# sourceMappingURL=chunk-OCWKHY7N.js.map

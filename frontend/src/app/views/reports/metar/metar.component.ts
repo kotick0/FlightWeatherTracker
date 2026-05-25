@@ -15,6 +15,8 @@ import {
 import {MetarService} from '../../../core/services/metar.service';
 import {MetarView} from '../../../core/models/metar.model';
 import {filterRecordsByStations} from '../../../core/utils/reports-query.util';
+import {AirportIcaoMultiselectComponent} from '../../../shared/components/airport-icao-multiselect/airport-icao-multiselect.component';
+import {ReportHoursInputComponent} from '../../../shared/components/report-hours-input/report-hours-input.component';
 
 @Component({
   selector: 'app-metar',
@@ -25,7 +27,9 @@ import {filterRecordsByStations} from '../../../core/utils/reports-query.util';
     CardBodyComponent,
     RowComponent,
     ColComponent,
-    TableDirective
+    TableDirective,
+    AirportIcaoMultiselectComponent,
+    ReportHoursInputComponent,
   ],
   templateUrl: './metar.component.html',
   styleUrl: './metar.component.scss',
