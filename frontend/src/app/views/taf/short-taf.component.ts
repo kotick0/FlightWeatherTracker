@@ -25,7 +25,7 @@ export class ShortTafComponent implements OnInit {
 
   ngOnInit(): void {
     this.tafService.getAll().subscribe({
-      next: data => {
+      next: (data: TafView[]) => {
         this.tafs = data;
         this.loading = false;
       },

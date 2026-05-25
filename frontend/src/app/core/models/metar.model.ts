@@ -1,3 +1,5 @@
+import {CloudView, VisibilityView, WeatherConditionView, WindView} from './common.model';
+
 export interface MetarView {
   id: number;
   station: string;

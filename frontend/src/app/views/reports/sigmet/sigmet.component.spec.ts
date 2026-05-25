@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SigmetComponent } from './sigmet.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {of} from 'rxjs';
+import {SigmetService} from '../../../core/services/sigmet.service';
 
 describe('SigmetComponent', () => {
   let component: SigmetComponent;
@@ -8,7 +8,10 @@ describe('SigmetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SigmetComponent]
+      imports: [SigmetComponent],
+      providers: [
+        {provide: SigmetService, useValue: {getAll: () => of([])}}
+      ]
     })
     .compileComponents();
 

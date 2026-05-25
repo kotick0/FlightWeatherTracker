@@ -1,50 +1,51 @@
-<c-container [fluid]="true">
-  <c-row>
-    <c-col xs="12">
-      <c-card class="mb-4">
-        <c-card-header>
-          <strong>SIGMET Records</strong>
-        </c-card-header>
-        <c-card-body>
-          <div style="overflow-x: auto;">
-            <table cTable hover>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Fetched At</th>
-                  <th>Latitude</th>
-                  <th>Longitude</th>
-                  <th>Timezone</th>
-                  <th>Current Temp (°C)</th>
-                  <th>Current Wind (km/h)</th>
-                  <th>Current Cloud Cover (%)</th>
-                  <th>Current Pressure (hPa)</th>
-                  <th>Hourly Temp (First)</th>
-                  <th>Hourly Visibility (First)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let record of sigmetRecords">
-                  <td>{{ record.id }}</td>
-                  <td>{{ record.fetchedAt }}</td>
-                  <td>{{ record.latitude }}</td>
-                  <td>{{ record.longitude }}</td>
-                  <td>{{ record.timezone }}</td>
-                  <td>{{ record.current.temperature_2m }} {{ record.current_units.temperature_2m }}</td>
-                  <td>{{ record.current.wind_speed_10m }} {{ record.current_units.wind_speed_10m }}</td>
-                  <td>{{ record.current.cloud_cover }} {{ record.current_units.cloud_cover }}</td>
-                  <td>{{ record.current.surface_pressure }} {{ record.current_units.surface_pressure }}</td>
-                  <td>{{ record.hourly.temperature_2m[0] }} {{ record.hourly_units.temperature_2m }}</td>
-                  <td>{{ record.hourly.visibility[0] }} {{ record.hourly_units.visibility }}</td>
-                </tr>
-                <tr *ngIf="sigmetRecords.length === 0">
-                  <td colspan="11" class="text-center">No SIGMET records available</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
-</c-container>
+<c-row>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>SIGMET Records</strong>
+      </c-card-header>
+      <c-card-body>
+        <div *ngIf="loading" class="text-muted mb-2">Loading...</div>
+        <div *ngIf="error" class="text-danger mb-2">{{ error }}</div>
+        <div style="overflow-x: auto;">
+          <table cTable hover>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Station</th>
+              <th>Fetched At</th>
+              <th>Valid From</th>
+              <th>Valid To</th>
+              <th>Phenomenon</th>
+              <th>Intensity</th>
+              <th>Flight Level</th>
+              <th>Message</th>
+              <th>Flags</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let record of sigmetRecords">
+              <td>{{ record.id }}</td>
+              <td>{{ record.station }}</td>
+              <td>{{ record.fetchedAt }}</td>
+              <td>{{ record.validFrom ?? '—' }}</td>
+              <td>{{ record.validTo ?? '—' }}</td>
+              <td>{{ record.features[0]?.phenomenon ?? '—' }}</td>
+              <td>{{ record.features[0]?.intensity ?? '—' }}</td>
+              <td>{{ record.features[0]?.flightLevel ?? '—' }}</td>
+              <td>{{ record.message }}</td>
+              <td>
+                <c-badge *ngIf="record.isCancelled" color="danger" class="me-1">CANX</c-badge>
+                <c-badge *ngIf="record.isValid" color="success">VALID</c-badge>
+              </td>
+            </tr>
+            <tr *ngIf="!loading && sigmetRecords.length === 0">
+              <td colspan="10" class="text-center">No SIGMET records available</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

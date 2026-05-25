@@ -1,1 +1,376 @@
-{"version":"4.1.5","results":[]}
+{
+  "version": "4.1.5",
+  "results": [
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/widgets/widgets/widgets.component.spec.ts",
+      {
+        "duration": 79.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/notifications/modals/modals.component.spec.ts",
+      {
+        "duration": 67.09999999403954,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/layout/default-layout/default-header/default-header.component.spec.ts",
+      {
+        "duration": 6.4000000059604645,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/carousels/carousels.component.spec.ts",
+      {
+        "duration": 59.900000005960464,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/cards/cards.component.spec.ts",
+      {
+        "duration": 83.7000000178814,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/notifications/toasters/toasters.component.spec.ts",
+      {
+        "duration": 60.099999994039536,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/buttons/dropdowns/dropdowns.component.spec.ts",
+      {
+        "duration": 51.400000005960464,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/popovers/popovers.component.spec.ts",
+      {
+        "duration": 6.5999999940395355,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/tooltips/tooltips.component.spec.ts",
+      {
+        "duration": 8.699999988079071,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/buttons/button-groups/button-groups.component.spec.ts",
+      {
+        "duration": 29.099999994039536,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/widgets/widgets-dropdown/widgets-dropdown.component.spec.ts",
+      {
+        "duration": 68.7000000178814,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/list-groups/list-groups.component.spec.ts",
+      {
+        "duration": 15.199999988079071,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/checks-radios/checks-radios.component.spec.ts",
+      {
+        "duration": 18.899999976158142,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/widgets/widgets-e/widgets-e.component.spec.ts",
+      {
+        "duration": 55.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/collapses/collapses.component.spec.ts",
+      {
+        "duration": 4.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/validation/validation.component.spec.ts",
+      {
+        "duration": 16.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/components/docs-example/docs-example.component.spec.ts",
+      {
+        "duration": 1.9000000059604645,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/accordion/accordions.component.spec.ts",
+      {
+        "duration": 8.400000005960464,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/form-controls/form-controls.component.spec.ts",
+      {
+        "duration": 9.300000011920929,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/notifications/alerts/alerts.component.spec.ts",
+      {
+        "duration": 16.299999982118607,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/input-groups/input-groups.component.spec.ts",
+      {
+        "duration": 26.900000005960464,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/placeholders/placeholders.component.spec.ts",
+      {
+        "duration": 8.300000011920929,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/widgets/widgets-brand/widgets-brand.component.spec.ts",
+      {
+        "duration": 3.7999999821186066,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/notifications/badges/badges.component.spec.ts",
+      {
+        "duration": 9.299999982118607,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/floating-labels/floating-labels.component.spec.ts",
+      {
+        "duration": 7.700000017881393,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/notifications/toasters/toast-simple/toast.component.spec.ts",
+      {
+        "duration": 5.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/spinners/spinners.component.spec.ts",
+      {
+        "duration": 6.299999982118607,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/tables/tables.component.spec.ts",
+      {
+        "duration": 26.200000017881393,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/tabs/tabs.component.spec.ts",
+      {
+        "duration": 7.199999988079071,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/paginations/paginations.component.spec.ts",
+      {
+        "duration": 10.599999994039536,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/progress/progress.component.spec.ts",
+      {
+        "duration": 9.800000011920929,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/breadcrumbs/breadcrumbs.component.spec.ts",
+      {
+        "duration": 6.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/buttons/buttons/buttons.component.spec.ts",
+      {
+        "duration": 17.100000023841858,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/pages/register/register.component.spec.ts",
+      {
+        "duration": 2.7999999821186066,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/layout/layout.component.spec.ts",
+      {
+        "duration": 16,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/base/navs/navs.component.spec.ts",
+      {
+        "duration": 16.299999982118607,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/pages/login/login.component.spec.ts",
+      {
+        "duration": 3.800000011920929,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/pages/page404/page404.component.spec.ts",
+      {
+        "duration": 2.600000023841858,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/pages/page500/page500.component.spec.ts",
+      {
+        "duration": 2.699999988079071,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/ranges/ranges.component.spec.ts",
+      {
+        "duration": 4,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/forms/select/select.component.spec.ts",
+      {
+        "duration": 6.9000000059604645,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/charts/charts.component.spec.ts",
+      {
+        "duration": 86.2999999821186,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/app.component.spec.ts",
+      {
+        "duration": 3,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/components/docs-callout/docs-callout.component.spec.ts",
+      {
+        "duration": 1.5,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/layout/default-layout/default-footer/default-footer.component.spec.ts",
+      {
+        "duration": 1.0999999940395355,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/components/docs-components/docs-components.component.spec.ts",
+      {
+        "duration": 1.5999999940395355,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/components/docs-link/docs-link.component.spec.ts",
+      {
+        "duration": 1.2999999821186066,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/settings/thresholds/thresholds.component.spec.ts",
+      {
+        "duration": 17.200000017881393,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/components/docs-icons/docs-icons.component.spec.ts",
+      {
+        "duration": 1.5999999940395355,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/settings/airports/airports.component.spec.ts",
+      {
+        "duration": 2.699999988079071,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/reports/sigmet/sigmet.component.spec.ts",
+      {
+        "duration": 3,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/reports/metar/metar.component.spec.ts",
+      {
+        "duration": 4.600000023841858,
+        "failed": false
+      }
+    ],
+    [
+      "coreui-free-angular-admin-template (chromium):src/app/views/reports/taf/taf.component.spec.ts",
+      {
+        "duration": 4.300000011920929,
+        "failed": false
+      }
+    ]
+  ]
+}

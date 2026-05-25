@@ -25,7 +25,7 @@ export class SigmetComponent implements OnInit {
 
   ngOnInit(): void {
     this.sigmetService.getAll().subscribe({
-      next: data => {
+      next: (data: SigmetView[]) => {
         this.sigmets = data;
         this.loading = false;
       },

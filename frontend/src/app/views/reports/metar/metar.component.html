@@ -3,18 +3,21 @@
       <c-card class="mb-4">
         <c-card-header class="d-flex justify-content-between align-items-center">
           <strong>METAR Records</strong>
-          <c-dropdown alignment="end">
-            <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
-              {{ selectedTimeRange }}
-            </button>
-            <ul cDropdownMenu style="min-width: 0;">
-              <li><button cDropdownItem (click)="setTimeRange('Last hour')" class="px-2">Last hour</button></li>
-              <li><button cDropdownItem (click)="setTimeRange('Last 2 hours')" class="px-2">Last 2 hours</button></li>
-              <li><button cDropdownItem (click)="setTimeRange('Last 3 hours')" class="px-2">Last 3 hours</button></li>
-            </ul>
-          </c-dropdown>
+          <div class="d-flex align-items-center">
+            <app-airport-icao-multiselect
+              class="me-2"
+              [storageKey]="icaoStorageKey"
+              (selectedIcaosChange)="onSelectedIcaosChange($event)"
+            />
+            <app-report-hours-input
+              [hours]="hours"
+              (hoursChange)="onHoursChange($event)"
+            />
+          </div>
         </c-card-header>
         <c-card-body>
+          <div *ngIf="loading" class="text-muted mb-2">Loading...</div>
+          <div *ngIf="error" class="text-danger mb-2">{{ error }}</div>
           <div style="overflow-x: auto;">
             <table cTable hover>
               <thead>
@@ -43,19 +46,33 @@
                   <td>{{ record.observedAt }}</td>
                   <td>{{ record.fetchedAt }}</td>
                   <td>{{ record.message }}</td>
-                  <td>{{ record.temperature }}</td>
-                  <td>{{ record.dewPoint }}</td>
-                  <td>{{ record.altimeter }}</td>
+                  <td>{{ record.temperature ?? '—' }}</td>
+                  <td>{{ record.dewPoint ?? '—' }}</td>
+                  <td>{{ record.altimeter ?? '—' }}</td>
                   <td>{{ record.isCavok ? 'Yes' : 'No' }}</td>
                   <td>{{ record.isCancelled ? 'Yes' : 'No' }}</td>
                   <td>{{ record.isCorrected ? 'Yes' : 'No' }}</td>
-                  <td>{{ record.wind.speed }} {{ record.wind.unit }} {{ record.wind.direction }}</td>
-                  <td>{{ record.visibility.mainVisibility }} ({{ record.visibility.value }} {{ record.visibility.unit }})</td>
-                  <td>{{ record.cloud.length > 0 ? record.cloud.map(c => c.quantity + ' at ' + c.height).join(', ') : 'None' }}</td>
-                  <td>{{ record.weatherCondition.length > 0 ? record.weatherCondition.map(w => (w.intensity || '') + ' ' + w.phenomenons.join(', ')).join('; ') : 'None' }}</td>
+                  <td>
+                    <ng-container *ngIf="record.wind; else noWind">
+                      {{ record.wind.speed }} {{ record.wind.unit }} {{ record.wind.direction }}
+                    </ng-container>
+                    <ng-template #noWind>—</ng-template>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="record.visibility; else noVisibility">
+                      {{ record.visibility.mainVisibility }} ({{ record.visibility.value }} {{ record.visibility.unit }}
+                      )
+                    </ng-container>
+                    <ng-template #noVisibility>—</ng-template>
+                  </td>
+                  <td>{{ record.clouds.length > 0 ? record.clouds.map(c => c.formatted).join(', ') : 'None' }}</td>
+                  <td>{{ record.conditions.length > 0 ? record.conditions.map(c => c.formatted).join('; ') : 'None' }}</td>
                 </tr>
-                <tr *ngIf="metarRecords.length === 0">
-                  <td colspan="15" class="text-center">No METAR records available</td>
+                <tr *ngIf="!loading && selectedIcaos.length === 0">
+                  <td colspan="15" class="text-center">Select at least one airport to view METAR records</td>
+                </tr>
+                <tr *ngIf="!loading && selectedIcaos.length > 0 && metarRecords.length === 0">
+                  <td colspan="15" class="text-center">No METAR records for the selected airports and time range</td>
                 </tr>
               </tbody>
             </table>

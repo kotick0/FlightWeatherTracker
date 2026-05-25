@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/settings/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\n\nexport const routes: Routes = [\n  {\n    path: '',\n    data: {\n      title: 'Settings'\n    },\n    children: [\n      {\n        path: '',\n        redirectTo: 'airports',\n        pathMatch: 'full'\n      },\n      {\n        path: 'airports',\n        loadComponent: () => import('./airports/airports.component').then(m => m.AirportsComponent),\n        data: {\n          title: 'Airports'\n        }\n      },\n      {\n        path: 'thresholds',\n        loadComponent: () => import('./thresholds/thresholds.component').then(m => m.ThresholdsComponent),\n        data: {\n          title: 'Thresholds'\n        }\n      }\n    ]\n  }\n];\n"],
+  "mappings": ";;;AAEO,IAAM,SAAiB;EAC5B;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,YAAY;QACZ,WAAW;;MAEb;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qBAA+B,EAAE,KAAK,OAAK,EAAE,iBAAiB;QAC1F,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qBAAmC,EAAE,KAAK,OAAK,EAAE,mBAAmB;QAChG,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

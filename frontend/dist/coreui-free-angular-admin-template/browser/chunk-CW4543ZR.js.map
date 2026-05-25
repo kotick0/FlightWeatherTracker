@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/core/services/long-taf.service.ts"],
+  "sourcesContent": ["import {Injectable} from '@angular/core';\nimport {HttpClient} from '@angular/common/http';\nimport {Observable} from 'rxjs';\nimport {TafView} from '../models/taf.model';\nimport {buildFilteredReportParams} from '../utils/reports-query.util';\n\n@Injectable({providedIn: 'root'})\nexport class LongTafService {\n\n  private readonly url = 'http://localhost:8080/api/taf/long';\n\n  constructor(private http: HttpClient) {\n  }\n\n  getAll(): Observable<TafView[]> {\n    return this.http.get<TafView[]>(this.url);\n  }\n\n  getFiltered(icaos: string[], hours: number): Observable<TafView[]> {\n    return this.http.get<TafView[]>(this.url, {\n      params: buildFilteredReportParams(icaos, hours),\n    });\n  }\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;AAOM,IAAO,iBAAP,MAAO,gBAAc;EAIzB,YAAoB,MAAgB;AAAhB,SAAA,OAAA;AAFH,SAAA,MAAM;EAGvB;EAEA,SAAM;AACJ,WAAO,KAAK,KAAK,IAAe,KAAK,GAAG;EAC1C;EAEA,YAAY,OAAiB,OAAa;AACxC,WAAO,KAAK,KAAK,IAAe,KAAK,KAAK;MACxC,QAAQ,0BAA0B,OAAO,KAAK;KAC/C;EACH;;;uCAfW,iBAAc,mBAAA,UAAA,CAAA;IAAA;EAAA;;4EAAd,iBAAc,SAAd,gBAAc,WAAA,YADF,OAAM,CAAA;EAAA;;;sEAClB,gBAAc,CAAA;UAD1B;WAAW,EAAC,YAAY,OAAM,CAAC;;;",
+  "names": []
+}

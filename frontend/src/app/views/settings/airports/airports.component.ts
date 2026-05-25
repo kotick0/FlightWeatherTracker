@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ButtonDirective, CardBodyComponent, CardComponent, CardHeaderComponent, ColComponent, FormControlDirective, FormCheckComponent, FormCheckInputDirective, RowComponent, TableDirective } from '@coreui/angular';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {
+  ButtonDirective,
+  CardBodyComponent,
+  CardComponent,
+  CardHeaderComponent,
+  ColComponent,
+  FormCheckComponent,
+  FormCheckInputDirective,
+  FormControlDirective,
+  RowComponent,
+  TableDirective
+} from '@coreui/angular';
+import {AirportService} from '../../../core/services/airport.service';
+import {AirportView} from '../../../core/models/airport.model';
 
-interface Airport {
-  id: number;
-  name: string;
-  icao: string;
-  city: string;
-  latitude: number;
-  longitude: number;
-  isMilitary: boolean;
-}
+const NEW_AIRPORT_TEMP_ID = 0;
 
 @Component({
   selector: 'app-airports',
@@ -32,15 +37,33 @@ interface Airport {
   templateUrl: './airports.component.html',
   styleUrl: './airports.component.scss',
 })
-export class AirportsComponent {
-  airports: Airport[] = [];
+export class AirportsComponent implements OnInit {
+  airports: AirportView[] = [];
 
   editingId: number | null = null;
-  editDraft: Airport | null = null;
-  isAdding: boolean = false;
-  submitted: boolean = false;
+  editDraft: AirportView | null = null;
+  isAdding = false;
+  submitted = false;
 
-  startEdit(airport: Airport) {
+  constructor(private airportService: AirportService) {
+  }
+
+  ngOnInit(): void {
+    this.loadAirports();
+  }
+
+  loadAirports(): void {
+    this.airportService.getAll().subscribe({
+      next: (data) => {
+        this.airports = this.sortById(data);
+      },
+      error: (err) => {
+        console.error('Failed to load airports', err);
+      }
+    });
+  }
+
+  startEdit(airport: AirportView) {
     this.submitted = false;
     this.editingId = airport.id;
     this.editDraft = { ...airport };
@@ -48,15 +71,50 @@ export class AirportsComponent {
 
   saveEdit() {
     this.submitted = true;
-    if (this.editDraft) {
-      if (!this.editDraft.name || !this.editDraft.icao || this.editDraft.icao.length !== 4 || !this.editDraft.city) {
-        return;
-      }
-      const index = this.airports.findIndex(a => a.id === this.editDraft!.id);
-      if (index !== -1) {
-        this.airports[index] = { ...this.editDraft };
-      }
+    if (!this.editDraft) {
+      return;
     }
+
+    if (!this.editDraft.name || !this.editDraft.icao || this.editDraft.icao.length !== 4 || !this.editDraft.city) {
+      return;
+    }
+
+    const airportData: AirportView = {
+      ...this.editDraft,
+      latitude: Number(this.editDraft.latitude),
+      longitude: Number(this.editDraft.longitude)
+    };
+
+    if (this.isAdding) {
+      const {id: _id, ...createData} = airportData;
+      this.airportService.create(createData).subscribe({
+        next: () => {
+          this.loadAirports();
+          this.resetEditState();
+        },
+        error: (err) => {
+          console.error('Failed to create airport', err);
+        }
+      });
+      return;
+    }
+
+    this.airportService.update(airportData.id, airportData).subscribe({
+      next: () => {
+        this.loadAirports();
+        this.resetEditState();
+      },
+      error: (err) => {
+        console.error('Failed to update airport', err);
+      }
+    });
+  }
+
+  private sortById(airports: AirportView[]): AirportView[] {
+    return [...airports].sort((a, b) => a.id - b.id);
+  }
+
+  private resetEditState() {
     this.editingId = null;
     this.editDraft = null;
     this.isAdding = false;
@@ -66,15 +124,24 @@ export class AirportsComponent {
   cancelEdit() {
     this.submitted = false;
     if (this.isAdding && this.editingId !== null) {
-      this.deleteAirport(this.editingId);
+      this.airports = this.airports.filter(a => a.id !== this.editingId);
     }
-    this.editingId = null;
-    this.editDraft = null;
-    this.isAdding = false;
+    this.resetEditState();
   }
 
   deleteAirport(id: number) {
-    this.airports = this.airports.filter(a => a.id !== id);
+    if (id === NEW_AIRPORT_TEMP_ID) {
+      return;
+    }
+
+    this.airportService.delete(id).subscribe({
+      next: () => {
+        this.loadAirports();
+      },
+      error: (err) => {
+        console.error('Failed to delete airport', err);
+      }
+    });
   }
 
   onKeyPressNoNumbers(event: KeyboardEvent) {
@@ -86,17 +153,15 @@ export class AirportsComponent {
     return true;
   }
 
-  onKeyPress(event: KeyboardEvent, currentValue: any) {
+  onKeyPress(event: KeyboardEvent, currentValue: unknown) {
     const charCode = event.charCode;
     const char = String.fromCharCode(charCode);
-    const valueStr = String(currentValue || '');
+    const valueStr = String(currentValue ?? '');
 
-    // Allow digits (0-9)
     if (charCode >= 48 && charCode <= 57) {
       return true;
     }
 
-    // Allow minus sign only at the beginning
     if (char === '-') {
       const selectionStart = (event.target as HTMLInputElement).selectionStart;
       if (selectionStart === 0 && !valueStr.includes('-')) {
@@ -106,7 +171,6 @@ export class AirportsComponent {
       return false;
     }
 
-    // Allow dot, but not if it's the second dot or if it would be consecutive
     if (char === '.') {
       if (valueStr.includes('.')) {
         event.preventDefault();
@@ -114,13 +178,6 @@ export class AirportsComponent {
       }
 
       const selectionStart = (event.target as HTMLInputElement).selectionStart;
-      // Check for consecutive dots if we were to allow multiple,
-      // but since we only allow one, we just check if it's already there.
-      // However, if the user specifically asked for "not 2 dots after each other",
-      // maybe they imply multiple dots are allowed?
-      // Usually coordinates have only one dot.
-
-      // If the character before the cursor is a dot, prevent this one.
       if (selectionStart !== null && selectionStart > 0 && valueStr[selectionStart - 1] === '.') {
         event.preventDefault();
         return false;
@@ -128,7 +185,6 @@ export class AirportsComponent {
       return true;
     }
 
-    // Prevent everything else
     event.preventDefault();
     return false;
   }
@@ -138,9 +194,8 @@ export class AirportsComponent {
       return;
     }
     this.isAdding = true;
-    const newId = this.airports.length > 0 ? Math.max(...this.airports.map(a => a.id)) + 1 : 1;
-    const newAirport: Airport = {
-      id: newId,
+    const newAirport: AirportView = {
+      id: NEW_AIRPORT_TEMP_ID,
       name: '',
       icao: '',
       city: '',
@@ -148,7 +203,7 @@ export class AirportsComponent {
       longitude: 0,
       isMilitary: false
     };
-    this.airports.push(newAirport);
+    this.airports.unshift(newAirport);
     this.startEdit(newAirport);
   }
 }

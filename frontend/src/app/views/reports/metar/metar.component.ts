@@ -1,60 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
-  ButtonDirective,
   CardBodyComponent,
   CardComponent,
   CardHeaderComponent,
   ColComponent,
-  DropdownComponent,
-  DropdownItemDirective,
-  DropdownMenuDirective,
-  DropdownToggleDirective,
   RowComponent,
   TableDirective
 } from '@coreui/angular';
-
-interface Wind {
-  unit: string;
-  direction: string;
-  directionDegrees: number;
-  speed: number;
-}
-
-interface Visibility {
-  unit: string;
-  mainVisibility: string;
-  value: number;
-}
-
-interface Cloud {
-  quantity: string;
-  height: number;
-}
-
-interface WeatherCondition {
-  intensity: string;
-  phenomenons: string[];
-  valid: boolean;
-}
-
-interface MetarRecord {
-  id: number;
-  station: string;
-  observedAt: string;
-  fetchedAt: string;
-  message: string;
-  temperature: number;
-  dewPoint: number;
-  altimeter: number;
-  isCavok: boolean;
-  isCancelled: boolean;
-  isCorrected: boolean;
-  wind: Wind;
-  visibility: Visibility;
-  cloud: Cloud[];
-  weatherCondition: WeatherCondition[];
-}
+import {
+  REPORTS_FILTER_KEYS,
+  ReportsFilterPreferencesService
+} from '../../../core/services/reports-filter-preferences.service';
+import {MetarService} from '../../../core/services/metar.service';
+import {MetarView} from '../../../core/models/metar.model';
+import {filterRecordsByStations} from '../../../core/utils/reports-query.util';
 
 @Component({
   selector: 'app-metar',
@@ -65,47 +25,62 @@ interface MetarRecord {
     CardBodyComponent,
     RowComponent,
     ColComponent,
-    TableDirective,
-    DropdownComponent,
-    DropdownToggleDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
-    ButtonDirective
+    TableDirective
   ],
   templateUrl: './metar.component.html',
   styleUrl: './metar.component.scss',
 })
 export class MetarComponent implements OnInit {
-  metarRecords: MetarRecord[] = [];
-  selectedTimeRange: string = 'Last hour';
+  readonly icaoStorageKey = REPORTS_FILTER_KEYS.metar.selectedIcaos;
 
-  setTimeRange(range: string) {
-    this.selectedTimeRange = range;
-    // Database/SQL action logic will be added here later
-    console.log(`Selected time range: ${range}`);
+  metarRecords: MetarView[] = [];
+  hours = 1;
+  selectedIcaos: string[] = [];
+  loading = false;
+  error: string | null = null;
+
+  constructor(
+    private preferences: ReportsFilterPreferencesService,
+    private metarService: MetarService,
+  ) {
+  }
+
+  onHoursChange(hours: number) {
+    this.hours = hours;
+    this.preferences.setMetarHours(hours);
+    this.loadRecords();
+  }
+
+  onSelectedIcaosChange(icaos: string[]) {
+    this.selectedIcaos = icaos;
+    this.loadRecords();
   }
 
   ngOnInit() {
-    // Mock data for now, replace with API call later
-    this.metarRecords = [
-      {
-        id: 1,
-        station: 'EPWA',
-        observedAt: '2026-05-06T07:30:00',
-        fetchedAt: '2026-05-06T07:35:00',
-        message: 'METAR EPWA 060730Z 13004KT CAVOK 12/06 Q1021 NOSIG=',
-        temperature: 12,
-        dewPoint: 6,
-        altimeter: 1021,
-        isCavok: true,
-        isCancelled: false,
-        isCorrected: false,
-        wind: { unit: 'KT', direction: 'South East', directionDegrees: 130, speed: 4 },
-        visibility: { unit: 'km', mainVisibility: '>10km', value: 10 },
-        cloud: [],
-        weatherCondition: []
+    this.hours = this.preferences.getMetarHours();
+  }
+
+  private loadRecords(): void {
+    this.error = null;
+
+    if (this.selectedIcaos.length === 0) {
+      this.metarRecords = [];
+      this.loading = false;
+      return;
+    }
+
+    this.loading = true;
+
+    this.metarService.getFiltered(this.selectedIcaos, this.hours).subscribe({
+      next: (data) => {
+        this.metarRecords = filterRecordsByStations(data, this.selectedIcaos);
+        this.loading = false;
+      },
+      error: () => {
+        this.error = 'Failed to fetch METAR records';
+        this.metarRecords = [];
+        this.loading = false;
       }
-      // Add more mock records as needed
-    ];
+    });
   }
 }

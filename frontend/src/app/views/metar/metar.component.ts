@@ -25,7 +25,7 @@ export class MetarComponent implements OnInit {
 
   ngOnInit(): void {
     this.metarService.getAll().subscribe({
-      next: data => {
+      next: (data: MetarView[]) => {
         this.metars = data;
         this.loading = false;
       },

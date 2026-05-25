@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TafView} from '../models/taf.model';
+import {buildFilteredReportParams} from '../utils/reports-query.util';
 
 @Injectable({providedIn: 'root'})
 export class LongTafService {
@@ -13,5 +14,11 @@ export class LongTafService {
 
   getAll(): Observable<TafView[]> {
     return this.http.get<TafView[]>(this.url);
+  }
+
+  getFiltered(icaos: string[], hours: number): Observable<TafView[]> {
+    return this.http.get<TafView[]>(this.url, {
+      params: buildFilteredReportParams(icaos, hours),
+    });
   }
 }

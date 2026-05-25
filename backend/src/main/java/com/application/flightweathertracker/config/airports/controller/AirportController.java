@@ -3,9 +3,7 @@ package com.application.flightweathertracker.config.airports.controller;
 import com.application.flightweathertracker.config.airports.service.AirportService;
 import com.application.flightweathertracker.config.airports.view.AirportView;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,21 @@ public class AirportController {
     @GetMapping
     public ResponseEntity<List<AirportView>> getAll() {
         return ResponseEntity.ok(service.getAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<AirportView> create(@RequestBody AirportView view) {
+        return ResponseEntity.ok(service.create(view));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AirportView> update(@PathVariable Long id, @RequestBody AirportView view) {
+        return ResponseEntity.ok(service.update(id, view));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

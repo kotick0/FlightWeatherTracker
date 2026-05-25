@@ -24,7 +24,7 @@ export class OpenMeteoComponent implements OnInit {
 
   ngOnInit(): void {
     this.openMeteoService.getLatest().subscribe({
-      next: data => {
+      next: (data: OpenMeteoView) => {
         this.data = data;
         this.loading = false;
       },

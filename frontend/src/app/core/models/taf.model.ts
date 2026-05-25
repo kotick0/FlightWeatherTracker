@@ -1,3 +1,6 @@
+import {CloudView, VisibilityView, WeatherConditionView, WindView} from './common.model';
+
+export type TafView = LongTafView;
 export interface ValidityView {
   startDay: number;
   startHour: number;
