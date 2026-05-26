@@ -1,0 +1,75 @@
+{
+  "metar": {
+    "minVisibility": 0.8,
+    "minCloudHeight": 200,
+    "maxCloudQuantity": "BKN",
+    "minAltimeter": 950,
+    "maxTemperature": 4,
+    "maxWindSpeed": 40,
+    "maxGustSpeed": 45,
+    "maxWeatherIntensity": "HEAVY",
+    "windShear": true,
+    "cancellingPhenomenon": [
+      "THUNDERSTORM",
+      "FREEZING_RAIN",
+      "FREEZING_DRIZZLE",
+      "FUNNEL_CLOUD",
+      "SQUALL",
+      "HAIL"
+    ],
+    "operationallySignificantPhenomena": [
+      "SNOW",
+      "FOG",
+      "RAIN_SNOW",
+      "BLOWING_SNOW"
+    ]
+  },
+  "taf": {
+    "minVisibility": 0.8,
+    "minCloudHeight": 200,
+    "maxCloudQuantity": "BKN",
+    "cancellingCloudType": "CB",
+    "maxWindSpeed": 40,
+    "maxGustSpeed": 45,
+    "minTempoProbability": 40,
+    "cancellingPhenomenon": [
+      "THUNDERSTORM",
+      "FREEZING_RAIN",
+      "FREEZING_DRIZZLE",
+      "FUNNEL_CLOUD",
+      "SQUALL",
+      "HAIL"
+    ],
+    "operationallySignificantPhenomena": [
+      "SNOW",
+      "FOG",
+      "RAIN_SNOW",
+      "BLOWING_SNOW"
+    ]
+  },
+  "sigmet": {
+    "minFlightLevel": 30,
+    "maxFlightLevel": 450,
+    "maxIntensity": "INTSF",
+    "wmoOperationallySignificant": [
+      "WS"
+    ],
+    "wmoCancelling": [
+      "WV",
+      "WC"
+    ],
+    "phenomenaOperationallySignificant": [
+      "MTW",
+      "TURB",
+      "ICE",
+      "TS",
+      "DS",
+      "SS"
+    ],
+    "phenomenaCancelling": [
+      "VA",
+      "TC",
+      "RDOACT_CLD"
+    ]
+  }
+}
