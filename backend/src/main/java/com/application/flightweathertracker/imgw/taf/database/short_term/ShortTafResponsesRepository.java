@@ -7,19 +7,19 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface ShortTafResponsesRepository extends JpaRepository<ShortTafResponsesTable, Long> {
-    List<ShortTafResponsesTable> findAllByStation(String station);
+public interface ShortTafResponsesRepository extends JpaRepository<ShortTafResponses, Long> {
+    List<ShortTafResponses> findAllByStation(String station);
 
-    List<ShortTafResponsesTable> findByObservedAtAfter(LocalDateTime observedAt);
+    List<ShortTafResponses> findByObservedAtAfter(LocalDateTime observedAt);
 
-    List<ShortTafResponsesTable> findAllByOrderByObservedAtDesc();
+    List<ShortTafResponses> findAllByOrderByObservedAtDesc();
 
     @Query("""
-            SELECT t FROM ShortTafResponsesTable t
+            SELECT t FROM ShortTafResponses t
             WHERE t.station IN :stations AND t.fetchedAt >= :fetchedAfter
             ORDER BY t.fetchedAt DESC
             """)
-    List<ShortTafResponsesTable> findFilteredByStationsAndFetchedAt(
+    List<ShortTafResponses> findFilteredByStationsAndFetchedAt(
             @Param("stations") List<String> stations,
             @Param("fetchedAfter") LocalDateTime fetchedAfter
     );

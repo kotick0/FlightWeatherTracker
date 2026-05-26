@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SigmetResponsesTable {
+public class SigmetResponses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

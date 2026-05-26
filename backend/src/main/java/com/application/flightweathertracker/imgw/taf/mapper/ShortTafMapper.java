@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.imgw.taf.mapper;
 
 import com.application.flightweathertracker.imgw.common.mapper.CommonMapper;
-import com.application.flightweathertracker.imgw.taf.database.short_term.ShortTafResponsesTable;
+import com.application.flightweathertracker.imgw.taf.database.short_term.ShortTafResponses;
 import com.application.flightweathertracker.imgw.taf.model.Becmg;
 import com.application.flightweathertracker.imgw.taf.model.Probs;
 import com.application.flightweathertracker.imgw.taf.model.Tempos;
@@ -20,7 +20,7 @@ public class ShortTafMapper {
         this.common = common;
     }
 
-    public TafView map(ShortTafResponsesTable e) {
+    public TafView map(ShortTafResponses e) {
         return new TafView(
                 e.getId(),
                 e.getStation(),

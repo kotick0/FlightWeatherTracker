@@ -24,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MetarResponsesTable {
+public class MetarResponses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

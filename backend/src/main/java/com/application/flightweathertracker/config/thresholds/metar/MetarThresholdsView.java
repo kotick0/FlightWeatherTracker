@@ -1,15 +1,17 @@
-package com.application.flightweathertracker.config.thresholds.view;
+package com.application.flightweathertracker.config.thresholds.metar;
 
 import java.util.List;
 
-public record TafThresholdsView(
+public record MetarThresholdsView(
         double minVisibility,
         int minCloudHeight,
         String maxCloudQuantity,
-        String cancellingCloudType,
+        int minAltimeter,
+        int maxTemperature,
         int maxWindSpeed,
         int maxGustSpeed,
-        int minTempoProbability,
+        String maxWeatherIntensity,
+        boolean windShear,
         List<String> cancellingPhenomenon,
         List<String> operationallySignificantPhenomena
 ) {}

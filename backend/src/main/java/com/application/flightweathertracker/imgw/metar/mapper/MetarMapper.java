@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.imgw.metar.mapper;
 
 import com.application.flightweathertracker.imgw.common.mapper.CommonMapper;
-import com.application.flightweathertracker.imgw.metar.database.MetarResponsesTable;
+import com.application.flightweathertracker.imgw.metar.database.MetarResponses;
 import com.application.flightweathertracker.imgw.metar.view.MetarView;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public class MetarMapper {
         this.common = common;
     }
 
-    public MetarView map(MetarResponsesTable e) {
+    public MetarView map(MetarResponses e) {
         return new MetarView(
                 e.getId(),
                 e.getStation(),

@@ -5,7 +5,7 @@ import com.application.flightweathertracker.config.airports.database.AirportsTab
 import com.application.flightweathertracker.imgw.ImgwApiClient;
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
 import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesRepository;
-import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesTable;
+import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponses;
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class ImgwSigmetService {
         for (ImgwSigmet imgwSigmet : deserializedSigmetResponse.values()) {
             if (imgwSigmet != null) {
                 try {
-                    SigmetResponsesTable responseRecord = SigmetResponsesTable.builder()
+                    SigmetResponses responseRecord = SigmetResponses.builder()
                             .fetchedAt(LocalDateTime.now())
                             .TT(imgwSigmet.TT())
                             .AA(imgwSigmet.AA())

@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.config.thresholds.view;
+package com.application.flightweathertracker.config.thresholds.sigmet;
 
 import java.util.List;
 

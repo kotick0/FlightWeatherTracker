@@ -7,18 +7,18 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface MetarResponsesRepository extends JpaRepository<MetarResponsesTable, Long> {
-    List<MetarResponsesTable> findAllByStation(String station);
-    List<MetarResponsesTable> findByObservedAtAfter(LocalDateTime observedAt);
+public interface MetarResponsesRepository extends JpaRepository<MetarResponses, Long> {
+    List<MetarResponses> findAllByStation(String station);
+    List<MetarResponses> findByObservedAtAfter(LocalDateTime observedAt);
 
-    List<MetarResponsesTable> findAllByOrderByObservedAtDesc();
+    List<MetarResponses> findAllByOrderByObservedAtDesc();
 
     @Query("""
-            SELECT m FROM MetarResponsesTable m
+            SELECT m FROM MetarResponses m
             WHERE m.station IN :stations AND m.fetchedAt >= :fetchedAfter
             ORDER BY m.fetchedAt DESC
             """)
-    List<MetarResponsesTable> findFilteredByStationsAndFetchedAt(
+    List<MetarResponses> findFilteredByStationsAndFetchedAt(
             @Param("stations") List<String> stations,
             @Param("fetchedAfter") LocalDateTime fetchedAfter
     );

@@ -3,7 +3,7 @@ package com.application.flightweathertracker.imgw.metar;
 import com.application.flightweathertracker.imgw.ImgwApiClient;
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
 import com.application.flightweathertracker.imgw.metar.database.MetarResponsesRepository;
-import com.application.flightweathertracker.imgw.metar.database.MetarResponsesTable;
+import com.application.flightweathertracker.imgw.metar.database.MetarResponses;
 import com.application.flightweathertracker.imgw.metar.model.ImgwMetar;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class ImgwMetarService {
         Map<String, ImgwMetar> deserializedMetarResponse = imgwJsonDeserializer.deserializeMetars(imgwMetarResponseJson);
         for (ImgwMetar imgwMetar : deserializedMetarResponse.values()) {
             try {
-                MetarResponsesTable responseRecord = MetarResponsesTable.builder()
+                MetarResponses responseRecord = MetarResponses.builder()
                         .station(imgwMetar.station())
                         .observedAt(imgwMetar.date())
                         .fetchedAt(LocalDateTime.now())

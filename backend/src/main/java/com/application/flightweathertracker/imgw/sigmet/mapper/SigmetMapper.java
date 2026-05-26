@@ -1,6 +1,6 @@
 package com.application.flightweathertracker.imgw.sigmet.mapper;
 
-import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesTable;
+import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponses;
 import com.application.flightweathertracker.imgw.sigmet.model.Feature;
 import com.application.flightweathertracker.imgw.sigmet.model.Properties;
 import com.application.flightweathertracker.imgw.sigmet.view.SigmetFeatureView;
@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class SigmetMapper {
 
-    public SigmetView map(SigmetResponsesTable e) {
+    public SigmetView map(SigmetResponses e) {
         List<SigmetFeatureView> features = e.getGeojson() != null && e.getGeojson().features() != null
                 ? e.getGeojson().features().stream().map(this::mapFeature).toList()
                 : List.of();
