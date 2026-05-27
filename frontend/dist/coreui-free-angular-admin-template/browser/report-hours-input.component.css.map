@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/shared/components/report-hours-input/report-hours-input.component.ts"],
-  "sourcesContent": ["\n    .report-hours-input input {\n      width: 4.5rem;\n    }\n  "],
-  "mappings": ";AACI,CAAA,mBAAA;AACE,SAAA;;",
-  "names": []
-}

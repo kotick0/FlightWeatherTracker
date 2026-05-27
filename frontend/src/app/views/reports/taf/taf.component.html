@@ -2,7 +2,10 @@
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header class="d-flex justify-content-between align-items-center">
-        <strong>{{ selectedTafType }} Records</strong>
+        <div class="d-flex align-items-center gap-2">
+          <strong>{{ selectedTafType }} Records</strong>
+          <span class="text-muted loading-placeholder" [class.invisible]="!loading" aria-live="polite">Loading...</span>
+        </div>
         <div class="d-flex align-items-center">
           <c-dropdown alignment="end" class="me-2">
             <button cButton cDropdownToggle color="secondary" size="sm" variant="outline">
@@ -27,7 +30,6 @@
         </div>
       </c-card-header>
       <c-card-body>
-        <div *ngIf="loading" class="text-muted mb-2">Loading...</div>
         <div *ngIf="error" class="text-danger mb-2">{{ error }}</div>
         <div style="overflow-x: auto;">
           <table cTable hover *ngIf="selectedTafType === 'Long TAF'">

@@ -1,0 +1,10 @@
+/* Reserve space for Loading... placeholder to avoid layout shifts when toggled */
+.loading-placeholder {
+  min-height: 1.25rem; /* ensures a consistent space matching the typical line height */
+}
+
+.loading-placeholder.invisible {
+  visibility: hidden; /* hide content but keep layout space */
+}
+
+

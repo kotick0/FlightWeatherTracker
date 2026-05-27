@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/core/services/sigmet.service.ts"],
-  "sourcesContent": ["import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable } from 'rxjs';\nimport { SigmetView } from '../models/sigmet.model';\n\n@Injectable({providedIn: 'root'})\nexport class SigmetService {\n  private readonly url = 'http://localhost:8080/api/sigmet';\n\n  constructor(private http: HttpClient) {\n  }\n\n  getAll(): Observable<SigmetView[]> {\n    return this.http.get<SigmetView[]>(this.url);\n  }\n}\n"],
-  "mappings": ";;;;;;;;;;;AAMM,IAAO,gBAAP,MAAO,eAAa;EAGxB,YAAoB,MAAgB;AAAhB,SAAA,OAAA;AAFH,SAAA,MAAM;EAGvB;EAEA,SAAM;AACJ,WAAO,KAAK,KAAK,IAAkB,KAAK,GAAG;EAC7C;;;uCARW,gBAAa,mBAAA,UAAA,CAAA;IAAA;EAAA;;4EAAb,gBAAa,SAAb,eAAa,WAAA,YADD,OAAM,CAAA;EAAA;;;sEAClB,eAAa,CAAA;UADzB;WAAW,EAAC,YAAY,OAAM,CAAC;;;",
-  "names": []
-}

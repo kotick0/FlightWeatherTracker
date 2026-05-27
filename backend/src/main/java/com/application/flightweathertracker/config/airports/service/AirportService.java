@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.config.airports.service;
 
 import com.application.flightweathertracker.config.airports.database.AirportsRepository;
-import com.application.flightweathertracker.config.airports.database.AirportsTable;
+import com.application.flightweathertracker.config.airports.database.Airports;
 import com.application.flightweathertracker.config.airports.mapper.AirportMapper;
 import com.application.flightweathertracker.config.airports.view.AirportView;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class AirportService {
     }
 
     public AirportView create(AirportView view) {
-        AirportsTable entity = AirportsTable.builder()
+        Airports entity = Airports.builder()
                 .name(view.name())
                 .icao(view.icao())
                 .city(view.city())
@@ -35,12 +35,12 @@ public class AirportService {
                 .longitude(view.longitude())
                 .isMILITARY(view.isMilitary())
                 .build();
-        AirportsTable saved = repository.save(entity);
+        Airports saved = repository.save(entity);
         return mapper.map(saved);
     }
 
     public AirportView update(Long id, AirportView view) {
-        AirportsTable entity = repository.findById(id)
+        Airports entity = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Airport not found with id: " + id));
         entity.setName(view.name());
         entity.setIcao(view.icao());
@@ -48,7 +48,7 @@ public class AirportService {
         entity.setLatitude(view.latitude());
         entity.setLongitude(view.longitude());
         entity.setMILITARY(view.isMilitary());
-        AirportsTable saved = repository.save(entity);
+        Airports saved = repository.save(entity);
         return mapper.map(saved);
     }
 

@@ -22,12 +22,20 @@ import {normalizeHoursValue} from '../../../core/utils/reports-query.util';
         (keypress)="onKeyPress($event)"
         [attr.aria-label]="'Look back ' + hours() + (hours() === 1 ? ' hour' : ' hours')"
       />
-      <span class="ms-1 text-nowrap small text-body-secondary">{{ hours() === 1 ? 'hour' : 'hours' }}</span>
+      <span class="ms-1 text-nowrap small text-body-secondary hours-unit">{{ hours() === 1 ? 'hour' : 'hours' }}</span>
     </div>
   `,
   styles: `
     .report-hours-input input {
       width: 4.5rem;
+    }
+
+    /* Ensure the unit label has a stable width so switching between "hour" and "hours" doesn't
+       cause neighbouring elements to shift (prevents text jitter). */
+    .report-hours-input .hours-unit {
+      display: inline-block;
+      min-width: 3ch; /* enough to accommodate "hours" */
+      text-align: left;
     }
   `,
 })

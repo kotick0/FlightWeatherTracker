@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/reports/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\n\nexport const routes: Routes = [\n  {\n    path: '',\n    data: {\n      title: 'Reports'\n    },\n    children: [\n      {\n        path: '',\n        redirectTo: 'metar',\n        pathMatch: 'full'\n      },\n      {\n        path: 'metar',\n        loadComponent: () => import('./metar/metar.component').then(m => m.MetarComponent),\n        data: {\n          title: 'METAR'\n        }\n      },\n      {\n        path: 'taf',\n        loadComponent: () => import('./taf/taf.component').then(m => m.TafComponent),\n        data: {\n          title: 'TAF'\n        }\n      },\n      {\n        path: 'sigmet',\n        loadComponent: () => import('./sigmet/sigmet.component').then(m => m.SigmetComponent),\n        data: {\n          title: 'SIGMET'\n        }\n      }\n    ]\n  }\n];\n"],
-  "mappings": ";;;AAEO,IAAM,SAAiB;EAC5B;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,YAAY;QACZ,WAAW;;MAEb;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qBAAyB,EAAE,KAAK,OAAK,EAAE,cAAc;QACjF,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qBAAqB,EAAE,KAAK,OAAK,EAAE,YAAY;QAC3E,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qBAA2B,EAAE,KAAK,OAAK,EAAE,eAAe;QACpF,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

@@ -1,0 +1,1 @@
+import{a as o,b as r,c as e}from"./chunk-7B73G73K.js";import"./chunk-QX5XQ4BG.js";import"./chunk-EPYEHG74.js";import"./chunk-4CLCTAJ7.js";export{o as DefaultFooterComponent,r as DefaultHeaderComponent,e as DefaultLayoutComponent};

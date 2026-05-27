@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.imgw.sigmet;
 
 import com.application.flightweathertracker.config.airports.database.AirportsRepository;
-import com.application.flightweathertracker.config.airports.database.AirportsTable;
+import com.application.flightweathertracker.config.airports.database.Airports;
 import com.application.flightweathertracker.imgw.ImgwApiClient;
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
 import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesRepository;
@@ -66,7 +66,7 @@ public class ImgwSigmetService {
 
     public boolean isAirportInSigmet(ImgwSigmet sigmet, String icao) {
         if (sigmet != null) {
-            AirportsTable airport = airportsRepository.findByIcao(icao);
+            Airports airport = airportsRepository.findByIcao(icao);
 
             List<List<Double>> coordinates = sigmet.geojson().features().getFirst().geometry().coordinates().getFirst();
             List<Coordinate> coords = new ArrayList<>();

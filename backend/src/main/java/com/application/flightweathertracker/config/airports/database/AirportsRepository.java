@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface AirportsRepository extends JpaRepository<AirportsTable, Long> {
+public interface AirportsRepository extends JpaRepository<Airports, Long> {
     boolean existsByIdNotNull();
-    @Query("SELECT DISTINCT e.icao FROM AirportsTable e")
+    @Query("SELECT DISTINCT e.icao FROM Airports e")
     List<String> findAllDistinctIcaoCodes();
 
-    AirportsTable findByIcao(String icao);
+    Airports findByIcao(String icao);
 }

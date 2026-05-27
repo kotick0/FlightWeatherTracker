@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/core/services/metar.service.ts"],
-  "sourcesContent": ["import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable } from 'rxjs';\nimport { MetarView } from '../models/metar.model';\nimport { buildFilteredReportParams } from '../utils/reports-query.util';\n\n@Injectable({providedIn: 'root'})\nexport class MetarService {\n  private readonly url = 'http://localhost:8080/api/metar';\n\n  constructor(private http: HttpClient) {\n  }\n\n  getAll(): Observable<MetarView[]> {\n    return this.http.get<MetarView[]>(this.url);\n  }\n\n  getFiltered(icaos: string[], hours: number): Observable<MetarView[]> {\n    return this.http.get<MetarView[]>(this.url, {\n      params: buildFilteredReportParams(icaos, hours),\n    });\n  }\n}\n"],
-  "mappings": ";;;;;;;;;;;;;;AAOM,IAAO,eAAP,MAAO,cAAY;EAGvB,YAAoB,MAAgB;AAAhB,SAAA,OAAA;AAFH,SAAA,MAAM;EAGvB;EAEA,SAAM;AACJ,WAAO,KAAK,KAAK,IAAiB,KAAK,GAAG;EAC5C;EAEA,YAAY,OAAiB,OAAa;AACxC,WAAO,KAAK,KAAK,IAAiB,KAAK,KAAK;MAC1C,QAAQ,0BAA0B,OAAO,KAAK;KAC/C;EACH;;;uCAdW,eAAY,mBAAA,UAAA,CAAA;IAAA;EAAA;;4EAAZ,eAAY,SAAZ,cAAY,WAAA,YADA,OAAM,CAAA;EAAA;;;sEAClB,cAAY,CAAA;UADxB;WAAW,EAAC,YAAY,OAAM,CAAC;;;",
-  "names": []
-}

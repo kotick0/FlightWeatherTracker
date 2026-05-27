@@ -1,7 +1,7 @@
 package com.application.flightweathertracker.config.airports;
 
 import com.application.flightweathertracker.config.airports.database.AirportsRepository;
-import com.application.flightweathertracker.config.airports.database.AirportsTable;
+import com.application.flightweathertracker.config.airports.database.Airports;
 import com.application.flightweathertracker.imgw.common.model.Airport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +50,7 @@ public class AirportsService {
 
     private void saveAirportsToDatabase(HashMap<String, Airport> airports) {
         for (Airport airport : airports.values()) {
-            AirportsTable airportsRecord = AirportsTable.builder()
+            Airports airportsRecord = Airports.builder()
                     .name(airport.name())
                     .icao(airport.icao())
                     .city(airport.city())

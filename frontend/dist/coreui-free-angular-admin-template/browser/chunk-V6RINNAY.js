@@ -1,0 +1,1 @@
+import{k as r}from"./chunk-QX5XQ4BG.js";import{T as e,X as i}from"./chunk-EPYEHG74.js";var o=class t{constructor(a){this.http=a;this.url="http://localhost:8080/api/sigmet"}getAll(){return this.http.get(this.url)}static{this.\u0275fac=function(p){return new(p||t)(i(r))}}static{this.\u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})}};export{o as a};
