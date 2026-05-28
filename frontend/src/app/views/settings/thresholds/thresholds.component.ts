@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ThresholdsService } from '../../../core/services/thresholds.service';
+import { MetarThresholdsView, TafThresholdsView, SigmetThresholdsView } from '../../../core/models/thresholds.model';
 import {
   ButtonDirective,
   CardBodyComponent,
@@ -413,8 +415,71 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
     this.showPhenomenaModal = false;
   }
 
+  constructor(private thresholdsService: ThresholdsService) {}
+
   ngOnInit(): void {
-    // Initial data loading logic could go here
+    this.loadThresholds();
+  }
+
+  loadThresholds() {
+    this.thresholdsService.getMetar().subscribe({
+      next: (data) => {
+        this.metarThresholds = {
+          minVisibility: data.minVisibility,
+          minCloudHeight: data.minCloudHeight,
+          maxCloudQuantity: data.maxCloudQuantity,
+          isWindShear: data.windShear,
+          minTemperature: data.maxTemperature,
+          minAltimeter: data.minAltimeter,
+          maxWindSpeed: data.maxWindSpeed,
+          maxGust: data.maxGustSpeed,
+          weatherPhenomenon: {
+            cancelling: data.cancellingPhenomenon || [],
+            operationallySignificant: data.operationallySignificantPhenomena || []
+          },
+          maxWeatherIntensity: data.maxWeatherIntensity
+        };
+      },
+      error: (err) => console.error('Failed to load METAR thresholds', err)
+    });
+
+    this.thresholdsService.getTaf().subscribe({
+      next: (data) => {
+        this.tafThresholds = {
+          minVisibility: data.minVisibility,
+          minCloudHeight: data.minCloudHeight,
+          maxCloudQuantity: data.maxCloudQuantity,
+          cancellingTempoCloudType: data.cancellingCloudType,
+          maxWindSpeed: data.maxWindSpeed,
+          maxGust: data.maxGustSpeed,
+          minTempoProbability: data.minTempoProbability,
+          weatherConditions: {
+            cancelling: data.cancellingPhenomenon || [],
+            operationallySignificant: data.operationallySignificantPhenomena || []
+          }
+        };
+      },
+      error: (err) => console.error('Failed to load TAF thresholds', err)
+    });
+
+    this.thresholdsService.getSigmet().subscribe({
+      next: (data) => {
+        this.sigmetThresholds = {
+          WMO: {
+            cancelling: data.wmoCancelling || [],
+            operationallySignificant: data.wmoOperationallySignificant || []
+          },
+          phenomenon: {
+            cancelling: data.phenomenaCancelling || [],
+            operationallySignificant: data.phenomenaOperationallySignificant || []
+          },
+          maxIntensity: data.maxIntensity,
+          minFlightLevel: data.minFlightLevel,
+          maxFlightLevel: data.maxFlightLevel
+        };
+      },
+      error: (err) => console.error('Failed to load SIGMET thresholds', err)
+    });
   }
 
   @HostListener('document:click', ['$event'])
@@ -530,7 +595,54 @@ export class ThresholdsComponent implements OnInit, OnDestroy {
       taf: this.tafThresholds,
       sigmet: this.sigmetThresholds
     });
-    // Logic to save thresholds via API would go here
+    
+    const metarView: MetarThresholdsView = {
+      minVisibility: Number(this.metarThresholds.minVisibility),
+      minCloudHeight: Number(this.metarThresholds.minCloudHeight),
+      maxCloudQuantity: this.metarThresholds.maxCloudQuantity,
+      minAltimeter: Number(this.metarThresholds.minAltimeter),
+      maxTemperature: Number(this.metarThresholds.minTemperature),
+      maxWindSpeed: Number(this.metarThresholds.maxWindSpeed),
+      maxGustSpeed: Number(this.metarThresholds.maxGust),
+      maxWeatherIntensity: this.metarThresholds.maxWeatherIntensity,
+      windShear: this.metarThresholds.isWindShear,
+      cancellingPhenomenon: this.metarThresholds.weatherPhenomenon.cancelling,
+      operationallySignificantPhenomena: this.metarThresholds.weatherPhenomenon.operationallySignificant
+    };
+
+    const tafView: TafThresholdsView = {
+      minVisibility: Number(this.tafThresholds.minVisibility),
+      minCloudHeight: Number(this.tafThresholds.minCloudHeight),
+      maxCloudQuantity: this.tafThresholds.maxCloudQuantity,
+      cancellingCloudType: this.tafThresholds.cancellingTempoCloudType,
+      maxWindSpeed: Number(this.tafThresholds.maxWindSpeed),
+      maxGustSpeed: Number(this.tafThresholds.maxGust),
+      minTempoProbability: Number(this.tafThresholds.minTempoProbability),
+      cancellingPhenomenon: this.tafThresholds.weatherConditions.cancelling,
+      operationallySignificantPhenomena: this.tafThresholds.weatherConditions.operationallySignificant
+    };
+
+    const sigmetView: SigmetThresholdsView = {
+      minFlightLevel: Number(this.sigmetThresholds.minFlightLevel),
+      maxFlightLevel: Number(this.sigmetThresholds.maxFlightLevel),
+      maxIntensity: this.sigmetThresholds.maxIntensity,
+      wmoOperationallySignificant: this.sigmetThresholds.WMO.operationallySignificant,
+      wmoCancelling: this.sigmetThresholds.WMO.cancelling,
+      phenomenaOperationallySignificant: this.sigmetThresholds.phenomenon.operationallySignificant,
+      phenomenaCancelling: this.sigmetThresholds.phenomenon.cancelling
+    };
+
+    this.thresholdsService.updateMetar(metarView).subscribe({
+      error: (err) => console.error('Failed to save METAR thresholds', err)
+    });
+
+    this.thresholdsService.updateTaf(tafView).subscribe({
+      error: (err) => console.error('Failed to save TAF thresholds', err)
+    });
+
+    this.thresholdsService.updateSigmet(sigmetView).subscribe({
+      error: (err) => console.error('Failed to save SIGMET thresholds', err)
+    });
   }
 
   // Toggle selection for WMO Cancelling
