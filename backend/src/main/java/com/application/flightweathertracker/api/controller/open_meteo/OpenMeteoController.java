@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.api.controller;
+package com.application.flightweathertracker.api.controller.open_meteo;
 
 import com.application.flightweathertracker.open_meteo.service.OpenMeteoService;
 import com.application.flightweathertracker.open_meteo.view.OpenMeteoView;

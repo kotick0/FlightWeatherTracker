@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.config.airports.controller;
+package com.application.flightweathertracker.api.controller.config;
 
 import com.application.flightweathertracker.config.airports.service.AirportService;
 import com.application.flightweathertracker.config.airports.view.AirportView;

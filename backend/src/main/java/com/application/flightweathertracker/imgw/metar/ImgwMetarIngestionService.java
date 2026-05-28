@@ -16,13 +16,12 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ImgwMetarService {
+public class ImgwMetarIngestionService {
     private final ImgwApiClient imgwApiClient;
     private final ImgwJsonDeserializer imgwJsonDeserializer;
     private final MetarResponsesRepository metarResponsesRepository;
 
     public void saveImgwMetarResponse() {
-        // TODO: Jezeli sa dane nowsze niz 30 min nie pobieraj danych
         String imgwMetarResponseJson = imgwApiClient.fetchDataPerAirport();
         Map<String, ImgwMetar> deserializedMetarResponse = imgwJsonDeserializer.deserializeMetars(imgwMetarResponseJson);
         for (ImgwMetar imgwMetar : deserializedMetarResponse.values()) {

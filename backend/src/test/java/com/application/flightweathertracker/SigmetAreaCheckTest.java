@@ -1,7 +1,7 @@
 package com.application.flightweathertracker;
 
 import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
-import com.application.flightweathertracker.imgw.sigmet.ImgwSigmetService;
+import com.application.flightweathertracker.imgw.sigmet.ImgwSigmetIngestionService;
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class SigmetAreaCheckTest {
     @Autowired
     private ImgwJsonDeserializer imgwJsonDeserializer;
     @Autowired
-    private ImgwSigmetService sigmetService;
+    private ImgwSigmetIngestionService sigmetService;
 
     @BeforeEach
     void setup() throws IOException {

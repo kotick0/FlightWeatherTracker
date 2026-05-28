@@ -24,7 +24,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ImgwSigmetService {
+public class ImgwSigmetIngestionService {
     private final ImgwApiClient imgwApiClient;
     private final ImgwJsonDeserializer imgwJsonDeserializer;
     private final SigmetResponsesRepository sigmetResponsesRepository;

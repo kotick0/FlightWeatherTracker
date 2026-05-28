@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.api.controller;
+package com.application.flightweathertracker.api.controller.imgw;
 
 import com.application.flightweathertracker.imgw.sigmet.service.SigmetService;
 import com.application.flightweathertracker.imgw.sigmet.view.SigmetView;

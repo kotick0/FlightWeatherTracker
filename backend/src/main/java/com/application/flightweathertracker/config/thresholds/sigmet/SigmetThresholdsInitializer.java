@@ -18,7 +18,7 @@ import java.nio.file.Path;
 @RequiredArgsConstructor
 @Component
 
-public class SigmetThresholdsService {
+public class SigmetThresholdsInitializer {
     @Value("${thresholds.config.path}")
     private String thresholdsConfigPathString;
 

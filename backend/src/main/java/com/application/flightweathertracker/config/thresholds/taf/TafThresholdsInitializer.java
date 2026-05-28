@@ -18,7 +18,7 @@ import java.nio.file.Path;
 @RequiredArgsConstructor
 @Component
 
-public class TafThresholdsService {
+public class TafThresholdsInitializer {
     @Value("${thresholds.config.path}")
     private String thresholdsConfigPathString;
 

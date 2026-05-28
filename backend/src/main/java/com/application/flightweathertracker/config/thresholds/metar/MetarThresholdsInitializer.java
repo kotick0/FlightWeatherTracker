@@ -17,7 +17,7 @@ import java.nio.file.Path;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class MetarThresholdsService {
+public class MetarThresholdsInitializer {
     @Value("${thresholds.config.path}")
     private String thresholdsConfigPathString;
 

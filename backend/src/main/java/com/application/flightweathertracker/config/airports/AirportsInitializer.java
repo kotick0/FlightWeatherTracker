@@ -18,7 +18,7 @@ import java.util.HashMap;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class AirportsService {
+public class AirportsInitializer {
     @Value("${airports.config.path}")
     private String airportsConfigPathString;
 

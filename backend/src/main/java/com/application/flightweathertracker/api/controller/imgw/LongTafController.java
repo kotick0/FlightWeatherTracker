@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.api.controller;
+package com.application.flightweathertracker.api.controller.imgw;
 
 import com.application.flightweathertracker.api.ReportQueryParams;
 import com.application.flightweathertracker.imgw.taf.service.LongTafService;

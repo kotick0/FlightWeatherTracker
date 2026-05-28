@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ImgwTafService {
+public class ImgwTafIngestionService {
 
     private final ImgwApiClient imgwApiClient;
     private final ImgwJsonDeserializer imgwJsonDeserializer;
