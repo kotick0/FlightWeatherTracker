@@ -6,5 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public record Wind(String unit,
                    String direction,
                    Integer directionDegrees,
-                   Integer speed) {
+                   Integer speed,
+                   Integer gust
+) {
 }

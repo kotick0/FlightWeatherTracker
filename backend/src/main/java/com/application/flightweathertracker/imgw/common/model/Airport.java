@@ -8,6 +8,7 @@ public record Airport(String name,
                       String city,
                       double latitude,
                       double longitude,
-                      boolean isMILITARY
+                      boolean isMILITARY,
+                      Integer dangerFactor
 ) {
 }

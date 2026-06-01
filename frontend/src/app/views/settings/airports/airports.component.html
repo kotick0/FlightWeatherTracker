@@ -6,7 +6,8 @@
         <button cButton color="primary" size="sm" (click)="addAirport()" [disabled]="editingId !== null">Add New Airport</button>
       </c-card-header>
       <c-card-body>
-        <table cTable hover responsive>
+        <div class="table-responsive">
+        <table cTable hover>
           <thead>
             <tr>
               <th>ID</th>
@@ -62,6 +63,7 @@
             </tr>
           </tbody>
         </table>
+      </div>
       </c-card-body>
     </c-card>
   </c-col>

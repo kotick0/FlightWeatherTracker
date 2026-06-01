@@ -34,6 +34,7 @@ public class AirportService {
                 .latitude(view.latitude())
                 .longitude(view.longitude())
                 .isMILITARY(view.isMilitary())
+                .dangerFactor(view.dangerFactor())
                 .build();
         Airports saved = repository.save(entity);
         return mapper.map(saved);
@@ -54,5 +55,12 @@ public class AirportService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    public void saveDangerFactor(String icao, int dangerFactor) {
+        Airports entity = repository.findByIcao(icao)
+                .orElseThrow(() -> new RuntimeException("Airport not found with icao: " + icao));
+        entity.setDangerFactor(dangerFactor);
+        repository.save(entity);
     }
 }

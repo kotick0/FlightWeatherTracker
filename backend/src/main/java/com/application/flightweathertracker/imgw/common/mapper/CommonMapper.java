@@ -17,7 +17,7 @@ public class CommonMapper {
 
     public WindView mapWind(Wind w) {
         if (w == null) return null;
-        return new WindView(w.unit(), w.direction(), w.directionDegrees(), w.speed());
+        return new WindView(w.unit(), w.direction(), w.directionDegrees(), w.speed(), w.gust());
     }
 
     public VisibilityView mapVisibility(Visibility v) {
@@ -28,7 +28,7 @@ public class CommonMapper {
     public CloudView mapCloud(Cloud c) {
         if (c == null) return null;
         String formatted = c.quantity() + String.format("%03d", c.height());
-        return new CloudView(c.quantity(), c.height(), formatted);
+        return new CloudView(c.quantity(), c.type(),c.height(), formatted);
     }
 
     public WeatherConditionView mapCondition(WeatherCondition wc) {

@@ -4,6 +4,7 @@ public record WindView(
         String unit,
         String direction,
         Integer directionDegrees,
-        Integer speed
+        Integer speed,
+        Integer gust
 ) {
 }

@@ -57,6 +57,7 @@ public class AirportsInitializer {
                     .latitude(airport.latitude())
                     .longitude(airport.longitude())
                     .isMILITARY(airport.isMILITARY())
+                    .dangerFactor(airport.dangerFactor())
                     .build();
             airportsRepository.save(airportsRecord);
         }

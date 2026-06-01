@@ -3,6 +3,7 @@ export interface WindView {
   direction: string;
   directionDegrees: number | null;
   speed: number | null;
+  gust: number | null;
 }
 
 export interface VisibilityView {
@@ -13,6 +14,7 @@ export interface VisibilityView {
 
 export interface CloudView {
   quantity: string;
+  type: string | null;
   height: number | null;
   formatted: string;
 }

@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -66,7 +67,7 @@ public class ImgwSigmetIngestionService {
 
     public boolean isAirportInSigmet(ImgwSigmet sigmet, String icao) {
         if (sigmet != null) {
-            Airports airport = airportsRepository.findByIcao(icao);
+            Optional<Airports> airport = airportsRepository.findByIcao(icao);
 
             List<List<Double>> coordinates = sigmet.geojson().features().getFirst().geometry().coordinates().getFirst();
             List<Coordinate> coords = new ArrayList<>();
@@ -75,13 +76,17 @@ public class ImgwSigmetIngestionService {
             }
             Coordinate[] coordinatesArray = coords.toArray(new Coordinate[0]);
             Polygon polygon = geometryFactory.createPolygon(coordinatesArray);
+            if( airport.isPresent()) {
+                double longitude = airport.get().getLongitude();
+                double latitude = airport.get().getLatitude();
 
-            double longitude = airport.getLongitude();
-            double latitude = airport.getLatitude();
+                Point airportPoint = geometryFactory.createPoint(new Coordinate(longitude, latitude));
 
-            Point airportPoint = geometryFactory.createPoint(new Coordinate(longitude, latitude));
-
-            return polygon.covers(airportPoint);
+                return polygon.covers(airportPoint);
+            } else {
+                log.warn("Airport with ICAO code '{}' not found in the database.", icao);
+                return false;
+            }
         } else {
             log.error("Provided SIGMET was null for ICAO: {}", icao);
             throw new RuntimeException("Provided SIGMET was null for ICAO: " + icao);

@@ -7,6 +7,7 @@ public record AirportView(
         String city,
         double latitude,
         double longitude,
-        boolean isMilitary
+        boolean isMilitary,
+        Integer dangerFactor
 ) {
 }

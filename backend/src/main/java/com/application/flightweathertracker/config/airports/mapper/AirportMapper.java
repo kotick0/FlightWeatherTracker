@@ -15,7 +15,8 @@ public class AirportMapper {
                 e.getCity(),
                 e.getLatitude(),
                 e.getLongitude(),
-                e.isMILITARY()
+                e.isMILITARY(),
+                e.getDangerFactor()
         );
     }
 }

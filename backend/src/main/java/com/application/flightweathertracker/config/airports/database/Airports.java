@@ -20,4 +20,5 @@ public class Airports {
     private double latitude;
     private double longitude;
     private boolean isMILITARY;
+    private Integer dangerFactor;
 }
