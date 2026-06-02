@@ -19,8 +19,18 @@ public interface LongTafResponsesRepository extends JpaRepository<LongTafRespons
             WHERE t.station IN :stations AND t.fetchedAt >= :fetchedAfter
             ORDER BY t.fetchedAt DESC
             """)
+
     List<LongTafResponses> findFilteredByStationsAndFetchedAt(
             @Param("stations") List<String> stations,
             @Param("fetchedAfter") LocalDateTime fetchedAfter
     );
+
+    @Query(value = """
+        SELECT * FROM (
+            SELECT *, ROW_NUMBER() OVER(PARTITION BY station ORDER BY id DESC) as row_num 
+            FROM public.long_taf_responses
+        ) ranked_long_tafs
+        WHERE ranked_long_tafs.row_num = 1
+        """, nativeQuery = true)
+    List<LongTafResponses> findLatestWithDistinctStation();
 }

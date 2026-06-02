@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {of} from 'rxjs';
 import {SigmetService} from '../../../core/services/sigmet.service';
+import {SigmetComponent} from './sigmet.component';
 
 describe('SigmetComponent', () => {
   let component: SigmetComponent;

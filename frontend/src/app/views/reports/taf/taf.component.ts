@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   ButtonDirective,
@@ -46,7 +46,7 @@ import {ReportHoursInputComponent} from '../../../shared/components/report-hours
   templateUrl: './taf.component.html',
   styleUrl: './taf.component.scss',
 })
-export class TafComponent implements OnInit {
+export class TafComponent implements OnInit, OnDestroy {
   readonly icaoStorageKey = REPORTS_FILTER_KEYS.taf.selectedIcaos;
 
   longTafRecords: TafView[] = [];
@@ -57,6 +57,7 @@ export class TafComponent implements OnInit {
   selectedIcaos: string[] = [];
   loading = false;
   error: string | null = null;
+  private refreshIntervalId: any;
 
   constructor(
     private preferences: ReportsFilterPreferencesService,
@@ -94,6 +95,24 @@ export class TafComponent implements OnInit {
     this.selectedTafType = this.preferences.getTafType();
     this.longHours = this.preferences.getTafLongHours();
     this.shortHours = this.preferences.getTafShortHours();
+    this.startRefreshInterval();
+  }
+
+  ngOnDestroy() {
+    this.stopRefreshInterval();
+  }
+
+  private startRefreshInterval() {
+    this.stopRefreshInterval();
+    this.refreshIntervalId = setInterval(() => {
+      this.loadRecords(true);
+    }, 15000);
+  }
+
+  private stopRefreshInterval() {
+    if (this.refreshIntervalId) {
+      clearInterval(this.refreshIntervalId);
+    }
   }
 
   formatValidity(validity: TafView['validity']): string {
@@ -103,8 +122,11 @@ export class TafComponent implements OnInit {
     return `${validity.startDay}/${validity.startHour} – ${validity.endDay}/${validity.endHour}`;
   }
 
-  private loadRecords(): void {
-    this.error = null;
+  private loadRecords(silent: boolean = false): void {
+    if (!silent) {
+      this.error = null;
+      this.startRefreshInterval();
+    }
 
     if (this.selectedIcaos.length === 0) {
       this.longTafRecords = [];
@@ -113,7 +135,9 @@ export class TafComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    if (!silent) {
+      this.loading = true;
+    }
 
     forkJoin({
       long: this.longTafService.getFiltered(this.selectedIcaos, this.longHours),
@@ -125,9 +149,11 @@ export class TafComponent implements OnInit {
         this.loading = false;
       },
       error: () => {
-        this.error = 'Failed to fetch TAF records';
-        this.longTafRecords = [];
-        this.shortTafRecords = [];
+        if (!silent) {
+          this.error = 'Failed to fetch TAF records';
+          this.longTafRecords = [];
+          this.shortTafRecords = [];
+        }
         this.loading = false;
       }
     });

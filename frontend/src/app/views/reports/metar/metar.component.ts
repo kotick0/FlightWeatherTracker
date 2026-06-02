@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   CardBodyComponent,
@@ -34,7 +34,7 @@ import {ReportHoursInputComponent} from '../../../shared/components/report-hours
   templateUrl: './metar.component.html',
   styleUrl: './metar.component.scss',
 })
-export class MetarComponent implements OnInit {
+export class MetarComponent implements OnInit, OnDestroy {
   readonly icaoStorageKey = REPORTS_FILTER_KEYS.metar.selectedIcaos;
 
   metarRecords: MetarView[] = [];
@@ -42,6 +42,7 @@ export class MetarComponent implements OnInit {
   selectedIcaos: string[] = [];
   loading = false;
   error: string | null = null;
+  private refreshIntervalId: any;
 
   constructor(
     private preferences: ReportsFilterPreferencesService,
@@ -62,10 +63,31 @@ export class MetarComponent implements OnInit {
 
   ngOnInit() {
     this.hours = this.preferences.getMetarHours();
+    this.startRefreshInterval();
   }
 
-  private loadRecords(): void {
-    this.error = null;
+  ngOnDestroy() {
+    this.stopRefreshInterval();
+  }
+
+  private startRefreshInterval() {
+    this.stopRefreshInterval();
+    this.refreshIntervalId = setInterval(() => {
+      this.loadRecords(true);
+    }, 15000);
+  }
+
+  private stopRefreshInterval() {
+    if (this.refreshIntervalId) {
+      clearInterval(this.refreshIntervalId);
+    }
+  }
+
+  private loadRecords(silent: boolean = false): void {
+    if (!silent) {
+      this.error = null;
+      this.startRefreshInterval();
+    }
 
     if (this.selectedIcaos.length === 0) {
       this.metarRecords = [];
@@ -73,7 +95,9 @@ export class MetarComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    if (!silent) {
+      this.loading = true;
+    }
 
     this.metarService.getFiltered(this.selectedIcaos, this.hours).subscribe({
       next: (data) => {
@@ -81,8 +105,10 @@ export class MetarComponent implements OnInit {
         this.loading = false;
       },
       error: () => {
-        this.error = 'Failed to fetch METAR records';
-        this.metarRecords = [];
+        if (!silent) {
+          this.error = 'Failed to fetch METAR records';
+          this.metarRecords = [];
+        }
         this.loading = false;
       }
     });

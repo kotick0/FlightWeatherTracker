@@ -4,6 +4,7 @@ import {AirportService} from '../../../core/services/airport.service';
 import {LongTafService} from '../../../core/services/long-taf.service';
 import {ShortTafService} from '../../../core/services/short-taf.service';
 import {ReportsFilterPreferencesService} from '../../../core/services/reports-filter-preferences.service';
+import {TafComponent} from './taf.component';
 
 describe('TafComponent', () => {
   let component: TafComponent;

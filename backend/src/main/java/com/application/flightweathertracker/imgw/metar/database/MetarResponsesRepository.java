@@ -22,4 +22,13 @@ public interface MetarResponsesRepository extends JpaRepository<MetarResponses, 
             @Param("stations") List<String> stations,
             @Param("fetchedAfter") LocalDateTime fetchedAfter
     );
+
+    @Query(value = """
+        SELECT * FROM (
+            SELECT *, ROW_NUMBER() OVER(PARTITION BY station ORDER BY id DESC) as row_num 
+            FROM metar_responses
+        ) ranked_metars 
+        WHERE ranked_metars.row_num = 1
+        """, nativeQuery = true)
+    List<MetarResponses> findLatestWithDistinctStation();
 }

@@ -36,4 +36,9 @@ public class MetarService {
                 .map(mapper::map)
                 .toList();
     }
+
+    public List<MetarView> getLatest() {
+        return repository.findLatestWithDistinctStation()
+                .stream().map(mapper::map).toList();
+    }
 }

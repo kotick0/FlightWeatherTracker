@@ -34,7 +34,9 @@ public class AirportService {
                 .latitude(view.latitude())
                 .longitude(view.longitude())
                 .isMILITARY(view.isMilitary())
-                .dangerFactor(view.dangerFactor())
+                .metarDangerFactor(view.metarDangerFactor())
+                .tafDangerFactor(view.tafDangerFactor())
+                .sigmetDangerFactor(view.sigmetDangerFactor())
                 .build();
         Airports saved = repository.save(entity);
         return mapper.map(saved);
@@ -57,10 +59,17 @@ public class AirportService {
         repository.deleteById(id);
     }
 
-    public void saveDangerFactor(String icao, int dangerFactor) {
+    public void saveMetarDangerFactor(String icao, int dangerFactor) {
         Airports entity = repository.findByIcao(icao)
                 .orElseThrow(() -> new RuntimeException("Airport not found with icao: " + icao));
-        entity.setDangerFactor(dangerFactor);
+        entity.setMetarDangerFactor(dangerFactor);
+        repository.save(entity);
+    }
+
+    public void saveTafDangerFactor(String icao, int dangerFactor) {
+        Airports entity = repository.findByIcao(icao)
+                .orElseThrow(() -> new RuntimeException("Airport not found with icao: " + icao));
+        entity.setTafDangerFactor(dangerFactor);
         repository.save(entity);
     }
 }

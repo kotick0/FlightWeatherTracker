@@ -23,4 +23,13 @@ public interface ShortTafResponsesRepository extends JpaRepository<ShortTafRespo
             @Param("stations") List<String> stations,
             @Param("fetchedAfter") LocalDateTime fetchedAfter
     );
+
+    @Query(value = """
+        SELECT * FROM (
+            SELECT *, ROW_NUMBER() OVER(PARTITION BY station ORDER BY id DESC) as row_num 
+            FROM public.short_taf_responses
+        ) ranked_short_tafs
+        WHERE ranked_short_tafs.row_num = 1
+        """, nativeQuery = true)
+    List<ShortTafResponses> findLatestWithDistinctStation();
 }

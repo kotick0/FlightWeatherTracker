@@ -8,6 +8,8 @@ public record AirportView(
         double latitude,
         double longitude,
         boolean isMilitary,
-        Integer dangerFactor
+        Integer metarDangerFactor,
+        Integer tafDangerFactor,
+        Integer sigmetDangerFactor
 ) {
 }

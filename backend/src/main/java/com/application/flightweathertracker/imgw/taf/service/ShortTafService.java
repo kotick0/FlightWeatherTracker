@@ -36,4 +36,9 @@ public class ShortTafService {
                 .map(mapper::map)
                 .toList();
     }
+
+    public List<TafView> getLatest() {
+        return repository.findLatestWithDistinctStation()
+                .stream().map(mapper::map).toList();
+    }
 }

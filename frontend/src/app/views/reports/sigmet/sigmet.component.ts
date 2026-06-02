@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   BadgeComponent,
@@ -27,10 +27,11 @@ import {SigmetView} from '../../../core/models/sigmet.model';
   templateUrl: './sigmet.component.html',
   styleUrl: './sigmet.component.scss',
 })
-export class SigmetComponent implements OnInit {
+export class SigmetComponent implements OnInit, OnDestroy {
   sigmetRecords: SigmetView[] = [];
   loading = false;
   error: string | null = null;
+  private refreshIntervalId: any;
 
   constructor(private sigmetService: SigmetService) {
   }
@@ -39,9 +40,29 @@ export class SigmetComponent implements OnInit {
     this.loadRecords();
   }
 
-  private loadRecords(): void {
-    this.loading = true;
-    this.error = null;
+  ngOnDestroy() {
+    this.stopRefreshInterval();
+  }
+
+  private startRefreshInterval() {
+    this.stopRefreshInterval();
+    this.refreshIntervalId = setInterval(() => {
+      this.loadRecords(true);
+    }, 15000);
+  }
+
+  private stopRefreshInterval() {
+    if (this.refreshIntervalId) {
+      clearInterval(this.refreshIntervalId);
+    }
+  }
+
+  private loadRecords(silent: boolean = false): void {
+    if (!silent) {
+      this.error = null;
+      this.startRefreshInterval();
+      this.loading = true;
+    }
 
     this.sigmetService.getAll().subscribe({
       next: (data) => {
@@ -49,8 +70,10 @@ export class SigmetComponent implements OnInit {
         this.loading = false;
       },
       error: () => {
-        this.error = 'Failed to fetch SIGMET records';
-        this.sigmetRecords = [];
+        if (!silent) {
+          this.error = 'Failed to fetch SIGMET records';
+          this.sigmetRecords = [];
+        }
         this.loading = false;
       }
     });

@@ -14,11 +14,12 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class MetarAlert {
+public class MetarDangerEvaluator {
     private final MetarThresholdsService metarThresholdsService;
     private final AirportService airportService;
     private final MetarService metarService;
-    private int calculateMetarDangerFactor(MetarView metarResponse) {
+
+    private int countMetarDangerFactor(MetarView metarResponse) {
         Optional<MetarThresholdsView> metarThresholds = metarThresholdsService.get();
 
         int dangerFactor = 0;
@@ -33,12 +34,12 @@ public class MetarAlert {
             }
 
             boolean lowClouds = metarResponse.clouds().stream()
-                    .anyMatch(c -> c.height() < metarThresholds.get().minCloudHeight());
+                    .anyMatch(c -> c.height() != null && c.height() < metarThresholds.get().minCloudHeight());
             if (lowClouds) dangerFactor += 10;
 
-            boolean badQuantity = metarResponse.clouds().stream()
-                    .anyMatch(c -> c.quantity().equals(metarThresholds.get().maxCloudQuantity()));
-            if (badQuantity) dangerFactor += 7;
+            boolean badCloudQuantity = metarResponse.clouds().stream()
+                    .anyMatch(c -> c.quantity() != null && c.quantity().equals(metarThresholds.get().maxCloudQuantity()));
+            if (badCloudQuantity) dangerFactor += 7;
 
             if (metarResponse.altimeter() != null && metarResponse.altimeter() < metarThresholds.get().minAltimeter()) {
                 dangerFactor += 1;
@@ -74,14 +75,14 @@ public class MetarAlert {
         return dangerFactor;
     }
 
-    public void countDangerFactorForAirports() {
+    public void countMetarDangerFactorForAirports() {
         List<AirportView> airports = airportService.getAll();
-        List<MetarView> metarResponses = metarService.getAll();
+        List<MetarView> metarResponses = metarService.getLatest();
         for (AirportView airport : airports) {
             for (MetarView metarResponse : metarResponses) {
                 if (metarResponse.station().equals(airport.icao())) {
-                    int dangerFactor = calculateMetarDangerFactor(metarResponse);
-                    airportService.saveDangerFactor(metarResponse.station(), dangerFactor);
+                    int dangerFactor = countMetarDangerFactor(metarResponse);
+                    airportService.saveMetarDangerFactor(metarResponse.station(), dangerFactor);
                 }
             }
         }

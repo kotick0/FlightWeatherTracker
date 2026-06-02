@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {of} from 'rxjs';
 import {AirportService} from '../../../core/services/airport.service';
+import {AirportsComponent} from './airports.component';
 
 describe('AirportsComponent', () => {
   let component: AirportsComponent;

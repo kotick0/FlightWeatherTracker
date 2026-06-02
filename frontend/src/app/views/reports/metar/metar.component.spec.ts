@@ -3,6 +3,7 @@ import {of} from 'rxjs';
 import {AirportService} from '../../../core/services/airport.service';
 import {MetarService} from '../../../core/services/metar.service';
 import {ReportsFilterPreferencesService} from '../../../core/services/reports-filter-preferences.service';
+import {MetarComponent} from './metar.component';
 
 describe('MetarComponent', () => {
   let component: MetarComponent;
