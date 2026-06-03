@@ -6,4 +6,7 @@ export interface AirportView {
   latitude: number;
   longitude: number;
   isMilitary: boolean;
+  metarDangerFactor?: number;
+  tafDangerFactor?: number;
+  sigmetDangerFactor?: number;
 }

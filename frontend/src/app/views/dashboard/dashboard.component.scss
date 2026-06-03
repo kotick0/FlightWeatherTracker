@@ -4,4 +4,14 @@
       font-size: x-small;
     }
   }
+
+  .risk-low {
+    color: #22c55e; /* Bright Green */
+  }
+  .risk-medium {
+    color: #f97316; /* Bright Orange */
+  }
+  .risk-high {
+    color: #ef4444; /* Bright Red */
+  }
 }

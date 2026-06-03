@@ -1,4 +1,4 @@
-package com.application.flightweathertracker.alert;
+package com.application.flightweathertracker.alert.danger;
 
 import com.application.flightweathertracker.config.airports.service.AirportService;
 import com.application.flightweathertracker.config.airports.view.AirportView;

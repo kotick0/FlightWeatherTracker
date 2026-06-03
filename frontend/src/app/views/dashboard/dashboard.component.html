@@ -1,11 +1,57 @@
 <c-row>
   <c-col xs="12">
-    <c-card>
-      <c-card-header>Flight Weather Tracker</c-card-header>
+    <c-card class="mb-4">
+      <c-card-header><strong>Flight Risk Overview</strong></c-card-header>
       <c-card-body>
-        <p class="mb-0 text-body-secondary">
-          Template content has been removed. Build your weather dashboard modules here.
-        </p>
+        <div class="table-responsive">
+          <table cTable hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>ICAO</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Military</th>
+                <th>METAR Danger Factor</th>
+                <th>TAF Danger Factor</th>
+                <th>SIGMET Danger Factor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let airport of airports">
+                <td>{{ airport.id }}</td>
+                <td>{{ airport.name }}</td>
+                <td>{{ airport.icao }}</td>
+                <td>{{ airport.latitude }}</td>
+                <td>{{ airport.longitude }}</td>
+                <td>
+                  <c-form-check>
+                    <input cFormCheckInput type="checkbox" [checked]="airport.isMilitary" disabled style="opacity: 1; border-color: #8a93a2;" />
+                  </c-form-check>
+                </td>
+                <td>
+                  <span [ngClass]="getDangerFactorClass(airport.metarDangerFactor)">
+                    {{ airport.metarDangerFactor !== undefined && airport.metarDangerFactor !== null ? airport.metarDangerFactor : 'N/A' }}
+                  </span>
+                </td>
+                <td>
+                  <span [ngClass]="getDangerFactorClass(airport.tafDangerFactor)">
+                    {{ airport.tafDangerFactor !== undefined && airport.tafDangerFactor !== null ? airport.tafDangerFactor : 'N/A' }}
+                  </span>
+                </td>
+                <td>
+                  <span [ngClass]="getDangerFactorClass(airport.sigmetDangerFactor)">
+                    {{ airport.sigmetDangerFactor !== undefined && airport.sigmetDangerFactor !== null ? airport.sigmetDangerFactor : 'N/A' }}
+                  </span>
+                </td>
+              </tr>
+              <tr *ngIf="airports.length === 0">
+                <td colspan="9" class="text-center">No airports configured</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </c-card-body>
     </c-card>
   </c-col>

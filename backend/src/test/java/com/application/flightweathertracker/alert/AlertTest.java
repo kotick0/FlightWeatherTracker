@@ -1,5 +1,8 @@
 package com.application.flightweathertracker.alert;
 
+import com.application.flightweathertracker.alert.danger.MetarDangerEvaluator;
+import com.application.flightweathertracker.alert.danger.SigmetDangerEvaluator;
+import com.application.flightweathertracker.alert.danger.TafDangerEvaluator;
 import com.application.flightweathertracker.imgw.taf.service.LongTafService;
 import com.application.flightweathertracker.imgw.taf.service.ShortTafService;
 import org.junit.jupiter.api.Test;
