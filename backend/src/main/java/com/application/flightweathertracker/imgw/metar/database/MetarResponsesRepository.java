@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MetarResponsesRepository extends JpaRepository<MetarResponses, Long> {
-    List<MetarResponses> findAllByStation(String station);
-    List<MetarResponses> findByObservedAtAfter(LocalDateTime observedAt);
 
     List<MetarResponses> findAllByOrderByObservedAtDesc();
 
@@ -31,4 +29,5 @@ public interface MetarResponsesRepository extends JpaRepository<MetarResponses, 
         WHERE ranked_metars.row_num = 1
         """, nativeQuery = true)
     List<MetarResponses> findLatestWithDistinctStation();
+    boolean existsByStationAndObservedAt(String station, LocalDateTime observedAt);
 }

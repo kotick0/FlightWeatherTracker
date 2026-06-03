@@ -25,6 +25,7 @@ public class ImgwMetarIngestionService {
         String imgwMetarResponseJson = imgwApiClient.fetchDataPerAirport();
         Map<String, ImgwMetar> deserializedMetarResponse = imgwJsonDeserializer.deserializeMetars(imgwMetarResponseJson);
         for (ImgwMetar imgwMetar : deserializedMetarResponse.values()) {
+        if (!metarResponsesRepository.existsByStationAndObservedAt(imgwMetar.station(), imgwMetar.date())) {
             try {
                 MetarResponses responseRecord = MetarResponses.builder()
                         .station(imgwMetar.station())
@@ -46,6 +47,7 @@ public class ImgwMetarIngestionService {
             } catch (DataIntegrityViolationException e) {
                 log.info("METAR already exists: ICAO={} observed_at={}", imgwMetar.station(), imgwMetar.date());
             }
+        }
         }
         log.info("Metar responses successfully saved to the database");
     }

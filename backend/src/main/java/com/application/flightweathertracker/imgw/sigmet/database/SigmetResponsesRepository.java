@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SigmetResponsesRepository extends JpaRepository<SigmetResponses, Long> {
@@ -12,4 +13,6 @@ public interface SigmetResponsesRepository extends JpaRepository<SigmetResponses
 
     @Query("SELECT s FROM SigmetResponses s WHERE s.valid_to > :now")
     List<SigmetResponses> findAllActive(@Param("now") Instant now);
+
+    boolean existsByIiAndFetchedAt(String ii, LocalDateTime fetchedAt);
 }

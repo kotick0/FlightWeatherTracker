@@ -8,10 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface LongTafResponsesRepository extends JpaRepository<LongTafResponses, Long> {
-    List<LongTafResponses> findAllByStation(String station);
-
-    List<LongTafResponses> findByObservedAtAfter(LocalDateTime observedAt);
-
     List<LongTafResponses> findAllByOrderByObservedAtDesc();
 
     @Query("""
@@ -33,4 +29,5 @@ public interface LongTafResponsesRepository extends JpaRepository<LongTafRespons
         WHERE ranked_long_tafs.row_num = 1
         """, nativeQuery = true)
     List<LongTafResponses> findLatestWithDistinctStation();
+    boolean existsByStationAndObservedAt(String station, LocalDateTime observedAt);
 }

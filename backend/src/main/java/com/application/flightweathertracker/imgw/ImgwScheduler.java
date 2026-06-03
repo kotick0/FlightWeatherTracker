@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class ImgwScheduler {
     private final ImgwService imgwService;
 
-    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.MINUTES)
+    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.MINUTES)
     public void saveImgwResponsesScheduler() {
         imgwService.saveAllImgwResponsesForAirportsConfig();
     }

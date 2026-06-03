@@ -26,7 +26,7 @@ export class LongTafComponent implements OnInit {
   ngOnInit(): void {
     this.tafService.getAll().subscribe({
       next: (data: TafView[]) => {
-        this.tafs = data;
+        this.tafs = data.sort((a, b) => new Date(b.observedAt || 0).getTime() - new Date(a.observedAt || 0).getTime());
         this.loading = false;
       },
       error: () => {

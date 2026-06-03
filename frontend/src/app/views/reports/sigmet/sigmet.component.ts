@@ -66,7 +66,7 @@ export class SigmetComponent implements OnInit, OnDestroy {
 
     this.sigmetService.getAll().subscribe({
       next: (data) => {
-        this.sigmetRecords = data;
+        this.sigmetRecords = data.sort((a, b) => new Date(b.fetchedAt || 0).getTime() - new Date(a.fetchedAt || 0).getTime());
         this.loading = false;
       },
       error: () => {

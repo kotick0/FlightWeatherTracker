@@ -101,7 +101,8 @@ export class MetarComponent implements OnInit, OnDestroy {
 
     this.metarService.getFiltered(this.selectedIcaos, this.hours).subscribe({
       next: (data) => {
-        this.metarRecords = filterRecordsByStations(data, this.selectedIcaos);
+        this.metarRecords = filterRecordsByStations(data, this.selectedIcaos)
+          .sort((a, b) => new Date(b.observedAt || 0).getTime() - new Date(a.observedAt || 0).getTime());
         this.loading = false;
       },
       error: () => {

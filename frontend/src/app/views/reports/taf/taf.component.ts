@@ -144,8 +144,10 @@ export class TafComponent implements OnInit, OnDestroy {
       short: this.shortTafService.getFiltered(this.selectedIcaos, this.shortHours),
     }).subscribe({
       next: ({long, short}) => {
-        this.longTafRecords = filterRecordsByStations(long, this.selectedIcaos);
-        this.shortTafRecords = filterRecordsByStations(short, this.selectedIcaos);
+        this.longTafRecords = filterRecordsByStations(long, this.selectedIcaos)
+          .sort((a, b) => new Date(b.observedAt || 0).getTime() - new Date(a.observedAt || 0).getTime());
+        this.shortTafRecords = filterRecordsByStations(short, this.selectedIcaos)
+          .sort((a, b) => new Date(b.observedAt || 0).getTime() - new Date(a.observedAt || 0).getTime());
         this.loading = false;
       },
       error: () => {

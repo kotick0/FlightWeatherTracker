@@ -27,8 +27,6 @@ public class SigmetDangerEvaluator {
         int dangerFactor = 0;
 
         if (sigmetThresholds.isPresent()) {
-            //TODO Usunac min/max flight level z thresholdow + frontend
-
             boolean badIntensity = sigmetResponse.features().stream()
                     .anyMatch(f -> f.intensity() != null && f.intensity().equals(sigmetThresholds.get().maxIntensity()));
             if (badIntensity) dangerFactor += 10;
