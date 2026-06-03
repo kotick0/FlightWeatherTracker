@@ -72,4 +72,12 @@ public class AirportService {
         entity.setTafDangerFactor(dangerFactor);
         repository.save(entity);
     }
+
+    public void saveSigmetDangerFactor(String icao, int dangerFactor) {
+        Airports entity = repository.findByIcao(icao)
+                .orElseThrow(() -> new RuntimeException("Airport not found with icao: " + icao));
+        entity.setSigmetDangerFactor(dangerFactor);
+        repository.save(entity);
+    }
+
 }

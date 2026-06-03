@@ -1,8 +1,7 @@
 package com.application.flightweathertracker;
 
-import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
-import com.application.flightweathertracker.imgw.sigmet.ImgwSigmetIngestionService;
-import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
+import com.application.flightweathertracker.imgw.sigmet.service.SigmetService;
+import com.application.flightweathertracker.imgw.sigmet.view.SigmetView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 @SpringBootTest
 class SigmetAreaCheckTest {
@@ -22,9 +20,7 @@ class SigmetAreaCheckTest {
     String sigmetJson;
 
     @Autowired
-    private ImgwJsonDeserializer imgwJsonDeserializer;
-    @Autowired
-    private ImgwSigmetIngestionService sigmetService;
+    private SigmetService sigmetService;
 
     @BeforeEach
     void setup() throws IOException {
@@ -33,8 +29,9 @@ class SigmetAreaCheckTest {
 
     @Test
     public void sigmetGet() {
-        Map<String, ImgwSigmet> sigmets = imgwJsonDeserializer.deserializeSigmets(sigmetJson);
-        ImgwSigmet sigmet = sigmets.get("M02");
-        System.out.println(sigmetService.isAirportInSigmet(sigmet, "EPTM"));
+        if (!sigmetService.getAll().isEmpty()) {
+            SigmetView sigmet = sigmetService.getAll().getFirst();
+            System.out.println(sigmet);
+        }
     }
 }

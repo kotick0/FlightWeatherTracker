@@ -15,6 +15,9 @@ public class AlertTest {
     TafDangerEvaluator tafDangerEvaluator;
 
     @Autowired
+    SigmetDangerEvaluator sigmetDangerEvaluator;
+
+    @Autowired
     private LongTafService longTafService;
 
     @Autowired
@@ -27,6 +30,7 @@ public class AlertTest {
         metarDangerEvaluator.countMetarDangerFactorForAirports();
         tafDangerEvaluator.countTafDangerFactorForAirports(longTafService.getLatest());
         tafDangerEvaluator.countTafDangerFactorForAirports(shortTafService.getLatest());
+        sigmetDangerEvaluator.countSigmetDangerFactorForAirports();
     }
 
 }

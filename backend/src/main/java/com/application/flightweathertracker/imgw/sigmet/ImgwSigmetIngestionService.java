@@ -7,6 +7,8 @@ import com.application.flightweathertracker.imgw.ImgwJsonDeserializer;
 import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponsesRepository;
 import com.application.flightweathertracker.imgw.sigmet.database.SigmetResponses;
 import com.application.flightweathertracker.imgw.sigmet.model.ImgwSigmet;
+import com.application.flightweathertracker.imgw.sigmet.view.SigmetFeatureView;
+import com.application.flightweathertracker.imgw.sigmet.view.SigmetView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.locationtech.jts.geom.Coordinate;
@@ -65,24 +67,28 @@ public class ImgwSigmetIngestionService {
         }
     }
 
-    public boolean isAirportInSigmet(ImgwSigmet sigmet, String icao) {
+    public boolean isAirportInSigmet(SigmetView sigmet, String icao) {
         if (sigmet != null) {
             Optional<Airports> airport = airportsRepository.findByIcao(icao);
 
-            List<List<Double>> coordinates = sigmet.geojson().features().getFirst().geometry().coordinates().getFirst();
-            List<Coordinate> coords = new ArrayList<>();
-            for (List<Double> coordinateSet : coordinates) {
-                coords.add(new Coordinate(coordinateSet.get(0), coordinateSet.get(1)));
-            }
-            Coordinate[] coordinatesArray = coords.toArray(new Coordinate[0]);
-            Polygon polygon = geometryFactory.createPolygon(coordinatesArray);
-            if( airport.isPresent()) {
+            if (airport.isPresent()) {
                 double longitude = airport.get().getLongitude();
                 double latitude = airport.get().getLatitude();
-
                 Point airportPoint = geometryFactory.createPoint(new Coordinate(longitude, latitude));
 
-                return polygon.covers(airportPoint);
+                for (SigmetFeatureView feature : sigmet.features()) {
+                    for (List<List<Double>> ring : feature.coordinates()) {
+                        List<Coordinate> coords = new ArrayList<>();
+                        for (List<Double> coordinateSet : ring) {
+                            coords.add(new Coordinate(coordinateSet.get(0), coordinateSet.get(1)));
+                        }
+                        Polygon polygon = geometryFactory.createPolygon(coords.toArray(new Coordinate[0]));
+                        if (polygon.covers(airportPoint)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             } else {
                 log.warn("Airport with ICAO code '{}' not found in the database.", icao);
                 return false;

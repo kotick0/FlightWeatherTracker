@@ -5,6 +5,7 @@ import com.application.flightweathertracker.imgw.sigmet.mapper.SigmetMapper;
 import com.application.flightweathertracker.imgw.sigmet.view.SigmetView;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -19,6 +20,10 @@ public class SigmetService {
 
     public List<SigmetView> getAll() {
         return repository.findAllByOrderByFetchedAtDesc()
+                .stream().map(mapper::map).toList();
+    }
+    public List<SigmetView> getActiveSigmets(Instant now) {
+        return repository.findAllActive(Instant.now())
                 .stream().map(mapper::map).toList();
     }
 }
