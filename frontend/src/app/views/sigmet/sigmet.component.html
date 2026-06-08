@@ -27,7 +27,8 @@
         <td>{{ s.features[0]?.flightLevel ?? '—' }}</td>
         <td>
           <c-badge *ngIf="s.isCancelled" color="danger">CANX</c-badge>
-          <c-badge *ngIf="s.isValid" color="success">VALID</c-badge>
+          <c-badge *ngIf="isSigmetValid(s)" color="success">VALID</c-badge>
+          <c-badge *ngIf="!isSigmetValid(s)" color="danger">Not Valid</c-badge>
         </td>
       </tr>
       </tbody>

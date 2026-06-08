@@ -39,7 +39,7 @@ public class ImgwSigmetIngestionService {
         Map<String, ImgwSigmet> deserializedSigmetResponse = imgwJsonDeserializer.deserializeSigmets(imgwSigmetResponseJson);
         for (ImgwSigmet imgwSigmet : deserializedSigmetResponse.values()) {
             if (imgwSigmet != null) {
-                if (!sigmetResponsesRepository.existsByIiAndFetchedAt(imgwSigmet.ii(), LocalDateTime.now())) {
+                if (!sigmetResponsesRepository.existsByIiAndTransmission_time(imgwSigmet.ii(), imgwSigmet.Transmission_time())) {
                     try {
                         SigmetResponses responseRecord = SigmetResponses.builder()
                                 .fetchedAt(LocalDateTime.now())

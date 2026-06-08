@@ -38,7 +38,8 @@
               <td>{{ record.message }}</td>
               <td>
                 <c-badge *ngIf="record.isCancelled" color="danger" class="me-1">CANX</c-badge>
-                <c-badge *ngIf="record.isValid" color="success">VALID</c-badge>
+                <c-badge *ngIf="isSigmetValid(record)" color="success">VALID</c-badge>
+                <c-badge *ngIf="!isSigmetValid(record)" color="danger">Not Valid</c-badge>
               </td>
             </tr>
             <tr *ngIf="!loading && sigmetRecords.length === 0">

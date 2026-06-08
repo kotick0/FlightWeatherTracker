@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {BadgeComponent, CardBodyComponent, CardComponent, CardHeaderComponent, TableDirective} from '@coreui/angular';
 import {SigmetService} from '../../core/services/sigmet.service';
 import {SigmetView} from '../../core/models/sigmet.model';
+import {isSigmetValid} from '../../core/utils/sigmet.util';
 
 @Component({
   selector: 'app-sigmet',
@@ -19,6 +20,10 @@ export class SigmetComponent implements OnInit {
   sigmets: SigmetView[] = [];
   loading = true;
   error: string | null = null;
+
+  isSigmetValid(record: SigmetView): boolean {
+    return isSigmetValid(record);
+  }
 
   constructor(private sigmetService: SigmetService) {
   }

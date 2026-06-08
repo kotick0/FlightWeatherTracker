@@ -11,6 +11,7 @@ import {
 } from '@coreui/angular';
 import {SigmetService} from '../../../core/services/sigmet.service';
 import {SigmetView} from '../../../core/models/sigmet.model';
+import {isSigmetValid} from '../../../core/utils/sigmet.util';
 
 @Component({
   selector: 'app-sigmet',
@@ -32,6 +33,10 @@ export class SigmetComponent implements OnInit, OnDestroy {
   loading = false;
   error: string | null = null;
   private refreshIntervalId: any;
+
+  isSigmetValid(record: SigmetView): boolean {
+    return isSigmetValid(record);
+  }
 
   constructor(private sigmetService: SigmetService) {
   }
