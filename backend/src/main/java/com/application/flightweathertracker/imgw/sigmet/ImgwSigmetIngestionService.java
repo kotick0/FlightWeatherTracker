@@ -39,7 +39,7 @@ public class ImgwSigmetIngestionService {
         Map<String, ImgwSigmet> deserializedSigmetResponse = imgwJsonDeserializer.deserializeSigmets(imgwSigmetResponseJson);
         for (ImgwSigmet imgwSigmet : deserializedSigmetResponse.values()) {
             if (imgwSigmet != null) {
-                if (!sigmetResponsesRepository.existsByIiAndTransmission_time(imgwSigmet.ii(), imgwSigmet.Transmission_time())) {
+                if (!sigmetResponsesRepository.existsByIiAndTransmissionTime(imgwSigmet.ii(), imgwSigmet.Transmission_time())) {
                     try {
                         SigmetResponses responseRecord = SigmetResponses.builder()
                                 .fetchedAt(LocalDateTime.now())
@@ -53,7 +53,7 @@ public class ImgwSigmetIngestionService {
                                 .cnl_id(imgwSigmet.cnl_id())
                                 .message(imgwSigmet.message())
                                 .geojson(imgwSigmet.geojson())
-                                .Transmission_time(imgwSigmet.Transmission_time())
+                                .TransmissionTime(imgwSigmet.Transmission_time())
                                 .valid_to(imgwSigmet.valid_to())
                                 .is_valid(imgwSigmet.is_valid())
                                 .cnl_valid(imgwSigmet.cnl_valid())

@@ -52,7 +52,7 @@ public class SigmetResponses {
     @Column(columnDefinition = "jsonb")
     private FeatureCollection geojson;
 
-    private Instant Transmission_time;
+    private Instant TransmissionTime;
 
     private Instant valid_to;
 

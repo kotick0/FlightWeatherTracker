@@ -13,5 +13,5 @@ public interface SigmetResponsesRepository extends JpaRepository<SigmetResponses
     @Query("SELECT s FROM SigmetResponses s WHERE s.valid_to > :now")
     List<SigmetResponses> findAllActive(@Param("now") Instant now);
 
-    boolean existsByIiAndTransmission_time(String ii, Instant transmission_time);
+    boolean existsByIiAndTransmissionTime(String ii, Instant transmission_time);
 }

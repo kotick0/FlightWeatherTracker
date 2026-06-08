@@ -31,7 +31,7 @@ public class SigmetMapper {
                 e.getCnl_valid(),
                 e.getValid_from() != null ? e.getValid_from().toString() : null,
                 e.getValid_to() != null ? e.getValid_to().toString() : null,
-                e.getTransmission_time() != null ? e.getTransmission_time().toString() : null,
+                e.getTransmissionTime() != null ? e.getTransmissionTime().toString() : null,
                 e.getIs_valid(),
                 e.getMessage(),
                 features
